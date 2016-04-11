@@ -10,6 +10,7 @@ namespace Tiger_YH_Admin
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
