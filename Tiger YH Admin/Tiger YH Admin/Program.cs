@@ -12,47 +12,40 @@ namespace Tiger_YH_Admin
     {
         static void Main(string[] args)
         {
-            User user = new User()
-            {
-                UserName = "staffan",
-                Password = "abc123"
-            };
+	        bool loopMenu = true;
 
-            DataStore<User> ds = new UserStore();
+	        User user;
+	        do
+	        {
+				Console.Clear();
+				UserStore userDataStore = new UserStore();
+				user = Menu.LoginMenu(userDataStore);
 
-            List<User> userList = ds.DataSet.ToList();
+				if (user != null)
+				{
+					Console.WriteLine("Inloggade");
+					loopMenu = false;
+				}
+				else
+				{
+					Console.WriteLine("Fel användarnamn eller lösenord");
+					Console.ReadKey();
+				}
 
-            var userExists = userList.SingleOrDefault(u => u.UserName == user.UserName);
-            if (userExists != null)
-            {
-                // Användaren fanns redan
-                Console.WriteLine("Användaren fanns redan");
-            }
-            else
-            {
-                // Användaren finns inte
-                Console.WriteLine("Användaren fanns inte");
-                userList.Add(user);
-            }
+			} while (loopMenu);
 
-            ds.DataSet = userList;
-            ds.Save();
-
-            //Course newCourse = new Course
-            //{
-            //    CourseId = "oop1",
-            //    CourseName = "Objektorienterad Programmering 1",
-            //    CourseTeacher = "admin",
-            //    StartDate = DateTime.Today,
-            //    EndDate = DateTime.Today,
-            //};
-
-            //List<Course> courseList = new List<Course>();
-            //courseList.Add(newCourse);
-
-            //DataStore<Course> ds = new DataStore<Course>();
-            //ds.DataSet = courseList;
-            //ds.Save();
-        }
+	        loopMenu = true;
+	        while (loopMenu)
+	        {
+		        if (user.UserLevel == UserLevel.Admin)
+		        {
+					Menu.MainAdminMenu();
+				}
+		        else
+		        {
+			        Console.WriteLine("Du har inte admin-rättigheter");
+		        }
+			}
+		}
     }
 }
