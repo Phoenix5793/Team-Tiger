@@ -4,7 +4,7 @@ using FileHelpers;
 
 namespace Tiger_YH_Admin.Models
 {
-	class DataStore<T> where T: class
+	abstract class DataStore<T> where T: class
 	{
 		private readonly string _fileName;
 		private const string FilePrefix = "Data/";

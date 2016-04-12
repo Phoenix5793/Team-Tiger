@@ -12,47 +12,47 @@ namespace Tiger_YH_Admin
     {
         static void Main(string[] args)
         {
-            //User user = new User()
-            //{
-            //    UserName = "olof",
-            //    Password = "abc123"
-            //};
-
-            //DataStore<User> ds = new DataStore<User>();
-
-            //List<User> userList = ds.DataSet.ToList();
-
-            //var userExists = userList.SingleOrDefault(u => u.UserName == user.UserName);
-            //if(userExists != null)
-            //{
-            //    // Användaren fanns redan
-            //    Console.WriteLine("Användaren fanns redan");
-            //}
-            //else
-            //{
-            //    // Användaren finns inte
-            //    Console.WriteLine("Användaren fanns inte");
-            //    userList.Add(user);
-            //}
-
-            //ds.DataSet = userList;
-            //ds.Save();
-
-            Course newCourse = new Course
+            User user = new User()
             {
-                CourseId = "oop1",
-                CourseName = "Objektorienterad Programmering 1",
-                CourseTeacher = "admin",
-                StartDate = DateTime.Today,
-                EndDate = DateTime.Today,
+                UserName = "staffan",
+                Password = "abc123"
             };
 
-            List<Course> courseList = new List<Course>();
-            courseList.Add(newCourse);
+            DataStore<User> ds = new UserStore();
 
-            DataStore<Course> ds = new DataStore<Course>();
-            ds.DataSet = courseList;
+            List<User> userList = ds.DataSet.ToList();
+
+            var userExists = userList.SingleOrDefault(u => u.UserName == user.UserName);
+            if (userExists != null)
+            {
+                // Användaren fanns redan
+                Console.WriteLine("Användaren fanns redan");
+            }
+            else
+            {
+                // Användaren finns inte
+                Console.WriteLine("Användaren fanns inte");
+                userList.Add(user);
+            }
+
+            ds.DataSet = userList;
             ds.Save();
+
+            //Course newCourse = new Course
+            //{
+            //    CourseId = "oop1",
+            //    CourseName = "Objektorienterad Programmering 1",
+            //    CourseTeacher = "admin",
+            //    StartDate = DateTime.Today,
+            //    EndDate = DateTime.Today,
+            //};
+
+            //List<Course> courseList = new List<Course>();
+            //courseList.Add(newCourse);
+
+            //DataStore<Course> ds = new DataStore<Course>();
+            //ds.DataSet = courseList;
+            //ds.Save();
         }
     }
 }

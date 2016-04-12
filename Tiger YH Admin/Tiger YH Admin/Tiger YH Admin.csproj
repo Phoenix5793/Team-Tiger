@@ -51,6 +51,7 @@
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\DataStore.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserStore.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
