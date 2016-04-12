@@ -9,10 +9,6 @@ namespace Tiger_YH_Admin.Models
 {
     class UserStore : DataStore<User>
     {
-	    public UserStore() : base()
-	    {
-
-	    }
         public User GetUserByName(string name)
         {
 			//TODO: Skriv tester
@@ -20,6 +16,18 @@ namespace Tiger_YH_Admin.Models
 
 	        return userList.SingleOrDefault(u => u.UserName == name);
         }
+
+	    public User LoginUser(string name, string password)
+	    {
+			//TODO: Skriv tester
+		    User user = GetUserByName(name);
+
+		    if (user != null && password == user.Password)
+		    {
+			    return user;
+		    }
+		    return null;
+	    }
 
 	    public bool AddUser(User newUser)
 	    {
