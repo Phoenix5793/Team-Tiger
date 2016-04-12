@@ -2,6 +2,6 @@
 {
 	public interface ICreator<T> where T: class
 	{
-		T Create();
+		T Create(IDataStore<T> dataStore);
 	}
 }

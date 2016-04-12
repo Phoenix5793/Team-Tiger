@@ -9,7 +9,13 @@ namespace Tiger_YH_Admin.Models
 {
     class UserStore : DataStore<User>
     {
-        public User GetUserByName(string name)
+	    public override User FindById(string id)
+	    {
+			//TODO: Skriv tester
+		    return DataSet.ToList().SingleOrDefault(u => u.UserName == id);
+	    }
+
+	    public User GetUserByName(string name)
         {
 			//TODO: Skriv tester
 	        List<User> userList = Load().ToList();

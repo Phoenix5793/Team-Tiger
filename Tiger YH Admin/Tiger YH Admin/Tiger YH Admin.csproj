@@ -50,7 +50,10 @@
     <Compile Include="Enumerators.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\Creators\ICreator.cs" />
+    <Compile Include="Models\Creators\UserCreator.cs" />
     <Compile Include="Models\DataStore.cs" />
+    <Compile Include="Models\IDataStore.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserStore.cs" />
     <Compile Include="Program.cs" />

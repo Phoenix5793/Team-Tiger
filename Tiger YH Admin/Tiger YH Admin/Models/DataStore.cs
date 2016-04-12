@@ -4,7 +4,7 @@ using FileHelpers;
 
 namespace Tiger_YH_Admin.Models
 {
-	abstract class DataStore<T> where T: class
+	public abstract class DataStore<T>: IDataStore<T> where T:class
 	{
 		private readonly string _fileName;
 		private const string FilePrefix = "Data/";
@@ -16,6 +16,8 @@ namespace Tiger_YH_Admin.Models
 			_fileName = FilePrefix + typeof(T).Name + "List.csv";
 			DataSet = Load();
 		}
+
+		public abstract T FindById(string id);
 
 		public IEnumerable<T> Load()
 		{
