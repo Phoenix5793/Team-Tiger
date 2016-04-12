@@ -20,7 +20,7 @@ namespace Tiger_YH_Admin
 
 		public static string LoginGetUserName()
 		{
-			return Console.ReadLine();
+			return GetInput<string>();
 
 		}
 
@@ -29,7 +29,7 @@ namespace Tiger_YH_Admin
 			Console.ForegroundColor = ConsoleColor.Black;
 			Console.BackgroundColor = ConsoleColor.Black;
 			Console.ResetColor();
-			return Console.ReadLine();
+			return GetInput<string>();
 		}
 	}
 }
