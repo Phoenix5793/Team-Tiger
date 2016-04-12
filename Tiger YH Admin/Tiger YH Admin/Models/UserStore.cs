@@ -8,5 +8,9 @@ namespace Tiger_YH_Admin.Models
 {
     class UserStore : DataStore<User>
     {
+        public static GetUserByName(string name)
+        {
+
+        }
     }
 }
