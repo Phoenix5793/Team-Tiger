@@ -8,6 +8,12 @@ namespace Tiger_YH_Admin
 {
 	static class UserInput
 	{
+		private static T GetInput<T>()
+		{
+			string input = Console.ReadLine();
+			return (T)Convert.ChangeType(input, typeof(T));
+		}
+
 		public static void MainMenuInput()
 		{
 		}
