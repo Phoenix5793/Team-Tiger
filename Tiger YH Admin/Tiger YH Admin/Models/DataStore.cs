@@ -11,13 +11,13 @@ namespace Tiger_YH_Admin.Models
 
 		public IEnumerable<T> DataSet { get; set; }
 
-		public DataStore()
+		protected DataStore()
 		{
 			_fileName = FilePrefix + typeof(T).Name + "List.csv";
 			DataSet = Load();
 		}
 
-		private IEnumerable<T> Load()
+		public IEnumerable<T> Load()
 		{
 			var csv = new FileHelperEngine<T>(Encoding.UTF8);
 			var records = csv.ReadFile(_fileName);
