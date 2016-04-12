@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tiger_YH_Admin.Models;
+using Tiger_YH_Admin.Models.Creators;
 
 
 namespace Tiger_YH_Admin
@@ -15,10 +16,11 @@ namespace Tiger_YH_Admin
 	        bool loopMenu = true;
 
 	        User user;
-	        do
-	        {
+			UserStore userDataStore = new UserStore();
+
+			do
+			{
 				Console.Clear();
-				UserStore userDataStore = new UserStore();
 				user = Menu.LoginMenu(userDataStore);
 
 				if (user != null)
@@ -39,13 +41,25 @@ namespace Tiger_YH_Admin
 	        {
 		        if (user.UserLevel == UserLevel.Admin)
 		        {
-					Menu.MainAdminMenu();
-				}
+			        Console.Clear();
+			        int menuChoice = Menu.MainAdminMenu();
+
+			        switch (menuChoice)
+			        {
+						case 1:
+					        UserCreator creator = new UserCreator();
+					        creator.Create(userDataStore);
+					        break;
+			        }
+
+			        Console.ReadKey();
+		        }
 		        else
 		        {
 			        Console.WriteLine("Du har inte admin-rättigheter");
+			        Console.ReadKey();
 		        }
-			}
+	        }
 		}
     }
 }
