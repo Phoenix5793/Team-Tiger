@@ -50,6 +50,13 @@ namespace Tiger_YH_Admin
 					        UserCreator creator = new UserCreator();
 					        creator.Create(userDataStore);
 					        break;
+						case 2:
+					        break;
+						case 4:
+							var ds = new EducationClassStore();
+							EducationClassCreator edCreator = new EducationClassCreator();
+					        edCreator.Create(ds);
+					        break;
 			        }
 
 			        Console.ReadKey();
