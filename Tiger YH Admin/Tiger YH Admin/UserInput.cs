@@ -13,5 +13,30 @@ namespace Tiger_YH_Admin
 			string input = Console.ReadLine();
 			return (T)Convert.ChangeType(input, typeof(T));
 		}
+
+		public static T GetInput<T>(string message)
+		{
+			Console.Write($"{message}: ");
+			string input = Console.ReadLine();
+			return (T)Convert.ChangeType(input, typeof(T));
+		}
+
+		public static T GetInput<T>(string message, int minLength)
+		{
+			string input;
+
+			do
+			{
+				Console.Write($"{message}: ");
+				input = Console.ReadLine();
+
+				if (input.Length < minLength)
+				{
+					Console.WriteLine($"Input för kort, minst {minLength} tecken");
+				}
+			} while (input.Length < minLength);
+
+			return (T)Convert.ChangeType(input, typeof(T));
+		}
 	}
 }
