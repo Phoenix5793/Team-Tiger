@@ -15,7 +15,7 @@ namespace Tiger_YH_Admin
 			Console.WriteLine("Admin-meny");
 			Console.WriteLine();
 			Console.WriteLine("1. Skapa användare");
-			Console.WriteLine("2. Sök efter användare");
+			Console.WriteLine("2. Sök efter användare"); //TODO: implementera
 			Console.WriteLine("3. Skapa kurs");
 			Console.WriteLine("4. Skapa klass");
 			Console.WriteLine();
