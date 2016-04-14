@@ -26,9 +26,6 @@ namespace Tiger_YH_Admin
 
 		public static string LoginGetPassword()
 		{
-			Console.ForegroundColor = ConsoleColor.Black;
-			Console.BackgroundColor = ConsoleColor.Black;
-			Console.ResetColor();
 			return GetInput<string>();
 		}
 	}

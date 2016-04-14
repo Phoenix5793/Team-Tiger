@@ -31,7 +31,10 @@ namespace Tiger_YH_Admin
 			string userName = UserInput.LoginGetUserName();
 
 			Console.Write("Lösenord: ");
+			Console.ForegroundColor = ConsoleColor.Black;
+			Console.BackgroundColor = ConsoleColor.Black;
 			string password = UserInput.LoginGetPassword();
+			Console.ResetColor();
 
 			return userStore.LoginUser(userName, password);
 
