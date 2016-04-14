@@ -34,22 +34,5 @@ namespace Tiger_YH_Admin.Models
         }
         return null;
       }
-
-      public bool AddUser(User newUser)
-      {
-      // TODO: Skriv tester
-        User existingUser = DataSet.SingleOrDefault(u => u.UserName == newUser.UserName);
-        List<User> userList = DataSet.ToList();
-
-        if (existingUser == null)
-        {
-          userList.Add(newUser);
-          DataSet = userList;
-        Save();
-          return true;
-        }
-
-        return false;
-      }
     }
 }
