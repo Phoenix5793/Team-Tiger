@@ -52,6 +52,7 @@
     <Compile Include="Models\Creators\EducationClassCreator.cs" />
     <Compile Include="Models\EducationClass.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\CourseStore.cs" />
     <Compile Include="Models\Creators\ICreator.cs" />
     <Compile Include="Models\Creators\UserCreator.cs" />
     <Compile Include="Models\DataStore.cs" />
