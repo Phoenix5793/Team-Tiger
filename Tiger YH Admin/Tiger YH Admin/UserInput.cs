@@ -13,20 +13,5 @@ namespace Tiger_YH_Admin
 			string input = Console.ReadLine();
 			return (T)Convert.ChangeType(input, typeof(T));
 		}
-
-		public static void MainMenuInput()
-		{
-		}
-
-		public static string LoginGetUserName()
-		{
-			return GetInput<string>();
-
-		}
-
-		public static string LoginGetPassword()
-		{
-			return GetInput<string>();
-		}
 	}
 }

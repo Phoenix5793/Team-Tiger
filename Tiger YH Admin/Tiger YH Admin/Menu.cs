@@ -28,12 +28,13 @@ namespace Tiger_YH_Admin
 			Console.WriteLine("Inloggning");
 
 			Console.Write("Användarnamn: ");
-			string userName = UserInput.LoginGetUserName();
+			string userName = UserInput.GetInput<string>();
 
+			//TODO: Göm lösenordet bättre
 			Console.Write("Lösenord: ");
 			Console.ForegroundColor = ConsoleColor.Black;
 			Console.BackgroundColor = ConsoleColor.Black;
-			string password = UserInput.LoginGetPassword();
+			string password = UserInput.GetInput<string>();
 			Console.ResetColor();
 
 			return userStore.LoginUser(userName, password);
