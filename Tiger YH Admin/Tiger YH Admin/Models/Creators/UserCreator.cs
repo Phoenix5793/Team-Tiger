@@ -15,6 +15,7 @@ namespace Tiger_YH_Admin.Models.Creators
 			Console.WriteLine();
 
 			User existingUser = null;
+			bool keepLooping = true;
 			do
 			{
 				Console.Clear();
@@ -22,25 +23,42 @@ namespace Tiger_YH_Admin.Models.Creators
 				string userName = UserInput.GetInput<string>();
 
 				existingUser = userStore.FindById(userName);
-				if (existingUser == null)
+
+				if (existingUser == null || keepLooping)
 				{
 					Console.Write("Lösenord: ");
 					string password = UserInput.GetInput<string>();
 
 					foreach (UserLevel userLevel in Enum.GetValues(typeof(UserLevel)))
 					{
-						Console.WriteLine(userLevel.GetTypeCode() + " " + userLevel);
+						Console.WriteLine( (int) userLevel + " " + userLevel);
 					}
 					Console.Write("Användarnivå:");
 					int chosenLevel = UserInput.GetInput<int>();
+
+					User newUser = new User
+					{
+						UserName = userName,
+						Password = password,
+						UserLevel = (UserLevel) chosenLevel
+					};
+
+					//TODO: Fråga om korrekt input
+					var userList = userStore.DataSet.ToList();
+					userList.Add(newUser);
+					userStore.DataSet = userList;
+					userStore.Save();
+
+					Console.WriteLine($"Ny användare {newUser.UserName} skapad");
 					Console.ReadKey();
+					keepLooping = false;
 				}
 				else
 				{
 					Console.WriteLine("Användarnamnet är upptaget");
 				}
 
-			} while (existingUser == null);
+			} while (existingUser == null || keepLooping);
 
 			return existingUser;
 		}
