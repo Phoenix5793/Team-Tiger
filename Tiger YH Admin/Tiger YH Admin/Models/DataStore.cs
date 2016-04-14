@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using FileHelpers;
 
@@ -30,6 +31,16 @@ namespace Tiger_YH_Admin.Models
 		{
 			var csv = new FileHelperEngine<T>(Encoding.UTF8);
 			csv.WriteFile(_fileName, DataSet);
+		}
+
+		public T AddItem(T item)
+		{
+			var itemList = DataSet.ToList();
+			itemList.Add(item);
+			DataSet = itemList;
+			Save();
+
+			return item;
 		}
 	}
 }

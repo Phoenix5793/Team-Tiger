@@ -7,6 +7,7 @@ namespace Tiger_YH_Admin.Models
 		IEnumerable<T> DataSet { get; set; }
 		IEnumerable<T> Load();
 		void Save();
+		T AddItem(T item);
 		T FindById(string id);
 	}
 }

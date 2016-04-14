@@ -44,10 +44,7 @@ namespace Tiger_YH_Admin.Models.Creators
 					};
 
 					//TODO: Fråga om korrekt input
-					var userList = userStore.DataSet.ToList();
-					userList.Add(newUser);
-					userStore.DataSet = userList;
-					userStore.Save();
+					userStore.AddItem(newUser);
 
 					Console.WriteLine($"Ny användare {newUser.UserName} skapad");
 					Console.ReadKey();
