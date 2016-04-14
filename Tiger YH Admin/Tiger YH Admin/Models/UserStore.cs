@@ -15,18 +15,10 @@ namespace Tiger_YH_Admin.Models
         return DataSet.ToList().SingleOrDefault(u => u.UserName == id);
       }
 
-      public User GetUserByName(string name)
-        {
-      //TODO: Skriv tester
-          List<User> userList = Load().ToList();
-
-          return userList.SingleOrDefault(u => u.UserName == name);
-        }
-
       public User LoginUser(string name, string password)
       {
       //TODO: Skriv tester
-        User user = GetUserByName(name);
+        User user = FindById(name);
 
         if (user != null && password == user.Password)
         {
