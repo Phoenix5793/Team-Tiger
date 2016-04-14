@@ -29,11 +29,20 @@ namespace Tiger_YH_Admin.Models.Creators
 
 					foreach (UserLevel userLevel in Enum.GetValues(typeof(UserLevel)))
 					{
-						Console.WriteLine(userLevel.GetTypeCode() + " " + userLevel);
+						Console.WriteLine( (int) userLevel + " " + userLevel);
 					}
 					Console.Write("Användarnivå:");
 					int chosenLevel = UserInput.GetInput<int>();
 					Console.ReadKey();
+
+					User newUser = new User
+					{
+						UserName = userName,
+						Password = password,
+						UserLevel = (UserLevel) chosenLevel
+					};
+
+					var userList = userStore.DataSet.ToList();
 				}
 				else
 				{
