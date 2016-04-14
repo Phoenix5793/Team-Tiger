@@ -27,8 +27,7 @@ namespace Tiger_YH_Admin
 		{
 			Console.WriteLine("Inloggning");
 
-			Console.Write("Användarnamn: ");
-			string userName = UserInput.GetInput<string>();
+			string userName = UserInput.GetInput<string>("Användarnamn:");
 
 			//TODO: Göm lösenordet bättre
 			Console.Write("Lösenord: ");
