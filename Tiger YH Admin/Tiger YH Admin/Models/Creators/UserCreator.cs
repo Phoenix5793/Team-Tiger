@@ -19,10 +19,15 @@ namespace Tiger_YH_Admin.Models.Creators
 			do
 			{
 				Console.Clear();
-				Console.Write("Användarnamn: ");
-				string userName = UserInput.GetInput<string>();
+				Console.WriteLine("Lämna namnet tomt för att avbryta");
+				string input = UserInput.GetInput<string>("Användarnamn:");
 
-				existingUser = userStore.FindById(userName);
+				if (input == string.Empty)
+				{
+					break;
+				}
+
+				existingUser = userStore.FindById(input);
 
 				if (existingUser == null && keepLooping)
 				{
@@ -38,7 +43,7 @@ namespace Tiger_YH_Admin.Models.Creators
 
 					User newUser = new User
 					{
-						UserName = userName,
+						UserName = input,
 						Password = password,
 						UserLevel = (UserLevel) chosenLevel
 					};
