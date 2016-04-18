@@ -16,7 +16,7 @@ namespace Tiger_YH_Admin
 
 		public static T GetInput<T>(string message)
 		{
-			Console.Write($"{message}: ");
+			Console.Write($"{message} ");
 			string input = Console.ReadLine();
 			return (T)Convert.ChangeType(input, typeof(T));
 		}
@@ -27,7 +27,7 @@ namespace Tiger_YH_Admin
 
 			do
 			{
-				Console.Write($"{message}: ");
+				Console.Write($"{message} ");
 				input = Console.ReadLine();
 
 				if (input.Length < minLength)
