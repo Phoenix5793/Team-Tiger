@@ -16,13 +16,13 @@ namespace Tiger_YH_Admin
 	        bool loopMenu = true;
 
 	        User user;
-			UserStore userDataStore = new UserStore();
+			UserStore userStore = new UserStore();
 
 			do
 			{
 				Console.Clear();
 				string[] credentials = Menu.LoginMenu();
-				user = userDataStore.LoginUser(credentials[0], credentials[1]);
+				user = userStore.LoginUser(credentials[0], credentials[1]);
 
 				if (user != null)
 				{
@@ -49,7 +49,7 @@ namespace Tiger_YH_Admin
 			        {
 						case 1:
 					        UserCreator creator = new UserCreator();
-					        creator.Create(userDataStore);
+					        creator.Create(userStore);
 					        break;
 						case 2:
 					        Console.WriteLine("Ej implementerad");
