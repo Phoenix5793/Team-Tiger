@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tiger_YH_Admin.Models;
 
 namespace Tiger_YH_Admin
 {
@@ -23,7 +22,7 @@ namespace Tiger_YH_Admin
 			return UserInput.GetInput<int>();
 		}
 
-		public static User LoginMenu(UserStore userStore)
+		public static string[] LoginMenu()
 		{
 			Console.WriteLine("Inloggning");
 
@@ -36,7 +35,7 @@ namespace Tiger_YH_Admin
 			string password = UserInput.GetInput<string>();
 			Console.ResetColor();
 
-			return userStore.LoginUser(userName, password);
+			return new string[] {userName, password};
 
 		}
 	}

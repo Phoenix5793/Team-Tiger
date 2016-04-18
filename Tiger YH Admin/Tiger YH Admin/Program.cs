@@ -21,7 +21,8 @@ namespace Tiger_YH_Admin
 			do
 			{
 				Console.Clear();
-				user = Menu.LoginMenu(userDataStore);
+				string[] credentials = Menu.LoginMenu();
+				user = userDataStore.LoginUser(credentials[0], credentials[1]);
 
 				if (user != null)
 				{
