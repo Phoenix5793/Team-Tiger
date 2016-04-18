@@ -51,6 +51,10 @@ namespace Tiger_YH_Admin
 					        creator.Create(userDataStore);
 					        break;
 						case 2:
+					        Console.WriteLine("Ej implementerad");
+					        break;
+						case 3:
+					        Console.WriteLine("Ej implementerad");
 					        break;
 						case 4:
 							var ds = new EducationClassStore();
