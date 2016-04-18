@@ -24,7 +24,7 @@ namespace Tiger_YH_Admin.Models.Creators
 
 				existingUser = userStore.FindById(userName);
 
-				if (existingUser == null || keepLooping)
+				if (existingUser == null && keepLooping)
 				{
 					Console.Write("Lösenord: ");
 					string password = UserInput.GetInput<string>();
@@ -55,7 +55,7 @@ namespace Tiger_YH_Admin.Models.Creators
 					Console.WriteLine("Användarnamnet är upptaget");
 				}
 
-			} while (existingUser == null || keepLooping);
+			} while (existingUser == null && keepLooping);
 
 			return existingUser;
 		}
