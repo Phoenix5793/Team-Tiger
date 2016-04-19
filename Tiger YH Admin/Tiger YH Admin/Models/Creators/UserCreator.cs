@@ -41,11 +41,33 @@ namespace Tiger_YH_Admin.Models.Creators
 					Console.Write("Användarnivå:");
 					int chosenLevel = UserInput.GetInput<int>();
 
+                    string firstName = null;
+                    string surname = null;
+                    string SSN = null;
+                    string phoneNumber = null;
+
+                    if (existingUser.UserLevel != UserLevel.Admin)
+                    {
+                        Console.Write("Förnamn: ");
+                        firstName = UserInput.GetInput<string>();
+                        Console.Write("Efternamn:");
+                        surname = UserInput.GetInput<string>();
+                        Console.Write("Personnummer: ");
+                        SSN = UserInput.GetInput<string>();
+                        Console.Write("Telefonnummer: ");
+                        phoneNumber = UserInput.GetInput<string>();
+
+                    }
+
 					User newUser = new User
 					{
 						UserName = input,
 						Password = password,
-						UserLevel = (UserLevel) chosenLevel
+						UserLevel = (UserLevel) chosenLevel,
+                        FirstName = firstName,
+                        Surname = surname,
+                        SSN = SSN,
+                        PhoneNumber = phoneNumber
 					};
 
 					//TODO: Fråga om korrekt input

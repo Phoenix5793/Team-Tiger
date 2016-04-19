@@ -12,6 +12,10 @@ namespace Tiger_YH_Admin.Models
     {
         public string UserName { get; set; }
         public string Password { get; set; }
+        public string FirstName { get; set; }
+        public string Surname { get; set; }
+        public string SSN { get; set; } // social security number
+        public string PhoneNumber { get; set; }
         public UserLevel UserLevel { get; set; } = UserLevel.Student;
 
         public override string ToString()
