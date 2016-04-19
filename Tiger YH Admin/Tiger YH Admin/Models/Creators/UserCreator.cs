@@ -43,7 +43,7 @@ namespace Tiger_YH_Admin.Models.Creators
 
                     string firstName = null;
                     string surname = null;
-                    string SSN = null;
+                    string ssn = null;
                     string phoneNumber = null;
 
                     if (existingUser.UserLevel != UserLevel.Admin)
@@ -53,7 +53,7 @@ namespace Tiger_YH_Admin.Models.Creators
                         Console.Write("Efternamn:");
                         surname = UserInput.GetInput<string>();
                         Console.Write("Personnummer: ");
-                        SSN = UserInput.GetInput<string>();
+                        ssn = UserInput.GetInput<string>();
                         Console.Write("Telefonnummer: ");
                         phoneNumber = UserInput.GetInput<string>();
 
@@ -66,7 +66,7 @@ namespace Tiger_YH_Admin.Models.Creators
 						UserLevel = (UserLevel) chosenLevel,
                         FirstName = firstName,
                         Surname = surname,
-                        SSN = SSN,
+                        SSN = ssn,
                         PhoneNumber = phoneNumber
 					};
 
