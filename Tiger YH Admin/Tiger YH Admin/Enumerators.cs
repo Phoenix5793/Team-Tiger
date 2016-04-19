@@ -13,4 +13,11 @@ namespace Tiger_YH_Admin
         Teacher,
         EducationSupervisor
     }
+
+    enum Grade
+    {
+        IG,
+        G,
+        VG
+    }
 }
