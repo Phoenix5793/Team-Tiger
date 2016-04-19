@@ -46,7 +46,7 @@ namespace Tiger_YH_Admin.Models.Creators
                     string ssn = null;
                     string phoneNumber = null;
 
-                    if (existingUser.UserLevel != UserLevel.Admin)
+                    if (existingUser?.UserLevel != UserLevel.Admin)
                     {
                         Console.Write("Förnamn: ");
                         firstName = UserInput.GetInput<string>();
