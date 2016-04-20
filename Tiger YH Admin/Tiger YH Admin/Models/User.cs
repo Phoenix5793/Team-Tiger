@@ -22,5 +22,10 @@ namespace Tiger_YH_Admin.Models
         {
             return UserName;
         }
+
+        public string FullName()
+        {
+            return $"{FirstName} {Surname}";
+        }
     }
 }
