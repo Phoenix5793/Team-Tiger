@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tiger_YH_Admin.Models;
 using Tiger_YH_Admin.Models.Creators;
+using Tiger_YH_Admin.Presenters;
 
 
 namespace Tiger_YH_Admin
@@ -52,7 +53,7 @@ namespace Tiger_YH_Admin
 					        creator.Create(userStore);
 					        break;
 						case 2:
-					        Console.WriteLine("Ej implementerad");
+					        UserManagerPresenter.Run();
 					        break;
 						case 3:
 					        Console.WriteLine("Ej implementerad");
