@@ -38,5 +38,63 @@ namespace Tiger_YH_Admin
 			return new string[] {userName, password};
 
 		}
-	}
+        
+        
+       
+        public static int EducationSupervisorMenu()
+        {
+            Console.WriteLine("Tiger Board!");
+            Console.WriteLine("Utbildningledare-meny");
+            Console.WriteLine();
+            Console.WriteLine("1. Skapa användare");
+            Console.WriteLine("2. Sök efter användare"); //TODO: implementera
+            Console.WriteLine("3. Hantera kurser"); 
+            Console.WriteLine("4. Hantera studenter"); 
+            
+            
+            Console.WriteLine();
+            Console.Write("Ditt val: ");
+            return UserInput.GetInput<int>();
+
+
+
+
+
+
+        }
+        public static void ManageCourses()
+        {
+
+            Console.Clear();
+         
+            Console.WriteLine("Hantera kurser");
+            Console.WriteLine();
+            Console.WriteLine("1. Skapa kurs");
+            Console.WriteLine("2. Ta bort kurs");
+            Console.WriteLine("3. Lägg till lärare");
+            Console.WriteLine("4. Ändra kurs");
+            Console.WriteLine("5. Visa kurser");
+
+
+
+
+        }
+        public static void ManageStudents()
+        {
+            Console.Clear();
+
+            Console.WriteLine("Hantera studenter");
+            Console.WriteLine();
+            Console.WriteLine("1. Visa student information");
+            Console.WriteLine("2. Ändra student information");
+            Console.WriteLine("3. Sätt betyg");
+            Console.WriteLine("3. Ta bort student");
+           
+
+
+
+
+        }
+
+    }
 }

@@ -27,7 +27,7 @@ namespace Tiger_YH_Admin
 
 				if (user != null)
 				{
-					Console.WriteLine("Inloggade");
+					Console.WriteLine("Inloggad som " + user.UserLevel);
 					loopMenu = false;
 				}
 				else
@@ -44,6 +44,7 @@ namespace Tiger_YH_Admin
 		        if (user.UserLevel == UserLevel.Admin)
 		        {
 			        Console.Clear();
+                    
 			        int menuChoice = Menu.MainAdminMenu();
 
 			        switch (menuChoice)
@@ -67,7 +68,43 @@ namespace Tiger_YH_Admin
 
 			        Console.ReadKey();
 		        }
-		        else
+                if(user.UserLevel == UserLevel.EducationSupervisor)
+                {
+                    Console.Clear();
+
+                    int menuChoice = Menu.EducationSupervisorMenu();
+
+                    switch (menuChoice)
+                    {
+                        case 1:
+                            UserCreator creator = new UserCreator();
+                            creator.Create(userStore);
+                            break;
+                        case 2:
+                            Console.WriteLine("Ej implementerad"); // sök efter användare
+                            break;
+                        case 3:
+                            Menu.ManageCourses();
+                            
+                            break;
+                        case 4:
+                            Menu.ManageStudents();
+                          
+                            break;
+                       case 5:
+                            var ds = new EducationClassStore();
+                            EducationClassCreator edCreator = new EducationClassCreator();
+                            edCreator.Create(ds);
+                            break;
+                    }
+
+                    Console.ReadKey();
+
+
+                }
+
+
+                else
 		        {
 			        Console.WriteLine("Du har inte admin-rättigheter");
 			        Console.ReadKey();
