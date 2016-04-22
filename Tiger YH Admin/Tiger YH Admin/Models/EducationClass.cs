@@ -18,7 +18,7 @@ namespace Tiger_YH_Admin.Models
 
         public List<string> GetStudentList()
         {
-            return StudentString.Split(',').ToList<string>();
+            return StudentString.Split(',').ToList();
         }
 
         public void SetStudentList(List<string> users)
