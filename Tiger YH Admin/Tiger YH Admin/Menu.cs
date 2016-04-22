@@ -8,39 +8,39 @@ using Tiger_YH_Admin.Presenters;
 
 namespace Tiger_YH_Admin
 {
-	static class Menu
+    static class Menu
     {
         public static int MainAdminMenu()
-		{
-			Console.WriteLine("Tiger Board!");
-			Console.WriteLine("Admin-meny");
-			Console.WriteLine();
-			Console.WriteLine("1. Skapa användare");
-			Console.WriteLine("2. Sök efter användare");
-			Console.WriteLine("3. Skapa kurs");
-			Console.WriteLine("4. Skapa klass");
-			Console.WriteLine("5. Visa klasslista");
-			Console.WriteLine();
-			Console.Write("Ditt val: ");
-			return UserInput.GetInput<int>();
-		}
+        {
+            Console.WriteLine("Tiger Board!");
+            Console.WriteLine("Admin-meny");
+            Console.WriteLine();
+            Console.WriteLine("1. Skapa användare");
+            Console.WriteLine("2. Sök efter användare");
+            Console.WriteLine("3. Skapa kurs");
+            Console.WriteLine("4. Skapa klass");
+            Console.WriteLine("5. Visa klasslista");
+            Console.WriteLine();
+            Console.Write("Ditt val: ");
+            return UserInput.GetInput<int>();
+        }
 
-		public static string[] LoginMenu()
-		{
-			Console.WriteLine("Inloggning");
+        public static string[] LoginMenu()
+        {
+            Console.WriteLine("Inloggning");
 
-			string userName = UserInput.GetInput<string>("Användarnamn:");
+            string userName = UserInput.GetInput<string>("Användarnamn:");
 
-			//TODO: Göm lösenordet bättre
-			Console.Write("Lösenord: ");
-			Console.ForegroundColor = ConsoleColor.Black;
-			Console.BackgroundColor = ConsoleColor.Black;
-			string password = UserInput.GetInput<string>();
-			Console.ResetColor();
+            //TODO: Göm lösenordet bättre
+            Console.Write("Lösenord: ");
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.BackgroundColor = ConsoleColor.Black;
+            string password = UserInput.GetInput<string>();
+            Console.ResetColor();
 
-			return new string[] {userName, password};
+            return new string[] {userName, password};
 
-		}
+        }
 
         public static int EducationSupervisorMenu()
         {
@@ -51,6 +51,8 @@ namespace Tiger_YH_Admin
             Console.WriteLine("2. Sök efter användare");
             Console.WriteLine("3. Hantera kurser");
             Console.WriteLine("4. Hantera studenter");
+            Console.WriteLine("5. Skapa klass");
+            Console.WriteLine("6. Visa mina klasser");
 
             Console.WriteLine();
             Console.Write("Ditt val: ");
@@ -88,20 +90,20 @@ namespace Tiger_YH_Admin
             switch (menuChoice)
             {
                 case 1:
-					Console.WriteLine("Visar studeninformation"); //TODO : Fixa metod
+                    Console.WriteLine("Visar studeninformation"); //TODO : Fixa metod
                     break;
                 case 2:
-					Console.WriteLine("Ändrar studentinformation"); //TODO: Fixa metod
+                    Console.WriteLine("Ändrar studentinformation"); //TODO: Fixa metod
                     break;
                 case 3:
-					Console.WriteLine("Sätt betyg på student"); //TODO: Fixa metod
+                    Console.WriteLine("Sätt betyg på student"); //TODO: Fixa metod
                     break;
                 case 4:
-					AddStudentToClass();
+                    AddStudentToClass();
                     break;
                 case 5:
-		            RemoveStudentFromClass();
-					break;
+                    RemoveStudentFromClass();
+                    break;
                 default:
                     break;
             }
@@ -119,7 +121,7 @@ namespace Tiger_YH_Admin
             if(checkClassID == null)
             {
                 Console.WriteLine("Klassen kunde inte hittas");
-	            return;
+                return;
             }
 
             Console.WriteLine("Ange student id: ");
@@ -157,58 +159,58 @@ namespace Tiger_YH_Admin
             }
         }
 
-		public static void RemoveStudentFromClass()
-		{
-			var classStore = new EducationClassStore();
-			var studentStore = new UserStore();
+        public static void RemoveStudentFromClass()
+        {
+            var classStore = new EducationClassStore();
+            var studentStore = new UserStore();
 
-			do
-			{
-				Console.WriteLine("Tryck enter för att avbryta");
-				string input = UserInput.GetInput<string>("Ange klass-id:");
+            do
+            {
+                Console.WriteLine("Tryck enter för att avbryta");
+                string input = UserInput.GetInput<string>("Ange klass-id:");
 
-				if (input == string.Empty)
-				{
-					return;
-				}
+                if (input == string.Empty)
+                {
+                    return;
+                }
 
-				EducationClass edClass = classStore.FindById(input);
+                EducationClass edClass = classStore.FindById(input);
 
-				if (edClass == null)
-				{
-					Console.WriteLine("Finns ingen klass med det id:t");
-				}
-				else
-				{
-					input = UserInput.GetInput<string>("Ange student-id:");
-					User student = studentStore.FindById(input);
+                if (edClass == null)
+                {
+                    Console.WriteLine("Finns ingen klass med det id:t");
+                }
+                else
+                {
+                    input = UserInput.GetInput<string>("Ange student-id:");
+                    User student = studentStore.FindById(input);
 
-					if (student == null)
-					{
-						Console.WriteLine("Studenten finns inte");
-					}
-					else
-					{
-						if (edClass.HasStudent(student.UserName))
-						{
-							bool confirmation = UserInput.AskConfirmation($"Vill du ta bort {student.FullName()} från klassen {edClass.ClassId}?");
-							if (confirmation)
-							{
-								List<string> studentList = edClass.GetStudentList();
-								studentList.Remove(student.UserName);
-								Console.WriteLine($"Plockade bort {student.UserName} från klassen");
+                    if (student == null)
+                    {
+                        Console.WriteLine("Studenten finns inte");
+                    }
+                    else
+                    {
+                        if (edClass.HasStudent(student.UserName))
+                        {
+                            bool confirmation = UserInput.AskConfirmation($"Vill du ta bort {student.FullName()} från klassen {edClass.ClassId}?");
+                            if (confirmation)
+                            {
+                                List<string> studentList = edClass.GetStudentList();
+                                studentList.Remove(student.UserName);
+                                Console.WriteLine($"Plockade bort {student.UserName} från klassen");
 
-								edClass.SetStudentList(studentList);
-								classStore.Save();
-							}
-						}
-					}
+                                edClass.SetStudentList(studentList);
+                                classStore.Save();
+                            }
+                        }
+                    }
 
-				}
+                }
 
-			} while (true);
+            } while (true);
 
-		}
+        }
 
-	}
+    }
 }
