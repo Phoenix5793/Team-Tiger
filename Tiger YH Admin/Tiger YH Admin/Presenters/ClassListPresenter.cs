@@ -35,10 +35,15 @@ namespace Tiger_YH_Admin.Presenters
 			Console.WriteLine("2. Visa en klass");
 		}
 
-		public static void ListAllClasses()
+		public static void ListAllClasses(User supervisor = null)
 		{
-			List<EducationClass> classList = new EducationClassStore().DataSet.ToList();
+			EducationClassStore classStore = new EducationClassStore();
+			List<EducationClass> classList = classStore.DataSet.ToList();
 
+			if (supervisor != null)
+			{
+				classList = classList.Where(c => c.EducationSupervisorId == supervisor.UserName).ToList();
+			}
 
 			Console.WriteLine(
 				"Klassnamn".PadRight(10) +
