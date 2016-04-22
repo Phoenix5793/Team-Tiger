@@ -70,12 +70,20 @@ namespace Tiger_YH_Admin.Models.Creators
                         PhoneNumber = phoneNumber
 					};
 
-					//TODO: Fråga om korrekt input
-					userStore.AddItem(newUser);
+                    //TODO: Fråga om korrekt input
+                    Console.Write("VIll du spara? Ja/nej ");
+                    string answer = UserInput.GetInput<string>();
+                    
+                    if(answer.ToLower() == "ja" || answer.ToLower() =="j")
+                    {
+                        userStore.AddItem(newUser);
 
-					Console.WriteLine($"Ny användare {newUser.UserName} skapad");
-					Console.ReadKey();
-					keepLooping = false;
+                        Console.WriteLine($"Ny användare {newUser.UserName} skapad");
+                        Console.ReadKey();
+                        keepLooping = false;
+                    }
+
+                    
 				}
 				else
 				{
