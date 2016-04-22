@@ -19,6 +19,7 @@ namespace Tiger_YH_Admin
 			Console.WriteLine("2. Sök efter användare");
 			Console.WriteLine("3. Skapa kurs");
 			Console.WriteLine("4. Skapa klass");
+			Console.WriteLine("5. Visa klasslista");
 			Console.WriteLine();
 			Console.Write("Ditt val: ");
 			return UserInput.GetInput<int>();

@@ -64,6 +64,9 @@ namespace Tiger_YH_Admin
 							EducationClassCreator edCreator = new EducationClassCreator();
 					        edCreator.Create(ds);
 					        break;
+						case 5:
+					        ClassListPresenter.Run();
+					        break;
 			        }
 
 			        Console.ReadKey();
