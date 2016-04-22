@@ -29,8 +29,14 @@ namespace Tiger_YH_Admin
         public static string[] LoginMenu()
         {
             Console.WriteLine("Inloggning");
-
+	        Console.WriteLine();
+	        Console.WriteLine("Lämna användarnamn tomt för att avsluta");
             string userName = UserInput.GetInput<string>("Användarnamn:");
+
+	        if (userName == string.Empty)
+	        {
+				Environment.Exit(0);
+			}
 
             //TODO: Göm lösenordet bättre
             Console.Write("Lösenord: ");
