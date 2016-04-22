@@ -15,5 +15,15 @@ namespace Tiger_YH_Admin.Models
 		public string Description { get; set; }
 		public string EducationSupervisorId { get; set; }
 		public string StudentString { get; set; }
-	}
+
+        public List<string> GetStudentList()
+        {
+            return StudentString.Split(',').ToList<string>();
+        }
+
+        public void SetStudentList(List<string> users)
+        {
+            StudentString = string.Join(",", users);
+        }
+    }
 }

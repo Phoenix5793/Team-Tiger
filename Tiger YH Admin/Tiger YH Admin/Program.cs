@@ -81,7 +81,7 @@ namespace Tiger_YH_Admin
                             creator.Create(userStore);
                             break;
                         case 2:
-                            Console.WriteLine("Ej implementerad"); // sök efter användare
+                            UserManagerPresenter.SearchForUser();
                             break;
                         case 3:
                             Menu.ManageCourses();

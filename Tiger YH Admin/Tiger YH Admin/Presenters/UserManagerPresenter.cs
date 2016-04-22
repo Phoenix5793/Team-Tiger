@@ -39,7 +39,7 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine();
         }
 
-        private static void SearchForUser()
+        public static void SearchForUser()
         {
             bool keepLooping = true;
 
@@ -68,7 +68,7 @@ namespace Tiger_YH_Admin.Presenters
 
         }
 
-        private static void ShowUserInfo(User user)
+        public static void ShowUserInfo(User user)
         {
             Console.WriteLine("Visar användare");
             Console.WriteLine();
