@@ -15,6 +15,7 @@ namespace Tiger_YH_Admin
             Console.WriteLine("Tiger Board!");
             Console.WriteLine("Admin-meny");
             Console.WriteLine();
+	        Console.WriteLine("0. Logga ut");
             Console.WriteLine("1. Skapa användare");
             Console.WriteLine("2. Sök efter användare");
             Console.WriteLine("3. Skapa kurs");
@@ -47,6 +48,7 @@ namespace Tiger_YH_Admin
             Console.WriteLine("Tiger Board!");
             Console.WriteLine("Utbildningledare-meny");
             Console.WriteLine();
+	        Console.WriteLine("0. Logga ut");
             Console.WriteLine("1. Skapa användare");
             Console.WriteLine("2. Sök efter användare");
             Console.WriteLine("3. Hantera kurser");

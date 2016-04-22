@@ -15,84 +15,91 @@ namespace Tiger_YH_Admin
         static void Main(string[] args)
         {
 			UserStore userStore = new UserStore();
-			User user = LoginUser(userStore);
+	        bool loggedIn = false;
 
-            bool loopMenu = true;
-            while (loopMenu)
-            {
-                if (user.UserLevel == UserLevel.Admin)
-                {
-                    Console.Clear();
+	        do
+	        {
+				User user = LoginUser(userStore);
+		        loggedIn = true;
 
-                    int menuChoice = Menu.MainAdminMenu();
+				bool loopMenu = true;
+				while (loopMenu)
+				{
+					if (user.UserLevel == UserLevel.Admin)
+					{
+						Console.Clear();
 
-                    switch (menuChoice)
-                    {
-						case 0:
-		                    break;
-                        case 1:
-                            UserCreator creator = new UserCreator();
-                            creator.Create(userStore);
-                            break;
-                        case 2:
-                            UserManagerPresenter.Run();
-                            break;
-                        case 3:
-                            Console.WriteLine("Ej implementerad");
-                            break;
-                        case 4:
-                            var ds = new EducationClassStore();
-                            EducationClassCreator edCreator = new EducationClassCreator();
-                            edCreator.Create(ds);
-                            break;
-                        case 5:
-                            ClassListPresenter.Run();
-                            break;
-                    }
+						int menuChoice = Menu.MainAdminMenu();
 
-                    Console.ReadKey();
-                }
-                if(user.UserLevel == UserLevel.EducationSupervisor)
-                {
-                    Console.Clear();
+						switch (menuChoice)
+						{
+							case 0:
+								loopMenu = false;
+								loggedIn = false;
+								break;
+							case 1:
+								UserCreator creator = new UserCreator();
+								creator.Create(userStore);
+								break;
+							case 2:
+								UserManagerPresenter.Run();
+								break;
+							case 3:
+								Console.WriteLine("Ej implementerad");
+								break;
+							case 4:
+								var ds = new EducationClassStore();
+								EducationClassCreator edCreator = new EducationClassCreator();
+								edCreator.Create(ds);
+								break;
+							case 5:
+								ClassListPresenter.Run();
+								Console.ReadKey();
+								break;
+						}
+					}
 
-                    int menuChoice = Menu.EducationSupervisorMenu();
+					if (user.UserLevel == UserLevel.EducationSupervisor)
+					{
+						Console.Clear();
 
-                    switch (menuChoice)
-                    {
-                        case 1:
-                            UserCreator creator = new UserCreator();
-                            creator.Create(userStore);
-                            break;
-                        case 2:
-                            UserManagerPresenter.SearchForUser();
-                            break;
-                        case 3:
-                            Menu.ManageCourses();
+						int menuChoice = Menu.EducationSupervisorMenu();
 
-                            break;
-                        case 4:
-                            Menu.ManageStudents();
+						switch (menuChoice)
+						{
+							case 0:
+								loopMenu = false;
+								loggedIn = false;
+								break;
+							case 1:
+								UserCreator creator = new UserCreator();
+								creator.Create(userStore);
+								break;
+							case 2:
+								UserManagerPresenter.SearchForUser();
+								break;
+							case 3:
+								Menu.ManageCourses();
 
-                            break;
-                       case 5:
-                            var ds = new EducationClassStore();
-                            EducationClassCreator edCreator = new EducationClassCreator();
-                            edCreator.Create(ds);
-                            break;
-                        case 6:
-                            ClassListPresenter.ListAllClasses(user);
-                            break;
-                    }
+								break;
+							case 4:
+								Menu.ManageStudents();
 
-                    Console.ReadKey();
-                }
-                else
-                {
-                    Console.WriteLine("Du har inte admin-rättigheter");
-                    Console.ReadKey();
-                }
-            }
+								break;
+							case 5:
+								var ds = new EducationClassStore();
+								EducationClassCreator edCreator = new EducationClassCreator();
+								edCreator.Create(ds);
+								break;
+							case 6:
+								ClassListPresenter.ListAllClasses(user);
+								break;
+						}
+					}
+				}
+
+			} while (!loggedIn);
+
         }
 
 	    private static User LoginUser(UserStore userStore)
