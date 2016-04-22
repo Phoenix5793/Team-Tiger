@@ -6,40 +6,40 @@ using System.Threading.Tasks;
 
 namespace Tiger_YH_Admin.Models.Creators
 {
-	class UserCreator : ICreator<User>
-	{
-		public User Create(IDataStore<User> userStore)
-		{
-			Console.Clear();
-			Console.WriteLine("Skapa ny användare");
-			Console.WriteLine();
+    class UserCreator : ICreator<User>
+    {
+        public User Create(IDataStore<User> userStore)
+        {
+            Console.Clear();
+            Console.WriteLine("Skapa ny användare");
+            Console.WriteLine();
 
-			User existingUser = null;
-			bool keepLooping = true;
-			do
-			{
-				Console.Clear();
-				Console.WriteLine("Lämna namnet tomt för att avbryta");
-				string input = UserInput.GetInput<string>("Användarnamn:");
+            User existingUser = null;
+            bool keepLooping = true;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Lämna namnet tomt för att avbryta");
+                string input = UserInput.GetInput<string>("Användarnamn:");
 
-				if (input == string.Empty)
-				{
-					break;
-				}
+                if (input == string.Empty)
+                {
+                    break;
+                }
 
-				existingUser = userStore.FindById(input);
+                existingUser = userStore.FindById(input);
 
-				if (existingUser == null && keepLooping)
-				{
-					Console.Write("Lösenord: ");
-					string password = UserInput.GetInput<string>();
+                if (existingUser == null && keepLooping)
+                {
+                    Console.Write("Lösenord: ");
+                    string password = UserInput.GetInput<string>();
 
-					foreach (UserLevel userLevel in Enum.GetValues(typeof(UserLevel)))
-					{
-						Console.WriteLine( (int) userLevel + " " + userLevel);
-					}
-					Console.Write("Användarnivå:");
-					int chosenLevel = UserInput.GetInput<int>();
+                    foreach (UserLevel userLevel in Enum.GetValues(typeof (UserLevel)))
+                    {
+                        Console.WriteLine((int) userLevel + " " + userLevel);
+                    }
+                    Console.Write("Användarnivå:");
+                    int chosenLevel = UserInput.GetInput<int>();
 
                     string firstName = null;
                     string surname = null;
@@ -56,25 +56,24 @@ namespace Tiger_YH_Admin.Models.Creators
                         ssn = UserInput.GetInput<string>();
                         Console.Write("Telefonnummer: ");
                         phoneNumber = UserInput.GetInput<string>();
-
                     }
 
-					User newUser = new User
-					{
-						UserName = input,
-						Password = password,
-						UserLevel = (UserLevel) chosenLevel,
+                    User newUser = new User
+                    {
+                        UserName = input,
+                        Password = password,
+                        UserLevel = (UserLevel) chosenLevel,
                         FirstName = firstName,
                         Surname = surname,
                         SSN = ssn,
                         PhoneNumber = phoneNumber
-					};
+                    };
 
                     //TODO: Fråga om korrekt input
                     Console.Write("VIll du spara? Ja/nej ");
                     string answer = UserInput.GetInput<string>();
-                    
-                    if(answer.ToLower() == "ja" || answer.ToLower() =="j")
+
+                    if (answer.ToLower() == "ja" || answer.ToLower() == "j")
                     {
                         userStore.AddItem(newUser);
 
@@ -82,18 +81,14 @@ namespace Tiger_YH_Admin.Models.Creators
                         Console.ReadKey();
                         keepLooping = false;
                     }
+                }
+                else
+                {
+                    Console.WriteLine("Användarnamnet är upptaget");
+                }
+            } while (existingUser == null && keepLooping);
 
-                    
-				}
-				else
-				{
-					Console.WriteLine("Användarnamnet är upptaget");
-				}
-
-			} while (existingUser == null && keepLooping);
-
-			return existingUser;
-		}
-
-	}
+            return existingUser;
+        }
+    }
 }

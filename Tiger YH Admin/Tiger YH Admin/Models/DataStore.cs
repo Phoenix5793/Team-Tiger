@@ -5,42 +5,42 @@ using FileHelpers;
 
 namespace Tiger_YH_Admin.Models
 {
-	public abstract class DataStore<T>: IDataStore<T> where T:class
-	{
-		private readonly string _fileName;
-		private const string FilePrefix = "Data/";
+    public abstract class DataStore<T> : IDataStore<T> where T : class
+    {
+        private readonly string _fileName;
+        private const string FilePrefix = "Data/";
 
-		public IEnumerable<T> DataSet { get; set; }
+        public IEnumerable<T> DataSet { get; set; }
 
-		protected DataStore()
-		{
-			_fileName = FilePrefix + typeof(T).Name + "List.csv";
-			DataSet = Load();
-		}
+        protected DataStore()
+        {
+            _fileName = FilePrefix + typeof(T).Name + "List.csv";
+            DataSet = Load();
+        }
 
-		public abstract T FindById(string id);
+        public abstract T FindById(string id);
 
-		public IEnumerable<T> Load()
-		{
-			var csv = new FileHelperEngine<T>(Encoding.UTF8);
-			var records = csv.ReadFile(_fileName);
-			return records;
-		}
+        public IEnumerable<T> Load()
+        {
+            var csv = new FileHelperEngine<T>(Encoding.UTF8);
+            var records = csv.ReadFile(_fileName);
+            return records;
+        }
 
-		public void Save()
-		{
-			var csv = new FileHelperEngine<T>(Encoding.UTF8);
-			csv.WriteFile(_fileName, DataSet);
-		}
+        public void Save()
+        {
+            var csv = new FileHelperEngine<T>(Encoding.UTF8);
+            csv.WriteFile(_fileName, DataSet);
+        }
 
-		public T AddItem(T item)
-		{
-			var itemList = DataSet.ToList();
-			itemList.Add(item);
-			DataSet = itemList;
-			Save();
+        public T AddItem(T item)
+        {
+            var itemList = DataSet.ToList();
+            itemList.Add(item);
+            DataSet = itemList;
+            Save();
 
-			return item;
-		}
-	}
+            return item;
+        }
+    }
 }
