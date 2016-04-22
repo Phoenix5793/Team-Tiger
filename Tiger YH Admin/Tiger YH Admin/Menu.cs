@@ -15,7 +15,7 @@ namespace Tiger_YH_Admin
             Console.WriteLine("Tiger Board!");
             Console.WriteLine("Admin-meny");
             Console.WriteLine();
-	        Console.WriteLine("0. Logga ut");
+            Console.WriteLine("0. Logga ut");
             Console.WriteLine("1. Skapa användare");
             Console.WriteLine("2. Sök efter användare");
             Console.WriteLine("3. Skapa kurs");
@@ -29,14 +29,14 @@ namespace Tiger_YH_Admin
         public static string[] LoginMenu()
         {
             Console.WriteLine("Inloggning");
-	        Console.WriteLine();
-	        Console.WriteLine("Lämna användarnamn tomt för att avsluta");
+            Console.WriteLine();
+            Console.WriteLine("Lämna användarnamn tomt för att avsluta");
             string userName = UserInput.GetInput<string>("Användarnamn:");
 
-	        if (userName == string.Empty)
-	        {
-				Environment.Exit(0);
-			}
+            if (userName == string.Empty)
+            {
+                Environment.Exit(0);
+            }
 
             //TODO: Göm lösenordet bättre
             Console.Write("Lösenord: ");
@@ -54,7 +54,7 @@ namespace Tiger_YH_Admin
             Console.WriteLine("Tiger Board!");
             Console.WriteLine("Utbildningledare-meny");
             Console.WriteLine();
-	        Console.WriteLine("0. Logga ut");
+            Console.WriteLine("0. Logga ut");
             Console.WriteLine("1. Skapa användare");
             Console.WriteLine("2. Sök efter användare");
             Console.WriteLine("3. Hantera kurser");
@@ -137,18 +137,18 @@ namespace Tiger_YH_Admin
 
             var studentUser = studentStore.FindById(studentID);
 
-	        if (studentUser == null)
-	        {
-		        Console.WriteLine("Finns ingen student med det namnet");
-	        }
-			else if (studentUser.UserLevel != UserLevel.Student)
-			{
-				Console.WriteLine("Användaren är inte en student");
-			}
-			else if (educationClass.HasStudent(studentUser.UserName))
-			{
-				Console.WriteLine("Studenten finns redan i klassen");
-			}
+            if (studentUser == null)
+            {
+                Console.WriteLine("Finns ingen student med det namnet");
+            }
+            else if (studentUser.UserLevel != UserLevel.Student)
+            {
+                Console.WriteLine("Användaren är inte en student");
+            }
+            else if (educationClass.HasStudent(studentUser.UserName))
+            {
+                Console.WriteLine("Studenten finns redan i klassen");
+            }
             else if(studentUser.UserLevel == UserLevel.Student)
             {
                 Console.Clear();
@@ -162,12 +162,12 @@ namespace Tiger_YH_Admin
 
                     List<string> studentList = educationClass.GetStudentList();
 
-	                Console.WriteLine($"Före add: studentList har {studentList.Count} studenter");
-					studentList.Add(studentUser.UserName);
-					Console.WriteLine($"Efter add: studentList har {studentList.Count} studenter");
-	                Console.ReadKey();
+                    Console.WriteLine($"Före add: studentList har {studentList.Count} studenter");
+                    studentList.Add(studentUser.UserName);
+                    Console.WriteLine($"Efter add: studentList har {studentList.Count} studenter");
+                    Console.ReadKey();
 
-					educationClass.SetStudentList(studentList);
+                    educationClass.SetStudentList(studentList);
 
                     var educationList =  classStore.DataSet.ToList();
 
@@ -182,7 +182,7 @@ namespace Tiger_YH_Admin
                 }
 
             }
-	        Console.ReadKey();
+            Console.ReadKey();
         }
 
         public static void RemoveStudentFromClass()
