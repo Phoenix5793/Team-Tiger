@@ -25,5 +25,16 @@ namespace Tiger_YH_Admin.Models
         {
             StudentString = string.Join(",", users);
         }
-    }
+
+		public bool HasStudent(User student)
+		{
+			//TODO: Bättre validering
+			return HasStudent(student.UserName);
+		}
+
+		public bool HasStudent(string studentName)
+		{
+			return StudentString.Contains(studentName);
+		}
+	}
 }

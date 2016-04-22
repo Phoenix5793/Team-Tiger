@@ -37,5 +37,25 @@ namespace Tiger_YH_Admin
 
 			return GetInput<T>();
 		}
+
+		public static bool AskConfirmation(string message)
+		{
+			do
+			{
+				Console.WriteLine(message);
+				Console.Write("(j/n): ");
+				string input = Console.ReadLine();
+
+				if (input.ToLower() == "j")
+				{
+					return true;
+				}
+
+				if (input.ToLower() == "n")
+				{
+					return false;
+				}
+			} while (true);
+		}
 	}
 }
