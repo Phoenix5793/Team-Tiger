@@ -99,9 +99,9 @@ namespace Tiger_YH_Admin
                             EducationClassCreator edCreator = new EducationClassCreator();
                             edCreator.Create(ds);
                             break;
-						case 6:
-							ClassListPresenter.ListAllClasses(user);
-		                    break;
+                        case 6:
+                            ClassListPresenter.ListAllClasses(user);
+                            break;
                     }
 
                     Console.ReadKey();
