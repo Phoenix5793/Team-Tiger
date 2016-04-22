@@ -19,8 +19,10 @@ namespace Tiger_YH_Admin.Presenters
 				case 1:
 					ListAllClasses();
 					break;
+				case 2:
+					ShowClass();
+					break;
 			}
-
 		}
 
 		public static void MainMenu()
@@ -54,6 +56,53 @@ namespace Tiger_YH_Admin.Presenters
 					educationClass.Description.PadRight(40)
 				);
 			}
+		}
+
+		public static void ShowClass()
+		{
+			EducationClassStore classStore = new EducationClassStore();
+			UserStore studentStore = new UserStore();
+			bool keepLooping = true;
+			do
+			{
+				Console.WriteLine("Tryck enter för att avbryta");
+				string classId = UserInput.GetInput<string>("Ange klass-id:");
+
+				if (classId == string.Empty)
+				{
+					return;
+				}
+
+				EducationClass edClass = classStore.FindById(classId);
+
+				if (edClass == null)
+				{
+					Console.WriteLine($"Finns ingen klass med id {classId}");
+				}
+				else
+				{
+					Console.Clear();
+					Console.WriteLine(
+						"Student-id".PadRight(12) +
+						"Namn".PadRight(25) +
+						"Telefon".PadRight(15)
+						);
+					Console.WriteLine(new string('-', 60));
+
+					List<string> studentList = edClass.GetStudentList();
+					foreach (string studentId in studentList)
+					{
+						User student = studentStore.FindById(studentId);
+
+						Console.WriteLine(
+							student.UserName.PadRight(12) +
+							student.FullName().PadRight(25) +
+							student.PhoneNumber.PadRight(15)
+						);
+					}
+					Console.WriteLine();
+				}
+			} while (keepLooping);
 		}
 	}
 }
