@@ -14,31 +14,10 @@ namespace Tiger_YH_Admin
     {
         static void Main(string[] args)
         {
+			UserStore userStore = new UserStore();
+			User user = LoginUser(userStore);
+
             bool loopMenu = true;
-
-            User user;
-            UserStore userStore = new UserStore();
-
-            do
-            {
-                Console.Clear();
-                string[] credentials = Menu.LoginMenu();
-                user = userStore.LoginUser(credentials[0], credentials[1]);
-
-                if (user != null)
-                {
-                    Console.WriteLine("Inloggad som " + user.UserLevel);
-                    loopMenu = false;
-                }
-                else
-                {
-                    Console.WriteLine("Fel användarnamn eller lösenord");
-                    Console.ReadKey();
-                }
-
-            } while (loopMenu);
-
-            loopMenu = true;
             while (loopMenu)
             {
                 if (user.UserLevel == UserLevel.Admin)
@@ -49,6 +28,8 @@ namespace Tiger_YH_Admin
 
                     switch (menuChoice)
                     {
+						case 0:
+		                    break;
                         case 1:
                             UserCreator creator = new UserCreator();
                             creator.Create(userStore);
@@ -113,5 +94,33 @@ namespace Tiger_YH_Admin
                 }
             }
         }
-    }
+
+	    private static User LoginUser(UserStore userStore)
+	    {
+			bool loopMenu = true;
+
+			User user;
+
+			do
+			{
+				Console.Clear();
+				string[] credentials = Menu.LoginMenu();
+				user = userStore.LoginUser(credentials[0], credentials[1]);
+
+				if (user != null)
+				{
+					Console.WriteLine("Inloggad som " + user.UserLevel);
+					loopMenu = false;
+				}
+				else
+				{
+					Console.WriteLine("Fel användarnamn eller lösenord");
+					Console.ReadKey();
+				}
+
+			} while (loopMenu);
+
+		    return user;
+	    }
+	}
 }
