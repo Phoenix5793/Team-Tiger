@@ -111,5 +111,127 @@ namespace Tiger_YH_Admin.Presenters
                 }
             } while (keepLooping);
         }
+
+        public static void AddStudentToClass()
+        {
+            var classStore = new EducationClassStore();
+            var studentStore = new UserStore();
+
+            Console.WriteLine("Ange klass id: ");
+            string classID = UserInput.GetInput<string>();
+            var educationClass = classStore.FindById(classID);
+
+            if (educationClass == null)
+            {
+                Console.WriteLine("Klassen kunde inte hittas");
+                return;
+            }
+
+            Console.WriteLine("Ange student id: ");
+            string studentID = UserInput.GetInput<string>();
+
+            var studentUser = studentStore.FindById(studentID);
+
+            if (studentUser == null)
+            {
+                Console.WriteLine("Finns ingen student med det namnet");
+            }
+            else if (studentUser.UserLevel != UserLevel.Student)
+            {
+                Console.WriteLine("Användaren är inte en student");
+            }
+            else if (educationClass.HasStudent(studentUser.UserName))
+            {
+                Console.WriteLine("Studenten finns redan i klassen");
+            }
+            else if (studentUser.UserLevel == UserLevel.Student)
+            {
+                Console.Clear();
+                UserManagerPresenter.ShowUserInfo(studentUser);
+
+                Console.WriteLine("Vill du lägga till student i klass? Ja/nej");
+                string answer = UserInput.GetInput<string>().ToLower();
+
+                if (answer == "ja" || answer == "j")
+                {
+
+                    List<string> studentList = educationClass.GetStudentList();
+
+                    Console.WriteLine($"Före add: studentList har {studentList.Count} studenter");
+                    studentList.Add(studentUser.UserName);
+                    Console.WriteLine($"Efter add: studentList har {studentList.Count} studenter");
+                    Console.ReadKey();
+
+                    educationClass.SetStudentList(studentList);
+
+                    var educationList = classStore.DataSet.ToList();
+
+                    foreach (var item in educationList)
+                    {
+                        if (item.ClassId == educationClass.ClassId)
+                        {
+                            item.StudentString = educationClass.StudentString;
+                            classStore.Save();
+                        }
+                    }
+                }
+
+            }
+            Console.ReadKey();
+        }
+
+        public static void RemoveStudentFromClass()
+        {
+            var classStore = new EducationClassStore();
+            var studentStore = new UserStore();
+
+            do
+            {
+                Console.WriteLine("Tryck enter för att avbryta");
+                string input = UserInput.GetInput<string>("Ange klass-id:");
+
+                if (input == string.Empty)
+                {
+                    return;
+                }
+
+                EducationClass edClass = classStore.FindById(input);
+
+                if (edClass == null)
+                {
+                    Console.WriteLine("Finns ingen klass med det id:t");
+                }
+                else
+                {
+                    input = UserInput.GetInput<string>("Ange student-id:");
+                    User student = studentStore.FindById(input);
+
+                    if (student == null)
+                    {
+                        Console.WriteLine("Studenten finns inte");
+                    }
+                    else
+                    {
+                        if (edClass.HasStudent(student.UserName))
+                        {
+                            bool confirmation = UserInput.AskConfirmation($"Vill du ta bort {student.FullName()} från klassen {edClass.ClassId}?");
+                            if (confirmation)
+                            {
+                                List<string> studentList = edClass.GetStudentList();
+                                studentList.Remove(student.UserName);
+                                Console.WriteLine($"Plockade bort {student.UserName} från klassen");
+
+                                edClass.SetStudentList(studentList);
+                                classStore.Save();
+                            }
+                        }
+                    }
+
+                }
+
+            } while (true);
+
+        }
+
     }
 }
