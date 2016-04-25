@@ -7,24 +7,6 @@ namespace Tiger_YH_Admin.Presenters
 {
     static class ClassListPresenter
     {
-        public static void Run()
-        {
-            MainMenu();
-            int menuChoice = UserInput.GetInput<int>();
-
-            switch (menuChoice)
-            {
-                case 0:
-                    return;
-                case 1:
-                    ListAllClasses();
-                    break;
-                case 2:
-                    ShowClass();
-                    break;
-            }
-        }
-
         public static void MainMenu()
         {
             Console.Clear();
@@ -33,9 +15,23 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("0. Tillbaka till föregående meny");
             Console.WriteLine("1. Lista alla klasser");
             Console.WriteLine("2. Visa en klass");
+
+            string menuChoice = UserInput.GetInput<string>();
+
+            switch (menuChoice)
+            {
+                case "0":
+                    return;
+                case "1":
+                    ListAllClasses();
+                    break;
+                case "2":
+                    ShowClass();
+                    break;
+            }
         }
 
-        public static void ListAllClasses(User supervisor = null)
+        private static void ListAllClasses(User supervisor = null)
         {
             EducationClassStore classStore = new EducationClassStore();
             List<EducationClass> classList = classStore.DataSet.ToList();
@@ -49,7 +45,7 @@ namespace Tiger_YH_Admin.Presenters
                 "Klassnamn".PadRight(10) +
                 "Utb.ledare".PadRight(11) +
                 "Beskrivning".PadRight(40)
-            );
+                );
 
             Console.WriteLine(new string('-', 66));
 
@@ -59,7 +55,7 @@ namespace Tiger_YH_Admin.Presenters
                     educationClass.ClassId.PadRight(10) +
                     educationClass.EducationSupervisorId.PadRight(11) +
                     educationClass.Description.PadRight(40)
-                );
+                    );
             }
 
             Console.ReadKey();
@@ -105,7 +101,7 @@ namespace Tiger_YH_Admin.Presenters
                             student.UserName.PadRight(12) +
                             student.FullName().PadRight(25) +
                             student.PhoneNumber.PadRight(15)
-                        );
+                            );
                     }
                     Console.WriteLine();
                 }
@@ -154,7 +150,6 @@ namespace Tiger_YH_Admin.Presenters
 
                 if (answer == "ja" || answer == "j")
                 {
-
                     List<string> studentList = educationClass.GetStudentList();
 
                     Console.WriteLine($"Före add: studentList har {studentList.Count} studenter");
@@ -175,7 +170,6 @@ namespace Tiger_YH_Admin.Presenters
                         }
                     }
                 }
-
             }
             Console.ReadKey();
         }
@@ -214,7 +208,9 @@ namespace Tiger_YH_Admin.Presenters
                     {
                         if (edClass.HasStudent(student.UserName))
                         {
-                            bool confirmation = UserInput.AskConfirmation($"Vill du ta bort {student.FullName()} från klassen {edClass.ClassId}?");
+                            bool confirmation =
+                                UserInput.AskConfirmation(
+                                    $"Vill du ta bort {student.FullName()} från klassen {edClass.ClassId}?");
                             if (confirmation)
                             {
                                 List<string> studentList = edClass.GetStudentList();
@@ -226,12 +222,8 @@ namespace Tiger_YH_Admin.Presenters
                             }
                         }
                     }
-
                 }
-
             } while (true);
-
         }
-
     }
 }

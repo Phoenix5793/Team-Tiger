@@ -4,26 +4,145 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tiger_YH_Admin.Models;
+using Tiger_YH_Admin.Models.Creators;
 using Tiger_YH_Admin.Presenters;
 
 namespace Tiger_YH_Admin
 {
     static class Menu
     {
-        public static int MainAdminMenu()
+        public static void MainMenu(User user)
+        {
+            bool loopMenu = true;
+            while (loopMenu)
+            {
+                Console.Clear();
+                switch (user.UserLevel)
+                {
+                    case UserLevel.Admin:
+                        AdminMainMenu();
+                        break;
+                    case UserLevel.EducationSupervisor:
+                        EducationSupervisorMainMenu(user);
+                        break;
+                    case UserLevel.Teacher:
+                        TeacherMainMenu(user);
+                        break;
+                    case UserLevel.Student:
+                        StudentMainMenu(user);
+                        break;
+                }
+
+                return;
+            }
+        }
+
+        private static void StudentMainMenu(User user)
+        {
+            Console.WriteLine("Tiger Board!");
+            Console.WriteLine("Studentmeny");
+            Console.WriteLine();
+            Console.WriteLine("0. Logga ut");
+            Console.WriteLine("1. Visa mina studieresultat");
+            Console.WriteLine("2. Klasslista");
+            Console.WriteLine("3. Kursplan");
+            Console.WriteLine("4. Byt lösenord");
+
+            Console.WriteLine();
+            Console.Write("Ditt val: ");
+            string menuChoice = UserInput.GetInput<string>();
+
+            // TODO: Implementera
+            switch (menuChoice)
+            {
+                case "0":
+                    return;
+                case "1":
+                    Console.WriteLine("Ej implementerad");
+                    break;
+                case "2":
+                    Console.WriteLine("Ej implementerad");
+                    break;
+                case "3":
+                    Console.WriteLine("Ej implementerad");
+                    break;
+                case "4":
+                    Console.WriteLine("Ej implementerad");
+                    break;
+            }
+        }
+
+        private static void TeacherMainMenu(User user)
+        {
+            Console.WriteLine("Tiger Board!");
+            Console.WriteLine("Lärarmeny");
+            Console.WriteLine();
+            Console.WriteLine("0. Logga ut");
+            Console.WriteLine("1. Visa mina kurser");
+            Console.WriteLine("2. Visa klasslistor");
+            Console.WriteLine("3. Betygsätt studenter");
+
+            Console.WriteLine();
+            Console.Write("Ditt val: ");
+            string menuChoice = UserInput.GetInput<string>();
+
+            // TODO: Implementera
+            switch (menuChoice)
+            {
+                case "0":
+                    return;
+                case "1":
+                    Console.WriteLine("Ej implementerad");
+                    break;
+                case "2":
+                    Console.WriteLine("Ej implementerad");
+                    break;
+                case "3":
+                    Console.WriteLine("Ej implementerad");
+                    break;
+            }
+        }
+
+        public static void AdminMainMenu()
         {
             Console.WriteLine("Tiger Board!");
             Console.WriteLine("Admin-meny");
             Console.WriteLine();
             Console.WriteLine("0. Logga ut");
             Console.WriteLine("1. Skapa användare");
-            Console.WriteLine("2. Sök efter användare");
-            Console.WriteLine("3. Skapa kurs");
-            Console.WriteLine("4. Skapa klass");
-            Console.WriteLine("5. Visa klasslista");
+            Console.WriteLine("2. Redigera användarinfo");
+            Console.WriteLine("3. Byt lösenord för användare");
             Console.WriteLine();
             Console.Write("Ditt val: ");
-            return UserInput.GetInput<int>();
+            string menuChoice = UserInput.GetInput<string>();
+
+            switch (menuChoice)
+            {
+                case "0":
+                    return;
+                case "1":
+                    UserStore userStore = new UserStore();
+                    UserCreator creator = new UserCreator();
+                    creator.Create(userStore);
+                    break;
+                case "2":
+                    Console.WriteLine("Ej implementerad");
+                    Console.ReadKey();
+                    break;
+                case "3":
+                    Console.WriteLine("Ej implementerad");
+                    Console.ReadKey();
+                    break;
+                case "4":
+                    var ds = new EducationClassStore();
+                    EducationClassCreator edCreator = new EducationClassCreator();
+                    edCreator.Create(ds);
+                    break;
+                case "5":
+                    ClassListPresenter.MainMenu();
+                    Console.ReadKey();
+                    break;
+            }
         }
 
         public static string[] LoginMenu()
@@ -46,75 +165,64 @@ namespace Tiger_YH_Admin
             Console.ResetColor();
 
             return new string[] {userName, password};
-
         }
 
-        public static int EducationSupervisorMenu()
+        public static void EducationSupervisorMainMenu(User educationSupervisor)
         {
             Console.WriteLine("Tiger Board!");
             Console.WriteLine("Utbildningledare-meny");
             Console.WriteLine();
             Console.WriteLine("0. Logga ut");
-            Console.WriteLine("1. Skapa användare");
-            Console.WriteLine("2. Sök efter användare");
-            Console.WriteLine("3. Hantera kurser");
+            Console.WriteLine("1. Skapa konton");
+            Console.WriteLine("2. Hantera lärare");
+            Console.WriteLine("3. Hantara klasser");
             Console.WriteLine("4. Hantera studenter");
-            Console.WriteLine("5. Skapa klass");
-            Console.WriteLine("6. Visa mina klasser");
+            Console.WriteLine("5. Hantera kurser");
+            Console.WriteLine("6. Mitt konto");
 
             Console.WriteLine();
             Console.Write("Ditt val: ");
-            return UserInput.GetInput<int>();
-        }
-        public static void ManageCourses()
-        {
-
-            Console.Clear();
-
-            Console.WriteLine("Hantera kurser");
-            Console.WriteLine();
-            Console.WriteLine("1. Skapa kurs");
-            Console.WriteLine("2. Ta bort kurs");
-            Console.WriteLine("3. Lägg till lärare");
-            Console.WriteLine("4. Ändra kurs");
-            Console.WriteLine("5. Visa kurser");
-        }
-        public static void ManageStudents()
-        {
-            Console.Clear();
-
-            Console.WriteLine("Hantera studenter");
-            Console.WriteLine();
-            Console.WriteLine("1. Visa student information");
-            Console.WriteLine("2. Ändra student information");
-            Console.WriteLine("3. Sätt betyg");
-            Console.WriteLine("4. Lägg till student");
-            Console.WriteLine("5. Ta bort student");
-
-            Console.WriteLine();
-            Console.Write("Ditt val: ");
-            int menuChoice = UserInput.GetInput<int>();
+            string menuChoice = UserInput.GetInput<string>();
 
             switch (menuChoice)
             {
-                case 1:
-                    Console.WriteLine("Visar studeninformation"); //TODO : Fixa metod
+                case "0":
+                    return;
+                case "1":
+                    //TODO: Inte köra samma rutin som admin
+                    UserStore userStore = new UserStore();
+                    UserCreator creator = new UserCreator();
+                    creator.Create(userStore);
                     break;
-                case 2:
-                    Console.WriteLine("Ändrar studentinformation"); //TODO: Fixa metod
+                case "2":
+                    EducationSupervisorManageTeacherMenu();
+                    Console.ReadKey();
                     break;
-                case 3:
-                    Console.WriteLine("Sätt betyg på student"); //TODO: Fixa metod
+                case "3":
+                    CoursePresenter.CourseManagementMenu();
                     break;
-                case 4:
-                    ClassListPresenter.AddStudentToClass();
+                case "4":
+                    UserManagerPresenter.ManageStudents();
                     break;
-                case 5:
-                    ClassListPresenter.RemoveStudentFromClass();
+                case "5":
+                    Console.WriteLine("Ej implementerad");
+                    Console.ReadKey();
                     break;
-                default:
+                case "6":
+                    Console.WriteLine("Ej implementerad");
+                    Console.ReadKey();
                     break;
             }
+        }
+
+        // TODO: stoppa metod på bättre ställe
+        private static void EducationSupervisorManageTeacherMenu()
+        {
+            Console.WriteLine("Tiger Board!");
+            Console.WriteLine("Utbildningsledare - Hantera lärare");
+            Console.WriteLine();
+            Console.WriteLine("1. Visa alla lärare");
+            Console.WriteLine("2. Visa alla studenter för en lärare");
         }
     }
 }

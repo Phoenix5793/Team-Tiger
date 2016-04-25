@@ -61,6 +61,7 @@
     <Compile Include="Models\UserStore.cs" />
     <Compile Include="Models\EducationClassStore.cs" />
     <Compile Include="Presenters\ClassListPresenter.cs" />
+    <Compile Include="Presenters\CoursePresenter.cs" />
     <Compile Include="Presenters\UserManagerPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
