@@ -9,9 +9,9 @@ namespace Tiger_YH_Admin
     enum UserLevel
     {
         Admin,
-        Student,
+        EducationSupervisor,
         Teacher,
-        EducationSupervisor
+        Student
     }
 
     enum Grade
