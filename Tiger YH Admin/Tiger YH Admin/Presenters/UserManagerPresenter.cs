@@ -8,8 +8,7 @@ namespace Tiger_YH_Admin.Presenters
     {
         public static void Run()
         {
-            bool loopMenu = true;
-            do
+            while (true)
             {
                 Console.Clear();
                 Console.WriteLine("0. Tillbaka till föregående meny");
@@ -31,14 +30,12 @@ namespace Tiger_YH_Admin.Presenters
                         Console.ReadKey();
                         break;
                 }
-            } while (loopMenu);
+            }
         }
 
         public static void SearchForUser()
         {
-            bool keepLooping = true;
-
-            do
+            while (true)
             {
                 Console.WriteLine("Tryck enter utan att ange namn för att avbryta.");
                 string input = UserInput.GetInput<string>("Sök användarnamn:");
@@ -59,8 +56,7 @@ namespace Tiger_YH_Admin.Presenters
                 {
                     ShowUserInfo(user);
                 }
-            } while (keepLooping);
-
+            }
         }
 
         public static void ShowUserInfo(User user)
@@ -84,7 +80,7 @@ namespace Tiger_YH_Admin.Presenters
                 "Typ".PadRight(10) +
                 "Telefon".PadRight(10) +
                 "Person-nr".PadRight(12)
-            );
+                );
             Console.WriteLine(new string('-', 66));
 
             foreach (User user in userList)
@@ -157,12 +153,9 @@ namespace Tiger_YH_Admin.Presenters
                     Console.WriteLine("Fel användarnamn eller lösenord");
                     Console.ReadKey();
                 }
-
             } while (loopMenu);
 
             return user;
         }
-
-
     }
 }
