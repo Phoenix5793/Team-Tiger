@@ -9,9 +9,12 @@ namespace Tiger_YH_Admin
         static void Main(string[] args)
         {
             UserStore userStore = new UserStore();
-            User user = UserManagerPresenter.LoginUser(userStore);
 
-            Menu.MainMenu(user);
+            while (true)
+            {
+                User user = UserManagerPresenter.LoginUser(userStore);
+                Menu.MainMenu(user);
+            }
         }
     }
 }
