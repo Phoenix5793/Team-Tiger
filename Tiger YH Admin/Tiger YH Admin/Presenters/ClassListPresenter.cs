@@ -61,6 +61,8 @@ namespace Tiger_YH_Admin.Presenters
                     educationClass.Description.PadRight(40)
                 );
             }
+
+            Console.ReadKey();
         }
 
         public static void ShowClass()
