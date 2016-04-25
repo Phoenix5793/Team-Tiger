@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tiger_YH_Admin
 {
-    enum UserLevel
+    public enum UserLevel
     {
         Admin,
         EducationSupervisor,

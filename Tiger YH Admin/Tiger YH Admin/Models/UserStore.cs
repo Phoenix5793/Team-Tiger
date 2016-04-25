@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Tiger_YH_Admin.Models
 {
-    class UserStore : DataStore<User>
+    public class UserStore : DataStore<User>
     {
       public override User FindById(string id)
       {
