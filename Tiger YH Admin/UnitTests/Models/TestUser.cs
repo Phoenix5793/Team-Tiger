@@ -8,9 +8,12 @@ namespace UnitTests.Models
     [TestClass]
     public class TestUser
     {
-        public User SetupTestUser()
+        private User _testUser;
+
+        [TestInitialize]
+        public void Initialize()
         {
-            return new User
+            _testUser = new User
             {
                 FirstName = "Testy",
                 Surname = "McTestFace",
@@ -24,10 +27,8 @@ namespace UnitTests.Models
         [TestMethod]
         public void User_Has_Full_Name()
         {
-            User testUser = SetupTestUser();
-
             string expected = "Testy McTestFace";
-            string actual = testUser.FullName();
+            string actual = _testUser.FullName();
 
             Assert.AreEqual(expected, actual);
         }
