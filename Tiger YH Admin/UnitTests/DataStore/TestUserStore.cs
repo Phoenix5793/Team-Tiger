@@ -68,5 +68,13 @@ namespace UnitTests.DataStore
 
             Assert.IsNull(expectedUser);
         }
+
+        [TestMethod]
+        public void User_Login_User_Does_Not_Exist()
+        {
+            User expectedUser = _userStore.LoginUser("zvzxvxbz", "hjhljkhjkl");
+
+            Assert.IsNull(expectedUser);
+        }
     }
 }
