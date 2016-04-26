@@ -33,7 +33,7 @@ namespace UnitTests.Models
         }
 
         [TestMethod]
-        public void Returns_Student_String()
+        public void StudentString__Returns_Student_String()
         {
             string expected = "adam,bertil,caesar,david,erik,johndoe";
             string actual = _testClass.StudentString;
@@ -42,7 +42,7 @@ namespace UnitTests.Models
         }
 
         [TestMethod]
-        public void Returns_Student_List()
+        public void GetStudentList__Returns_Student_List()
         {
             List<string> expected = new List<string>() {"adam", "bertil", "caesar", "david", "erik", "johndoe"};
             List<string> actual = _testClass.GetStudentList();
@@ -51,7 +51,7 @@ namespace UnitTests.Models
         }
 
         [TestMethod]
-        public void Has_Student_String()
+        public void HasStudent__Student_Exists_In_String()
         {
             string input = "david";
 
@@ -62,7 +62,7 @@ namespace UnitTests.Models
         }
 
         [TestMethod]
-        public void HasStudent_Validates_Properly()
+        public void HasStudent__Validates_Properly()
         {
             string input = "john";
 
