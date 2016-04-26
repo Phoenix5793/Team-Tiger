@@ -60,5 +60,13 @@ namespace UnitTests.DataStore
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void User_Login_Incorrect_Credentials()
+        {
+            User expectedUser = _userStore.LoginUser("testuser", "hjhljkhjkl");
+
+            Assert.IsNull(expectedUser);
+        }
     }
 }
