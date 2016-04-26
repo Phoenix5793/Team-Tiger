@@ -43,6 +43,18 @@ namespace UnitTests.Models
         }
 
         [TestMethod]
+        public void StudentString__Setting_With_List_Returns_Student_List()
+        {
+            List<string> input = new List<string> {"dilbert", "dogbert", "catbert"};
+            string expected = "dilbert,dogbert,catbert";
+
+            _testClass.SetStudentList(input);
+            string actual = _testClass.StudentString;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void GetStudentList__Returns_Student_List()
         {
             List<string> expected = new List<string>() {"adam", "bertil", "caesar", "david", "erik", "johndoe"};
