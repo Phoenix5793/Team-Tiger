@@ -9,7 +9,7 @@ using FileHelpers;
 namespace Tiger_YH_Admin.Models
 {
     [DelimitedRecord("|")]
-    class EducationClass
+    public class EducationClass
     {
         public string ClassId { get; set; }
         public string Description { get; set; }
