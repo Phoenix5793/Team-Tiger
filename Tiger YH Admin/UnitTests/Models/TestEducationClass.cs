@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tiger_YH_Admin;
 using Tiger_YH_Admin.Models;
@@ -45,6 +46,19 @@ namespace UnitTests.Models
         public void GetStudentList__Returns_Student_List()
         {
             List<string> expected = new List<string>() {"adam", "bertil", "caesar", "david", "erik", "johndoe"};
+            List<string> actual = _testClass.GetStudentList();
+
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void SetStudentList__Can_Set_With_A_List()
+        {
+            List<string> input = new List<string>() {"dilbert", "dogbert", "catbert"};
+            List<string> expected = input.ToList();
+
+            // Set and get new list
+            _testClass.SetStudentList(input);
             List<string> actual = _testClass.GetStudentList();
 
             CollectionAssert.AreEqual(expected, actual);
