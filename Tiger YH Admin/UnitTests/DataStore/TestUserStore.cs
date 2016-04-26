@@ -51,7 +51,7 @@ namespace UnitTests.DataStore
         }
 
         [TestMethod]
-        public void User_Can_Log_In()
+        public void User_Login_Correct_Credentials()
         {
             User expectedUser = _userStore.LoginUser("testuser", "abc123");
 
