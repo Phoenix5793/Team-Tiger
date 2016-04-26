@@ -49,5 +49,16 @@ namespace UnitTests.DataStore
 
             Assert.IsNull(expectedUser);
         }
+
+        [TestMethod]
+        public void User_Can_Log_In()
+        {
+            User expectedUser = _userStore.LoginUser("testuser", "abc123");
+
+            string expected = "McTestFace";
+            string actual = expectedUser.Surname;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
