@@ -34,9 +34,12 @@ namespace UnitTests.DataStore
         public void Can_Find_User()
         {
             UserStore userStore = new UserStore {DataSet = _userList};
-            User expectedUser = userStore.FindById("testuser");
+            User user = userStore.FindById("testuser");
 
-            Assert.IsTrue(expectedUser.UserName == "testuser");
+            string expected = "testuser";
+            string actual = user.UserName;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
