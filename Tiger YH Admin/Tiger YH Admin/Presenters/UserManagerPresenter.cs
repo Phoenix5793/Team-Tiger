@@ -113,7 +113,7 @@ namespace Tiger_YH_Admin.Presenters
             switch (menuChoice)
             {
                 case "1":
-                    Console.WriteLine("Visar studeninformation"); //TODO : Fixa metod
+                    SearchForUser();
                     break;
                 case "2":
                     Console.WriteLine("Ändrar studentinformation"); //TODO: Fixa metod

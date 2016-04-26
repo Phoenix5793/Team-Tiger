@@ -21,5 +21,9 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("5. Visa kurser");
         }
 
+        internal static void ChangeTeacherForCourses()
+        {
+            
+        }
     }
 }

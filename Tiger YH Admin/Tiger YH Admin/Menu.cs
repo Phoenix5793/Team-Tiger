@@ -175,7 +175,7 @@ namespace Tiger_YH_Admin
             Console.WriteLine("0. Logga ut");
             Console.WriteLine("1. Skapa konton");
             Console.WriteLine("2. Hantera lärare");
-            Console.WriteLine("3. Hantara klasser");
+            Console.WriteLine("3. Hantera klasser");
             Console.WriteLine("4. Hantera studenter");
             Console.WriteLine("5. Hantera kurser");
             Console.WriteLine("6. Mitt konto");
@@ -195,34 +195,26 @@ namespace Tiger_YH_Admin
                     creator.Create(userStore);
                     break;
                 case "2":
-                    EducationSupervisorManageTeacherMenu();
+                    EducationSupervisorPresenter.ManageTeacherMenu();
                     Console.ReadKey();
                     break;
                 case "3":
-                    CoursePresenter.CourseManagementMenu();
+                   EducationSupervisorPresenter.ManageClassMenu(educationSupervisor);
                     break;
                 case "4":
                     UserManagerPresenter.ManageStudents();
                     break;
                 case "5":
-                    Console.WriteLine("Ej implementerad");
+                    CoursePresenter.CourseManagementMenu();
                     Console.ReadKey();
                     break;
                 case "6":
-                    Console.WriteLine("Ej implementerad");
+                    AccountPresenter.ManageAccountMenu(educationSupervisor);
                     Console.ReadKey();
                     break;
             }
         }
 
-        // TODO: stoppa metod på bättre ställe
-        private static void EducationSupervisorManageTeacherMenu()
-        {
-            Console.WriteLine("Tiger Board!");
-            Console.WriteLine("Utbildningsledare - Hantera lärare");
-            Console.WriteLine();
-            Console.WriteLine("1. Visa alla lärare");
-            Console.WriteLine("2. Visa alla studenter för en lärare");
-        }
+       
     }
 }

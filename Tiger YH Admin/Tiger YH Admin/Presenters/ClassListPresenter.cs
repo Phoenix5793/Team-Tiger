@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Tiger_YH_Admin.Models;
+using Tiger_YH_Admin.Models.Creators;
 
 namespace Tiger_YH_Admin.Presenters
 {
@@ -31,7 +32,7 @@ namespace Tiger_YH_Admin.Presenters
             }
         }
 
-        private static void ListAllClasses(User supervisor = null)
+        public static void ListAllClasses(User supervisor = null)
         {
             EducationClassStore classStore = new EducationClassStore();
             List<EducationClass> classList = classStore.DataSet.ToList();
@@ -224,6 +225,13 @@ namespace Tiger_YH_Admin.Presenters
                     }
                 }
             } while (true);
+        }
+
+       
+
+        public static void ShowCoursesForClass()
+        {
+            
         }
     }
 }
