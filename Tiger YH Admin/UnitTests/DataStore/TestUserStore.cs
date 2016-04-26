@@ -10,12 +10,11 @@ namespace UnitTests.DataStore
     public class TestUserStore
     {
         private List<User> _userList;
+        private UserStore _userStore;
 
         [TestInitialize]
         public void Initialize()
         {
-            _userList = new List<User>();
-
             User user = new User
             {
                 FirstName = "Testy",
@@ -27,14 +26,15 @@ namespace UnitTests.DataStore
                 UserLevel = UserLevel.Student
             };
 
+            _userList = new List<User>();
             _userList.Add(user);
+            _userStore = new UserStore {DataSet = _userList};
         }
 
         [TestMethod]
         public void Can_Find_User()
         {
-            UserStore userStore = new UserStore {DataSet = _userList};
-            User user = userStore.FindById("testuser");
+            User user = _userStore.FindById("testuser");
 
             string expected = "testuser";
             string actual = user.UserName;
@@ -45,8 +45,7 @@ namespace UnitTests.DataStore
         [TestMethod]
         public void Returns_Null_If_User_Not_Found()
         {
-            UserStore userStore = new UserStore {DataSet = _userList};
-            User expectedUser = userStore.FindById("qwerty");
+            User expectedUser = _userStore.FindById("qwerty");
 
             Assert.IsNull(expectedUser);
         }
