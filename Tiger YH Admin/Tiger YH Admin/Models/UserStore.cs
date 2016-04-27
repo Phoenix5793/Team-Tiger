@@ -9,20 +9,21 @@ namespace Tiger_YH_Admin.Models
 {
     public class UserStore : DataStore<User>
     {
-      public override User FindById(string id)
-      {
-        return DataSet.ToList().SingleOrDefault(u => u.UserName == id);
-      }
-
-      public User LoginUser(string name, string password)
-      {
-        User user = FindById(name);
-
-        if (user != null && password == user.Password)
+        public override User FindById(string id)
         {
-          return user;
+            return DataSet.ToList().SingleOrDefault(u => u.UserName == id);
         }
-        return null;
-      }
+
+        public User LoginUser(string name, string password)
+        {
+            User user = FindById(name);
+
+            if (user != null && password == user.Password)
+            {
+                return user;
+            }
+            return null;
+        }
+
     }
 }
