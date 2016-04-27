@@ -211,5 +211,16 @@ namespace UnitTests.Models
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void GetCourseList__Returns_Course_List()
+        {
+            var expected = new List<string> {"oop1"};
+            _testClass.AddCourse(_testCourse.CourseId, _courseStore);
+
+            List<string> actual = _testClass.GetCourseList();
+
+            Assert.AreEqual(expected[0], actual[0]);
+        }
     }
 }

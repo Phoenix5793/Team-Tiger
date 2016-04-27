@@ -38,6 +38,12 @@ namespace Tiger_YH_Admin.Models
             return studentList.Contains(studentName);
         }
 
+        public List<string> GetCourseList()
+        {
+            // TODO: Jaga rätt på komman
+            return CourseString.Split(',').Where(s => s.Length > 0).ToList();
+        }
+
         public bool AddCourse(string courseId, CourseStore courseStore)
         {
             Course newCourse = courseStore.FindById(courseId);
@@ -55,7 +61,7 @@ namespace Tiger_YH_Admin.Models
             }
             else
             {
-                List<string> courseList = CourseString.Split(',').ToList();
+                List<string> courseList = GetCourseList();
                 courseList.Add(course.CourseId);
                 CourseString = string.Join(",", courseList);
                 return true;
@@ -69,7 +75,7 @@ namespace Tiger_YH_Admin.Models
 
         public bool RemoveCourse(string courseId)
         {
-            List<string> courseList = CourseString.Split(',').ToList();
+            List<string> courseList = GetCourseList();
             bool result = courseList.Remove(courseId);
             CourseString = string.Join(",", courseList);
 
@@ -83,7 +89,7 @@ namespace Tiger_YH_Admin.Models
 
         public bool HasCourse(string courseId)
         {
-            List<string> courseList = CourseString.Split(',').ToList();
+            List<string> courseList = GetCourseList();
 
             return courseList.Contains(courseId);
         }
