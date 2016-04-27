@@ -15,6 +15,7 @@ namespace Tiger_YH_Admin.Models
         public string Description { get; set; }
         public string EducationSupervisorId { get; set; }
         public string StudentString { get; set; }
+        private string CourseString { get; set; } = string.Empty;
 
         public List<string> GetStudentList()
         {
@@ -36,5 +37,47 @@ namespace Tiger_YH_Admin.Models
             List<string> studentList = GetStudentList();
             return studentList.Contains(studentName);
         }
+
+        public bool AddCourse(string courseId, CourseStore courseStore)
+        {
+            Course newCourse = courseStore.FindById(courseId);
+            bool result = AddCourse(newCourse, courseStore);
+            return result;
+        }
+
+        public bool AddCourse(Course course, CourseStore courseStore)
+        {
+            bool courseExists = HasCourse(course);
+
+            if (courseExists)
+            {
+                return false;
+            }
+            else
+            {
+                List<string> courseList = CourseString.Split(',').ToList();
+                courseList.Add(course.CourseId);
+                CourseString = string.Join(",", courseList);
+                return true;
+            }
+        }
+
+        public bool RemoveCourse(Course course)
+        {
+            return true;
+        }
+
+        public bool HasCourse(Course course)
+        {
+            return HasCourse(course.CourseId);
+        }
+
+        public bool HasCourse(string courseId)
+        {
+            List<string> courseList = CourseString.Split(',').ToList();
+
+            return courseList.Contains(courseId);
+        }
+
     }
 }
