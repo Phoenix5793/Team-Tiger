@@ -59,6 +59,7 @@
     <Compile Include="DataStore\TestEducationClassStore.cs" />
     <Compile Include="Models\TestUser.cs" />
     <Compile Include="Models\TestEducationClass.cs" />
+    <Compile Include="DataStore\TestCourseStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
