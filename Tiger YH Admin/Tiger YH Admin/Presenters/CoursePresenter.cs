@@ -60,12 +60,81 @@ namespace Tiger_YH_Admin.Presenters
 
         private static void EditCourse()
         {
-            throw new NotImplementedException();
+            CourseStore courseStore = new CourseStore();
+
+            string courseId = UserInput.GetInput<string>("Kurs-id:");
+            Course existingCourse = courseStore.FindById(courseId);
+
+            if (existingCourse == null)
+            {
+                Console.WriteLine("Kursen finns inte");
+                return;
+            }
+
+            Course courseToEdit = courseStore.FindById(courseId);
+            List<Course> courseList = courseStore.DataSet.ToList();
+
+            Console.WriteLine("Tryck enter för att behålla gamla värdet");
+            string newCourseId = UserInput.GetInput<string>("Nytt kurs-id:");
+            string newCourseName = UserInput.GetInput<string>("Nytt kursnamn:");
+            string newCourseTeacher = UserInput.GetInput<string>("Ny lärare:");
+
+            Console.WriteLine("TODO: Nytt datum måste anges. YYYY-MM-DD");
+            DateTime newCourseStartDate = UserInput.GetDate("Nytt startdatum:");
+            DateTime newCourseEndDate = UserInput.GetDate("Nytt slutdatum:");
+
+            Console.WriteLine("Ändringar:");
+            Console.WriteLine(courseToEdit.CourseId + " => " + newCourseId);
+            Console.WriteLine(courseToEdit.CourseName + " => " + newCourseName);
+            Console.WriteLine(courseToEdit.CourseTeacher + " => " + newCourseTeacher);
+            Console.WriteLine(courseToEdit.StartDate.ToString("yyyy-MM-dd") + " => " + newCourseStartDate.ToString("yyyy-MM-dd"));
+            Console.WriteLine(courseToEdit.EndDate.ToString("yyyy-MM-dd") + " => " + newCourseEndDate.ToString("yyyy-MM-dd"));
+            Console.WriteLine();
+
+            bool confirm = UserInput.AskConfirmation("Vill du spara ändringarna?");
+
+            if (confirm)
+            {
+                Course newCourse = new Course
+                {
+                    CourseId = newCourseId,
+                    CourseName = newCourseName,
+                    CourseTeacher = newCourseTeacher,
+                    StartDate = newCourseStartDate,
+                    EndDate = newCourseEndDate
+                };
+
+                courseStore.Remove(existingCourse.CourseId);
+                courseStore.AddItem(newCourse);
+            }
         }
 
         private static void DeleteCourse()
         {
-            throw new NotImplementedException();
+            CourseStore courseStore = new CourseStore();
+
+            string courseId = UserInput.GetInput<string>("Kurs-id:");
+            bool courseExists = courseStore.FindById(courseId) != null;
+
+            if (!courseExists)
+            {
+                Console.WriteLine("Kursen finns inte");
+                return;
+            }
+
+            Course courseToRemove = courseStore.FindById(courseId);
+            List<Course> courseList = courseStore.DataSet.ToList();
+
+            bool confirm = UserInput.AskConfirmation($"Vill du radera {courseToRemove.CourseName}?");
+
+            if (confirm)
+            {
+                courseList.Remove(courseToRemove);
+                courseStore.DataSet = courseList;
+                courseStore.Save();
+
+                Console.WriteLine("Kursen raderad");
+            }
         }
 
         private static void CreateCourse()
@@ -87,6 +156,7 @@ namespace Tiger_YH_Admin.Presenters
                     Console.WriteLine("Skriv datum enligt YYYY-MM-DD");
                     DateTime courseStartDate = UserInput.GetDate("Startdatum:");
                     DateTime courseEndDate = UserInput.GetDate("Slutdatum:");
+                    //TODO: Validera att läraren finns
                     string courseTeacher = UserInput.GetInput<string>("Lärare:");
 
                     Course newCourse = new Course
