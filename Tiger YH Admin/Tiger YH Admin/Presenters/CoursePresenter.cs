@@ -51,11 +51,25 @@ namespace Tiger_YH_Admin.Presenters
             CourseStore courseStore = new CourseStore();
             List<Course> courseList = courseStore.DataSet.ToList();
 
+
+            Console.WriteLine("Kurs-id".PadRight(10) +
+                              "Kursnamn".PadRight(40) +
+                              "Startdatum".PadRight(12) +
+                              "Slutdatum".PadRight(12) +
+                              "Lärare"
+                );
+            Console.WriteLine(new string('-', 80));
+
             foreach (Course course in courseList)
             {
-                Console.WriteLine(course.CourseId);
+                Console.WriteLine(
+                    course.CourseId.PadRight(10) +
+                    course.CourseName.PadRight(40) +
+                    course.StartDate.ToShortDateString().PadRight(12) +
+                    course.EndDate.ToShortDateString().PadRight(12) +
+                    course.CourseTeacher
+                    );
             }
-
         }
 
         private static void EditCourse()
@@ -83,29 +97,42 @@ namespace Tiger_YH_Admin.Presenters
             DateTime newCourseStartDate = UserInput.GetDate("Nytt startdatum:");
             DateTime newCourseEndDate = UserInput.GetDate("Nytt slutdatum:");
 
-            Console.WriteLine("Ändringar:");
-            Console.WriteLine(courseToEdit.CourseId + " => " + newCourseId);
-            Console.WriteLine(courseToEdit.CourseName + " => " + newCourseName);
-            Console.WriteLine(courseToEdit.CourseTeacher + " => " + newCourseTeacher);
-            Console.WriteLine(courseToEdit.StartDate.ToString("yyyy-MM-dd") + " => " + newCourseStartDate.ToString("yyyy-MM-dd"));
-            Console.WriteLine(courseToEdit.EndDate.ToString("yyyy-MM-dd") + " => " + newCourseEndDate.ToString("yyyy-MM-dd"));
-            Console.WriteLine();
+            if (newCourseId == string.Empty)
+            {
+                newCourseId = courseToEdit.CourseId;
+            }
+            if (newCourseName == string.Empty)
+            {
+                newCourseName = courseToEdit.CourseName;
+            }
+            if (newCourseTeacher == string.Empty)
+            {
+                newCourseTeacher = courseToEdit.CourseTeacher;
+            }
+            //TODO: Hantera tom input på datum
 
+            Course newCourse = new Course
+            {
+                CourseId = newCourseId,
+                CourseName = newCourseName,
+                CourseTeacher = newCourseTeacher,
+                StartDate = newCourseStartDate,
+                EndDate = newCourseEndDate
+            };
+
+            Console.WriteLine("Ändra från:");
+            PrintCourseInfo(courseToEdit);
+            Console.WriteLine("Ändras till:");
+            PrintCourseInfo(newCourse);
+
+            Console.WriteLine();
             bool confirm = UserInput.AskConfirmation("Vill du spara ändringarna?");
 
             if (confirm)
             {
-                Course newCourse = new Course
-                {
-                    CourseId = newCourseId,
-                    CourseName = newCourseName,
-                    CourseTeacher = newCourseTeacher,
-                    StartDate = newCourseStartDate,
-                    EndDate = newCourseEndDate
-                };
-
                 courseStore.Remove(existingCourse.CourseId);
                 courseStore.AddItem(newCourse);
+                Console.WriteLine("Ändringar sparade.");
             }
         }
 
@@ -177,6 +204,17 @@ namespace Tiger_YH_Admin.Presenters
         internal static void ChangeTeacherForCourses()
         {
             throw new NotImplementedException();
+        }
+
+        private static void PrintCourseInfo(Course course)
+        {
+            Console.WriteLine(
+                course.CourseId.PadRight(10) +
+                course.CourseName.PadRight(40) +
+                course.StartDate.ToShortDateString().PadRight(12) +
+                course.EndDate.ToShortDateString().PadRight(12) +
+                course.CourseTeacher
+            );
         }
     }
 }
