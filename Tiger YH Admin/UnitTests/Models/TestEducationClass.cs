@@ -11,6 +11,8 @@ namespace UnitTests.Models
     public class TestEducationClass
     {
         private EducationClass _testClass;
+        private CourseStore _courseStore;
+        private Course _testCourse;
         private User _testUser;
 
         [TestInitialize]
@@ -21,13 +23,28 @@ namespace UnitTests.Models
                 ClassId = "testclass",
                 Description = "The Joy of Painting with Bob Ross",
                 EducationSupervisorId = "bobross",
-                StudentString = "adam,bertil,caesar,david,erik,johndoe"
+                StudentString = "adam,bertil,caesar,david,erik,johndoe",
+            };
+
+            _testCourse = new Course
+            {
+                CourseId = "oop1",
+                CourseName = "Objektorienterad Programmering 1",
+                CourseTeacher = "pontus",
+                StartDate = DateTime.Today,
+                EndDate = DateTime.Today
             };
 
             _testUser = new User
             {
                 UserName = "bertil"
             };
+
+            _courseStore = new CourseStore();
+
+            var courseList = new List<Course>();
+            courseList.Add(_testCourse);
+            _courseStore.DataSet = courseList;
         }
 
         [TestMethod]
@@ -127,6 +144,75 @@ namespace UnitTests.Models
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void AddCourse__Can_Add_A_Course_Object()
+        {
+            Course input = _testCourse;
+            bool expected = true;
 
+            bool actual = _testClass.AddCourse(input, _courseStore);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void AddCourse__Can_Add_A_Course_By_Id_String()
+        {
+            string input = _testCourse.CourseId;
+            bool expected = true;
+
+            bool actual = _testClass.AddCourse(input, _courseStore);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void RemoveCourse__Can_Remove_Course()
+        {
+            Course input = _testCourse;
+            bool expected = true;
+            _testClass.AddCourse(input, _courseStore);
+
+            bool actual = _testClass.RemoveCourse(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void HasCourse__Finds_Existing_Course()
+        {
+            Course input = _testCourse;
+            bool expected = true;
+            _testClass.AddCourse(input, _courseStore);
+
+            bool actual = _testClass.HasCourse(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void HasCourse__Finds_Existing_Course_From_String()
+        {
+            string input = _testCourse.CourseId;
+            bool expected = true;
+            _testClass.AddCourse(input, _courseStore);
+
+            bool actual = _testClass.HasCourse(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void HasCourse__Course_Does_Not_Exist()
+        {
+            Course input = _testCourse;
+            bool expected = false;
+
+            bool actual = _testClass.HasCourse(input);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
