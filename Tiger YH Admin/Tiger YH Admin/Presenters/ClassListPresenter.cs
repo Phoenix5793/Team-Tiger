@@ -227,11 +227,9 @@ namespace Tiger_YH_Admin.Presenters
             } while (true);
         }
 
-       
-
         public static void ShowCoursesForClass()
         {
-            
+            //TODO: Visa kurser för klass
         }
     }
 }
