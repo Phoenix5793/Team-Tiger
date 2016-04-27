@@ -8,6 +8,7 @@ namespace Tiger_YH_Admin.Models
         IEnumerable<T> Load();
         void Save();
         T AddItem(T item);
+        void Remove(string itemId);
         T FindById(string id);
     }
 }

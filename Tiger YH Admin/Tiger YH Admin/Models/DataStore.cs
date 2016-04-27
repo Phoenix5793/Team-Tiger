@@ -42,5 +42,14 @@ namespace Tiger_YH_Admin.Models
 
             return item;
         }
+
+        public void Remove(string itemId)
+        {
+            List<T> itemList = DataSet.ToList();
+            T item = FindById(itemId);
+            itemList.Remove(item);
+            DataSet = itemList;
+        }
+
     }
 }

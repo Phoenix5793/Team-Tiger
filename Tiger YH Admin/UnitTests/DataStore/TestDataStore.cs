@@ -52,5 +52,15 @@ namespace UnitTests.DataStore
             Assert.IsNull(actual);
         }
 
+        [TestMethod]
+        public void Remove__Removes_Object()
+        {
+            string input = "testuser";
+
+            _testStore.Remove(input);
+            User actual = _testStore.FindById(input);
+
+            Assert.IsNull(actual);
+        }
     }
 }
