@@ -11,6 +11,7 @@ namespace UnitTests.Models
     public class TestEducationClass
     {
         private EducationClass _testClass;
+        private User _testUser;
 
         [TestInitialize]
         public void Initialize()
@@ -21,6 +22,11 @@ namespace UnitTests.Models
                 Description = "The Joy of Painting with Bob Ross",
                 EducationSupervisorId = "bobross",
                 StudentString = "adam,bertil,caesar,david,erik,johndoe"
+            };
+
+            _testUser = new User
+            {
+                UserName = "bertil"
             };
         }
 
@@ -97,5 +103,30 @@ namespace UnitTests.Models
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void HasStudent__Runs_With_User_Object__Student_In_Class()
+        {
+            User input = _testUser;
+
+            bool expected = true;
+            bool actual = _testClass.HasStudent(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void HasStudent__Runs_With_User_Object__Student_Not_In_class()
+        {
+            _testUser.UserName = "john";
+            User input = _testUser;
+
+            bool expected = false;
+            bool actual = _testClass.HasStudent(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
     }
 }

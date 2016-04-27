@@ -28,13 +28,13 @@ namespace Tiger_YH_Admin.Models
 
         public bool HasStudent(User student)
         {
-            //TODO: Bättre validering
             return HasStudent(student.UserName);
         }
 
         public bool HasStudent(string studentName)
         {
-            return StudentString.Contains(studentName);
+            List<string> studentList = GetStudentList();
+            return studentList.Contains(studentName);
         }
     }
 }
