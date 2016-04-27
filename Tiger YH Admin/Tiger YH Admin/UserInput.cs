@@ -57,5 +57,28 @@ namespace Tiger_YH_Admin
                 }
             } while (true);
         }
+
+        public static DateTime GetDate(string message)
+        {
+            bool keepGoing;
+            DateTime date = default(DateTime);
+
+            do
+            {
+                try
+                {
+                    keepGoing = false;
+                    date = GetInput<DateTime>(message);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Ogiltigt datumformat!");
+                    keepGoing = true;
+                }
+            } while (keepGoing);
+
+            return date;
+        }
     }
 }
