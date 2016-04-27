@@ -67,6 +67,15 @@ namespace Tiger_YH_Admin.Models
             return RemoveCourse(course.CourseId);
         }
 
+        public bool RemoveCourse(string courseId)
+        {
+            List<string> courseList = CourseString.Split(',').ToList();
+            bool result = courseList.Remove(courseId);
+            CourseString = string.Join(",", courseList);
+
+            return result;
+        }
+
         public bool HasCourse(Course course)
         {
             return HasCourse(course.CourseId);

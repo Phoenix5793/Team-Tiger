@@ -180,6 +180,18 @@ namespace UnitTests.Models
         }
 
         [TestMethod]
+        public void RemoveCourse__Can_Remove_Course_By_Id()
+        {
+            string input = _testCourse.CourseId;
+            bool expected = true;
+            _testClass.AddCourse(input, _courseStore);
+
+            bool actual = _testClass.RemoveCourse(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void HasCourse__Finds_Existing_Course()
         {
             Course input = _testCourse;
