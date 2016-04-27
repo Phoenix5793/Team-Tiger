@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tiger_YH_Admin.Models
 {
-    class EducationClassStore : DataStore<EducationClass>
+    public class EducationClassStore : DataStore<EducationClass>
     {
         public override EducationClass FindById(string id)
         {
