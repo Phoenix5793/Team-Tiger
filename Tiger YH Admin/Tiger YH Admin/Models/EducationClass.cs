@@ -64,7 +64,7 @@ namespace Tiger_YH_Admin.Models
 
         public bool RemoveCourse(Course course)
         {
-            return true;
+            return RemoveCourse(course.CourseId);
         }
 
         public bool HasCourse(Course course)
