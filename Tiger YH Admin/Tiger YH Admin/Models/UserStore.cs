@@ -11,13 +11,11 @@ namespace Tiger_YH_Admin.Models
     {
       public override User FindById(string id)
       {
-      //TODO: Skriv tester
         return DataSet.ToList().SingleOrDefault(u => u.UserName == id);
       }
 
       public User LoginUser(string name, string password)
       {
-      //TODO: Skriv tester
         User user = FindById(name);
 
         if (user != null && password == user.Password)
