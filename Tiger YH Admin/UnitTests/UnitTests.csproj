@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="DataStore\TestUserStore.cs" />
     <Compile Include="DataStore\TestEducationClassStore.cs" />
+    <Compile Include="DataStore\TestDataStore.cs" />
     <Compile Include="Models\TestUser.cs" />
     <Compile Include="Models\TestEducationClass.cs" />
     <Compile Include="DataStore\TestCourseStore.cs" />

@@ -32,25 +32,6 @@ namespace UnitTests.DataStore
         }
 
         [TestMethod]
-        public void Can_Find_User()
-        {
-            User user = _userStore.FindById("testuser");
-
-            string expected = "testuser";
-            string actual = user.UserName;
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void Returns_Null_If_User_Not_Found()
-        {
-            User expectedUser = _userStore.FindById("qwerty");
-
-            Assert.IsNull(expectedUser);
-        }
-
-        [TestMethod]
         public void User_Login_Correct_Credentials()
         {
             User expectedUser = _userStore.LoginUser("testuser", "abc123");

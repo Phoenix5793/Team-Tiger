@@ -30,25 +30,5 @@ namespace UnitTests.Models
             testCourseStore.DataSet = courseList;
         }
 
-        [TestMethod]
-        public void FindById__Can_Find_Course()
-        {
-            string input = "oop1";
-            string expected = "oop1";
-
-            Course foundCourse = testCourseStore.FindById(input);
-            string actual = foundCourse.CourseId;
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void FindById__Returns_Null_If_Course_Not_Found()
-        {
-            Course foundCourse = testCourseStore.FindById("qwerty");
-
-            Assert.IsNull(foundCourse);
-        }
-
     }
 }
