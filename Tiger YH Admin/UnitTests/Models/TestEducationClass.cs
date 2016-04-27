@@ -22,9 +22,15 @@ namespace UnitTests.Models
             {
                 ClassId = "testclass",
                 Description = "The Joy of Painting with Bob Ross",
-                EducationSupervisorId = "bobross",
-                StudentString = "adam,bertil,caesar,david,erik,johndoe",
+                EducationSupervisorId = "bobross"
             };
+
+            var studentList = new List<string>
+            {
+                "adam", "bertil", "caesar", "david", "erik", "johndoe"
+            };
+
+            _testClass.SetStudentList(studentList);
 
             _testCourse = new Course
             {

@@ -166,7 +166,7 @@ namespace Tiger_YH_Admin.Presenters
                     {
                         if (item.ClassId == educationClass.ClassId)
                         {
-                            item.StudentString = educationClass.StudentString;
+                            item.SetStudentList(educationClass.GetStudentList());
                             classStore.Save();
                         }
                     }

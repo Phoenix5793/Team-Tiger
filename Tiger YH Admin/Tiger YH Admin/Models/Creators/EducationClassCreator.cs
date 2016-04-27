@@ -70,15 +70,13 @@ namespace Tiger_YH_Admin.Models.Creators
                         }
                     } while (newStudent.Length > 0);
 
-                    string classList = string.Join(",", studentList);
-
                     newClass = new EducationClass
                     {
                         ClassId = classId,
                         Description = classDescription,
                         EducationSupervisorId = input,
-                        StudentString = classList
                     };
+                    newClass.SetStudentList(studentList);
 
                     keepLooping = false;
                 }
