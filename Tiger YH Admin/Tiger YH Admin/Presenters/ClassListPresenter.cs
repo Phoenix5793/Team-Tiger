@@ -146,10 +146,8 @@ namespace Tiger_YH_Admin.Presenters
                 Console.Clear();
                 UserManagerPresenter.ShowUserInfo(studentUser);
 
-                Console.WriteLine("Vill du lägga till student i klass? Ja/nej");
-                string answer = UserInput.GetInput<string>().ToLower();
-
-                if (answer == "ja" || answer == "j")
+                bool accept = UserInput.AskConfirmation("Vill du lägga till studenten till klassen?");
+                if (accept)
                 {
                     List<string> studentList = educationClass.GetStudentList();
 
