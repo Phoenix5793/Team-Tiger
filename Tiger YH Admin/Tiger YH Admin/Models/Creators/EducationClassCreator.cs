@@ -28,6 +28,7 @@ namespace Tiger_YH_Admin.Models.Creators
                 if (existingClass != null && keepLooping)
                 {
                     Console.WriteLine("Klass-id redan använt");
+                    Console.ReadKey();
                 }
                 else
                 {
@@ -36,21 +37,37 @@ namespace Tiger_YH_Admin.Models.Creators
                     string classDescription = UserInput.GetInput<string>();
 
                     string input;
-                    User supervisor;
+                    User user;
+
+                    bool isSupervisor = false;
                     do
                     {
                         Console.WriteLine("Utbildningsledare: ");
-                        input = UserInput.GetInput<string>();
-                        supervisor = userStore.FindById(input);
-                        if (supervisor == null)
+                        do
+                        {
+                            input = UserInput.GetInput<string>();
+                            if (input == string.Empty)
+                            {
+                                Console.WriteLine("Kan inte lämna namnet tomt");
+                            }
+                        } while (input == string.Empty);
+
+                        user = userStore.FindById(input);
+
+                        if (user != null)
+                        {
+                            isSupervisor = user.HasLevel(UserLevel.EducationSupervisor);
+                            if (!isSupervisor)
+                            {
+                                Console.WriteLine("Användaren är inte utbildningsledare");
+                            }
+                        }
+                        else
                         {
                             Console.WriteLine("Användaren finns inte");
                         }
-                        else if (supervisor.UserLevel != UserLevel.EducationSupervisor)
-                        {
-                            Console.WriteLine("Användaren är inte utbildningsledare");
-                        }
-                    } while (supervisor == null || supervisor.UserLevel != UserLevel.EducationSupervisor);
+
+                    } while (user == null || !isSupervisor);
 
                     string newStudent;
                     List<string> studentList = new List<string>();
