@@ -91,44 +91,5 @@ namespace UnitTests.DataStore
 
             Assert.AreEqual(expected, actual);
         }
-
-        [TestMethod]
-        public void HasLevel__User_Exists__Has_Correct_Level()
-        {
-            string inputName = _testUser.UserName;
-            UserLevel inputLevel = UserLevel.Student;
-            bool expected = true;
-
-            bool actual = _userStore.HasLevel(inputName, inputLevel);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void HasLevel__User_Exists__Has_Incorrect_Level()
-        {
-            string inputName = _testUser.UserName;
-            UserLevel inputLevel = UserLevel.Admin;
-            bool expected = false;
-
-            bool actual = _userStore.HasLevel(inputName, inputLevel);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void HasLevel__User_Does_Not_Exist()
-        {
-            string inputName = "test";
-            UserLevel inputLevel = UserLevel.Admin;
-            bool expected = false;
-
-            bool actual = _userStore.HasLevel(inputName, inputLevel);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-
-
     }
 }

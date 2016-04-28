@@ -27,5 +27,10 @@ namespace Tiger_YH_Admin.Models
         {
             return $"{FirstName} {Surname}";
         }
+
+        public bool HasLevel(UserLevel level)
+        {
+            return UserLevel == level;
+        }
     }
 }

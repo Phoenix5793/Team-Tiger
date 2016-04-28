@@ -32,5 +32,28 @@ namespace UnitTests.Models
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void HasLevel__Has_Correct_Level()
+        {
+            UserLevel input = UserLevel.Student;
+            bool expected = true;
+
+            bool actual = _testUser.HasLevel(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void HasLevel__Has_Wrong_Level()
+        {
+            UserLevel input = UserLevel.Admin;
+            bool expected = false;
+
+            bool actual = _testUser.HasLevel(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }

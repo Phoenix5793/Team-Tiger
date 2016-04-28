@@ -30,18 +30,5 @@ namespace Tiger_YH_Admin.Models
             User user = FindById(userId);
             return user != null;
         }
-
-        public bool HasLevel(string userName, UserLevel userLevel)
-        {
-            bool exists = HasUser(userName);
-
-            if (!exists) return false;
-
-            User user = FindById(userName);
-            UserLevel level = user.UserLevel;
-            bool correctLevel = userLevel == level;
-
-            return correctLevel;
-        }
     }
 }
