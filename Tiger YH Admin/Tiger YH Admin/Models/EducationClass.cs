@@ -55,17 +55,12 @@ namespace Tiger_YH_Admin.Models
         {
             bool courseExists = HasCourse(course);
 
-            if (courseExists)
-            {
-                return false;
-            }
-            else
-            {
-                List<string> courseList = GetCourseList();
-                courseList.Add(course.CourseId);
-                CourseString = string.Join(",", courseList);
-                return true;
-            }
+            if (courseExists) { return false; }
+
+            List<string> courseList = GetCourseList();
+            courseList.Add(course.CourseId);
+            CourseString = string.Join(",", courseList);
+            return true;
         }
 
         public bool RemoveCourse(Course course)
