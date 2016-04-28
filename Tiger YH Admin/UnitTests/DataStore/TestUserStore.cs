@@ -9,13 +9,14 @@ namespace UnitTests.DataStore
     [TestClass]
     public class TestUserStore
     {
+        private User _testUser;
         private List<User> _userList;
         private UserStore _userStore;
 
         [TestInitialize]
         public void Initialize()
         {
-            User user = new User
+            _testUser = new User
             {
                 FirstName = "Testy",
                 Surname = "McTestFace",
@@ -27,7 +28,7 @@ namespace UnitTests.DataStore
             };
 
             _userList = new List<User>();
-            _userList.Add(user);
+            _userList.Add(_testUser);
             _userStore = new UserStore {DataSet = _userList};
         }
 
@@ -57,5 +58,77 @@ namespace UnitTests.DataStore
 
             Assert.IsNull(expectedUser);
         }
+
+        [TestMethod]
+        public void UserExists__Existing_User()
+        {
+            string input = _testUser.UserName;
+            bool expected = true;
+
+            bool actual = _userStore.HasUser(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void UserExists__Nonexisting_User()
+        {
+            string input = "hjkhkjhkl";
+            bool expected = false;
+
+            bool actual = _userStore.HasUser(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void UserExists__Username_Is_Substring_Of_Existing_User()
+        {
+            string input = "test";
+            bool expected = false;
+
+            bool actual = _userStore.HasUser(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void HasLevel__User_Exists__Has_Correct_Level()
+        {
+            string inputName = _testUser.UserName;
+            UserLevel inputLevel = UserLevel.Student;
+            bool expected = true;
+
+            bool actual = _userStore.HasLevel(inputName, inputLevel);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void HasLevel__User_Exists__Has_Incorrect_Level()
+        {
+            string inputName = _testUser.UserName;
+            UserLevel inputLevel = UserLevel.Admin;
+            bool expected = false;
+
+            bool actual = _userStore.HasLevel(inputName, inputLevel);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void HasLevel__User_Does_Not_Exist()
+        {
+            string inputName = "test";
+            UserLevel inputLevel = UserLevel.Admin;
+            bool expected = false;
+
+            bool actual = _userStore.HasLevel(inputName, inputLevel);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
     }
 }
