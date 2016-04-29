@@ -60,7 +60,7 @@ namespace UnitTests.DataStore
         }
 
         [TestMethod]
-        public void UserExists__Existing_User()
+        public void HasUser__Existing_User()
         {
             string input = _testUser.UserName;
             bool expected = true;
@@ -71,7 +71,7 @@ namespace UnitTests.DataStore
         }
 
         [TestMethod]
-        public void UserExists__Nonexisting_User()
+        public void HasUser__Nonexisting_User()
         {
             string input = "hjkhkjhkl";
             bool expected = false;
@@ -82,7 +82,7 @@ namespace UnitTests.DataStore
         }
 
         [TestMethod]
-        public void UserExists__Username_Is_Substring_Of_Existing_User()
+        public void HasUser__Username_Is_Substring_Of_Existing_User()
         {
             string input = "test";
             bool expected = false;
