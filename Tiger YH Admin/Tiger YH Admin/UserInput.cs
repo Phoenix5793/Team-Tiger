@@ -44,16 +44,14 @@ namespace Tiger_YH_Admin
             {
                 Console.WriteLine(message);
                 Console.Write("(j/n): ");
-                string input = Console.ReadLine();
+                string input = Console.ReadLine().ToLower();
 
-                if (input.ToLower() == "j")
+                switch (input)
                 {
-                    return true;
-                }
-
-                if (input.ToLower() == "n")
-                {
-                    return false;
+                    case "j":
+                        return true;
+                    case "n":
+                        return false;
                 }
             } while (true);
         }

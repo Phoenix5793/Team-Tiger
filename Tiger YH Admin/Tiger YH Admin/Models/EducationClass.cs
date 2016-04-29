@@ -14,7 +14,7 @@ namespace Tiger_YH_Admin.Models
         public string ClassId { get; set; }
         public string Description { get; set; }
         public string EducationSupervisorId { get; set; }
-        private string StudentString { get; set; }
+        private string StudentString { get; set; } = string.Empty;
         private string CourseString { get; set; } = string.Empty;
 
         public List<string> GetStudentList()
@@ -40,7 +40,6 @@ namespace Tiger_YH_Admin.Models
 
         public List<string> GetCourseList()
         {
-            // TODO: Jaga rätt på komman
             return CourseString.Split(',').Where(s => s.Length > 0).ToList();
         }
 

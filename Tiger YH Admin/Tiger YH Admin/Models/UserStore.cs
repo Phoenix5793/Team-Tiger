@@ -18,7 +18,7 @@ namespace Tiger_YH_Admin.Models
         {
             User user = FindById(name);
 
-            if (user != null && password == user.Password)
+            if (user?.Password == password)
             {
                 return user;
             }
