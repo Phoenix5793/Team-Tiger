@@ -141,6 +141,18 @@ namespace UnitTests.Models
         }
 
         [TestMethod]
+        public void AddCourse__Cannot_Add_Course_Twice()
+        {
+            Course input = _testCourse;
+            bool expected = false;
+
+            _testClass.AddCourse(input, _courseStore);
+            bool actual = _testClass.AddCourse(input, _courseStore);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void AddCourse__Can_Add_A_Course_By_Id_String()
         {
             string input = _testCourse.CourseId;
