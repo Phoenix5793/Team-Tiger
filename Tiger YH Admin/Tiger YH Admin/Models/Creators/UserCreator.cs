@@ -41,22 +41,10 @@ namespace Tiger_YH_Admin.Models.Creators
                     Console.Write("Användarnivå:");
                     int chosenLevel = UserInput.GetInput<int>();
 
-                    string firstName = null;
-                    string surname = null;
-                    string ssn = null;
-                    string phoneNumber = null;
-
-                    if (existingUser?.UserLevel != UserLevel.Admin)
-                    {
-                        Console.Write("Förnamn: ");
-                        firstName = UserInput.GetInput<string>();
-                        Console.Write("Efternamn:");
-                        surname = UserInput.GetInput<string>();
-                        Console.Write("Personnummer: ");
-                        ssn = UserInput.GetInput<string>();
-                        Console.Write("Telefonnummer: ");
-                        phoneNumber = UserInput.GetInput<string>();
-                    }
+                    string firstName = UserInput.GetInput<string>("Förnamn:");
+                    string surname = UserInput.GetInput<string>("Efternamn:");
+                    string ssn = UserInput.GetInput<string>("Personnummer:");
+                    string phoneNumber = UserInput.GetInput<string>("Telefonnummer:");
 
                     User newUser = new User
                     {
@@ -70,10 +58,9 @@ namespace Tiger_YH_Admin.Models.Creators
                     };
 
                     //TODO: Fråga om korrekt input
-                    Console.Write("VIll du spara? Ja/nej ");
-                    string answer = UserInput.GetInput<string>();
+                    bool confirm = UserInput.AskConfirmation("Vill du spara användaren?");
 
-                    if (answer.ToLower() == "ja" || answer.ToLower() == "j")
+                    if (confirm)
                     {
                         userStore.AddItem(newUser);
 
