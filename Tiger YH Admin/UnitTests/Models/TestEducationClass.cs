@@ -71,6 +71,15 @@ namespace UnitTests.Models
             CollectionAssert.AreEqual(expected, actual);
         }
 
+        public void GetStudentList__Returns_Correct_Number_Of_Students()
+        {
+            int expected = 6;
+
+            int actual = _testClass.GetStudentList().Count;
+
+            Assert.AreEqual(expected, actual);
+        }
+
         [TestMethod]
         public void SetStudentList__Can_Set_With_A_List()
         {
