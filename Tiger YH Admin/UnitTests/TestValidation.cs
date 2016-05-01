@@ -18,6 +18,17 @@ namespace UnitTests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void IsValidEmail__Period_Is_Comma()
+        {
+            string input = "foo@example,net";
+            bool expected = false;
+
+            bool actual = Validation.IsValidEmail(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
         public void IsValidEmail__Has_Subdomain()
         {
             string input = "foo@bar.example.net";
