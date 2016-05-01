@@ -41,6 +41,7 @@ namespace Tiger_YH_Admin
 
             do
             {
+                Console.Clear();
                 Console.WriteLine("Tiger Board!");
                 Console.WriteLine("Studentmeny");
                 Console.WriteLine();
@@ -81,6 +82,7 @@ namespace Tiger_YH_Admin
             bool loop = true;
             do
             {
+                Console.Clear();
                 Console.WriteLine("Tiger Board!");
                 Console.WriteLine("Lärarmeny");
                 Console.WriteLine();
@@ -118,6 +120,7 @@ namespace Tiger_YH_Admin
             bool loop = true;
             do
             {
+                Console.Clear();
                 Console.WriteLine("Tiger Board!");
                 Console.WriteLine("Admin-meny");
                 Console.WriteLine();
@@ -190,6 +193,7 @@ namespace Tiger_YH_Admin
 
             do
             {
+                Console.Clear();
                 Console.WriteLine("Tiger Board!");
                 Console.WriteLine("Utbildningledare-meny");
                 Console.WriteLine();
