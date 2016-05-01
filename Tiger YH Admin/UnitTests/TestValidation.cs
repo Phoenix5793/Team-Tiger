@@ -18,6 +18,16 @@ namespace UnitTests
             Assert.AreEqual(expected, actual);
         }
 
+        public void IsValidEmail__Has_Subdomain()
+        {
+            string input = "foo@bar.example.net";
+            bool expected = true;
+
+            bool actual = Validation.IsValidEmail(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
         [TestMethod]
         public void IsValidEmail__Has_Periods()
         {
@@ -45,6 +55,28 @@ namespace UnitTests
         {
             string input = "foo.bar+spamtrap@example.net";
             bool expected = true;
+
+            bool actual = Validation.IsValidEmail(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void IsValidEmail__Invalid_With_Space_In_Username()
+        {
+            string input = "foo bar@example.net";
+            bool expected = false;
+
+            bool actual = Validation.IsValidEmail(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void IsValidEmail__Invalid_With_Space_In_Domain()
+        {
+            string input = "foobar@exam ple.net";
+            bool expected = false;
 
             bool actual = Validation.IsValidEmail(input);
 
