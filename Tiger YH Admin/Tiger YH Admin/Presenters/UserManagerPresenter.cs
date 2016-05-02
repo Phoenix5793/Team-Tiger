@@ -72,7 +72,7 @@ namespace Tiger_YH_Admin.Presenters
 
         private static void ListAllUsers()
         {
-            var userList = new UserStore().DataSet.ToList();
+            var userList = new UserStore().All().ToList();
 
             Console.WriteLine(
                 "Användarnamn".PadRight(14) +

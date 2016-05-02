@@ -46,11 +46,9 @@ namespace UnitTests.Models
                 UserName = "bertil"
             };
 
-            _courseStore = new CourseStore();
-
             var courseList = new List<Course>();
             courseList.Add(_testCourse);
-            _courseStore.DataSet = courseList;
+            _courseStore = new CourseStore(courseList);
         }
 
         [TestMethod]

@@ -35,7 +35,7 @@ namespace Tiger_YH_Admin.Presenters
         public static void ListAllClasses(User supervisor = null)
         {
             EducationClassStore classStore = new EducationClassStore();
-            List<EducationClass> classList = classStore.DataSet.ToList();
+            List<EducationClass> classList = classStore.All().ToList();
 
             if (supervisor != null)
             {
@@ -158,7 +158,7 @@ namespace Tiger_YH_Admin.Presenters
 
                     educationClass.SetStudentList(studentList);
 
-                    var educationList = classStore.DataSet.ToList();
+                    var educationList = classStore.All().ToList();
 
                     foreach (var item in educationList)
                     {

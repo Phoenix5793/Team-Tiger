@@ -10,7 +10,7 @@ namespace Tiger_YH_Admin.Models
         private readonly string _fileName;
         private const string FilePrefix = "Data/";
 
-        public IEnumerable<T> DataSet { get; set; }
+        protected IEnumerable<T> DataSet { get; set; }
 
         protected DataStore()
         {
@@ -18,7 +18,17 @@ namespace Tiger_YH_Admin.Models
             DataSet = Load();
         }
 
+        protected DataStore(IEnumerable<T> items)
+        {
+            DataSet = items;
+        }
+
         public abstract T FindById(string id);
+
+        public IEnumerable<T> All()
+        {
+            return DataSet;
+        }
 
         public IEnumerable<T> Load()
         {

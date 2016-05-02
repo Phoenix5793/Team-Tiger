@@ -9,6 +9,14 @@ namespace Tiger_YH_Admin.Models
 {
     public class UserStore : DataStore<User>
     {
+        public UserStore() : base()
+        {
+        }
+
+        public UserStore(IEnumerable<User> users) : base(users)
+        {            
+        }
+
         public override User FindById(string id)
         {
             return DataSet.ToList().SingleOrDefault(u => u.UserName == id);

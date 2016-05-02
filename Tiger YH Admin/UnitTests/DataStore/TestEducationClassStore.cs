@@ -23,8 +23,7 @@ namespace UnitTests.DataStore
 
             List<EducationClass> classList = new List<EducationClass> {_testClass};
 
-            _classStore = new EducationClassStore();
-            _classStore.DataSet = classList;
+            _classStore = new EducationClassStore(classList);
         }
 
         [TestMethod]
