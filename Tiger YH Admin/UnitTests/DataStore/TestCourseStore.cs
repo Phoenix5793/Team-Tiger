@@ -45,6 +45,16 @@ namespace UnitTests.Models
                 EndDate = DateTime.Today.AddDays(30)
             });
 
+            courseList.Add(new Course
+            {
+                CourseId = "oop4",
+                CourseName = "Obemannad kurs",
+                CourseTeacher = string.Empty,
+                StartDate = DateTime.Today.AddDays(7),
+                EndDate = DateTime.Today.AddDays(30)
+            });
+
+
             testCourseStore = new CourseStore(courseList);
         }
 
@@ -79,15 +89,20 @@ namespace UnitTests.Models
         [TestMethod]
         public void GetFutureCourses__Finds_Future_Course()
         {
-            int expectedCourseCount = 1;
-            string expectedCourseName = "Framtida kurs";
+            int expectedCourseCount = 2;
+            string expectedCourseName1 = "Framtida kurs";
+            string expectedCourseName2 = "Obemannad kurs";
 
             List<Course> actualCourse = testCourseStore.GetFutureCourses().ToList();
             int actualCourseCount = actualCourse.Count;
-            string actualCourseName = actualCourse.First().CourseName;
+            string actualCourseName1 = actualCourse.First().CourseName;
+            string actualCourseName2 = actualCourse.Last().CourseName;
+
 
             Assert.AreEqual(expectedCourseCount, actualCourseCount);
-            Assert.AreEqual(expectedCourseName, actualCourseName);
+            Assert.AreEqual(expectedCourseName1, actualCourseName1);
+            Assert.AreEqual(expectedCourseName2, actualCourseName2);
+
         }
 
     }
