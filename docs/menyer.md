@@ -7,7 +7,10 @@
     - Skapa nytt UL-konto
  - Hantera lärare
     - Visa alla lärare
-    - Visa studenter för en lärare
+    - Lärarbemanning
+      - Visa avslutade kurser
+      - Visa pågående kurser
+      - Visa framtida kurser
  - Hantera klasser
     - Skapa ny klass
     - Visa klasser jag ansvarar för
