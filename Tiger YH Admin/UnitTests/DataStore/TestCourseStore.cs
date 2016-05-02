@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tiger_YH_Admin.Models;
 
@@ -45,6 +46,48 @@ namespace UnitTests.Models
             });
 
             testCourseStore = new CourseStore {DataSet = courseList};
+        }
+
+        [TestMethod]
+        public void GetFinishedCourses__Finds_Finished_Course()
+        {
+            int expectedCourseCount = 1;
+            string expectedCourseName = "Avslutad kurs";
+
+            List<Course> actualCourse = testCourseStore.GetFinishedCourses().ToList();
+            int actualCourseCount = actualCourse.Count;
+            string actualCourseName = actualCourse.First().CourseName;
+
+            Assert.AreEqual(expectedCourseCount, actualCourseCount);
+            Assert.AreEqual(expectedCourseName, actualCourseName);
+        }
+
+        [TestMethod]
+        public void GetFinishedCourses__Finds_Current_Course()
+        {
+            int expectedCourseCount = 1;
+            string expectedCourseName = "Pågående kurs";
+
+            List<Course> actualCourse = testCourseStore.GetCurrentCourses().ToList();
+            int actualCourseCount = actualCourse.Count;
+            string actualCourseName = actualCourse.First().CourseName;
+
+            Assert.AreEqual(expectedCourseCount, actualCourseCount);
+            Assert.AreEqual(expectedCourseName, actualCourseName);
+        }
+
+        [TestMethod]
+        public void GetFinishedCourses__Finds_Future_Course()
+        {
+            int expectedCourseCount = 1;
+            string expectedCourseName = "Framtida kurs";
+
+            List<Course> actualCourse = testCourseStore.GetFutureCourses().ToList();
+            int actualCourseCount = actualCourse.Count;
+            string actualCourseName = actualCourse.First().CourseName;
+
+            Assert.AreEqual(expectedCourseCount, actualCourseCount);
+            Assert.AreEqual(expectedCourseName, actualCourseName);
         }
 
     }
