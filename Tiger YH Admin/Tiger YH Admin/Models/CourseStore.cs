@@ -38,5 +38,10 @@ namespace Tiger_YH_Admin.Models
         {
             return DataSet.Where(c => c.StartDate > DateTime.Today);
         }
+
+        public IEnumerable<Course> GetUnmannedCourses()
+        {
+            return DataSet.Where(c => c.CourseTeacher == string.Empty);
+        }
     }
 }

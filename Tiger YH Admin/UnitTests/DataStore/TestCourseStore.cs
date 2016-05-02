@@ -15,7 +15,6 @@ namespace UnitTests.Models
         [TestInitialize]
         public void Initialize()
         {
-
             List<Course> courseList = new List<Course>();
 
             courseList.Add(new Course
@@ -102,8 +101,20 @@ namespace UnitTests.Models
             Assert.AreEqual(expectedCourseCount, actualCourseCount);
             Assert.AreEqual(expectedCourseName1, actualCourseName1);
             Assert.AreEqual(expectedCourseName2, actualCourseName2);
-
         }
 
+        [TestMethod]
+        public void GetUnmannedCourses__Finds_Unmanned_Course()
+        {
+            int expectedCourseCount = 1;
+            string expectedCourseName = "Obemannad kurs";
+
+            List<Course> actualCourse = testCourseStore.GetUnmannedCourses().ToList();
+            int actualCourseCount = actualCourse.Count;
+            string actualCourseName = actualCourse.First().CourseName;
+
+            Assert.AreEqual(expectedCourseCount, actualCourseCount);
+            Assert.AreEqual(expectedCourseName, actualCourseName);
+        }
     }
 }
