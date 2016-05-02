@@ -204,10 +204,9 @@ namespace Tiger_YH_Admin
                 Console.WriteLine("4. Hantera studenter");
                 Console.WriteLine("5. Hantera kurser");
                 Console.WriteLine("6. Mitt konto");
-
                 Console.WriteLine();
-                Console.Write("Ditt val: ");
-                string menuChoice = UserInput.GetInput<string>();
+
+                string menuChoice = UserInput.GetInput<string>("Ditt val: ");
 
                 switch (menuChoice)
                 {
