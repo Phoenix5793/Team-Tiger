@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tiger_YH_Admin.Models;
 
 namespace Tiger_YH_Admin.Presenters
@@ -86,7 +84,6 @@ namespace Tiger_YH_Admin.Presenters
             }
 
             Course courseToEdit = courseStore.FindById(courseId);
-            List<Course> courseList = courseStore.DataSet.ToList();
 
             Console.WriteLine("Tryck enter för att behålla gamla värdet");
             string newCourseId = UserInput.GetInput<string>("Nytt kurs-id:");
@@ -171,6 +168,7 @@ namespace Tiger_YH_Admin.Presenters
 
             string courseId;
             bool courseExists;
+
             do
             {
                 courseId = UserInput.GetInput<string>("Kurs-id:");
@@ -205,7 +203,6 @@ namespace Tiger_YH_Admin.Presenters
                             courseTeacher = teacher.UserName;
                             break;
                         }
-
                     } while (loop);
 
                     Course newCourse = new Course
@@ -236,7 +233,7 @@ namespace Tiger_YH_Admin.Presenters
                 course.StartDate.ToShortDateString().PadRight(12) +
                 course.EndDate.ToShortDateString().PadRight(12) +
                 course.CourseTeacher
-            );
+                );
         }
     }
 }
