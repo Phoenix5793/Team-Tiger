@@ -7,10 +7,7 @@
     - Skapa nytt UL-konto
  - Hantera lärare
     - Visa alla lärare
-    - Lärarbemanning
-      - Visa avslutade kurser
-      - Visa pågående kurser
-      - Visa framtida kurser
+    - Visa obemannade kurser
  - Hantera klasser
     - Skapa ny klass
     - Visa klasser jag ansvarar för
@@ -27,6 +24,9 @@
     - Lägg till ny kurs
     - Visa alla kurser
     - Redigera kurs
+    - Visa avslutade kurser
+    - Visa pågående kurser
+    - Visa framtida kurser
 
 # Huvudmeny för admin
  - Logga ut
