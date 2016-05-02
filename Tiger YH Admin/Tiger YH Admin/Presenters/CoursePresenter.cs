@@ -21,6 +21,7 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("6. Visa avslutade kurser");
             Console.WriteLine("7. Visa pågående kurser");
             Console.WriteLine("8. Visa kommande kurser");
+            Console.WriteLine("9. Visa obemannade kurser");
 
 
             Console.WriteLine();
@@ -53,17 +54,16 @@ namespace Tiger_YH_Admin.Presenters
                 case "8":
                     TeacherStaffingFutureCourses();
                     break;
+                case "9":
+                    TeacherStaffingUnmannedCourses();
+                    break;
 
             }
             Console.ReadKey();
         }
 
-        private static void ListAllCourses()
+        private static void ListCourses(IEnumerable<Course> courseList)
         {
-            CourseStore courseStore = new CourseStore();
-            List<Course> courseList = courseStore.All().ToList();
-
-
             Console.WriteLine("Kurs-id".PadRight(10) +
                               "Kursnamn".PadRight(40) +
                               "Startdatum".PadRight(12) +
@@ -82,6 +82,14 @@ namespace Tiger_YH_Admin.Presenters
                     course.CourseTeacher
                     );
             }
+
+        }
+
+        private static void ListAllCourses()
+        {
+            CourseStore courseStore = new CourseStore();
+            List<Course> courseList = courseStore.All().ToList();
+            ListCourses(courseList);
         }
 
         private static void EditCourse()
@@ -204,17 +212,20 @@ namespace Tiger_YH_Admin.Presenters
                     {
                         string teacherName = UserInput.GetInput<string>("Lärare:");
                         User teacher = userStore.FindById(teacherName);
-                        if (teacher == null)
-                        {
-                            Console.WriteLine("Användaren existerar inte");
-                        }
-                        else if (!teacher.HasLevel(UserLevel.Teacher))
+                        if (teacher != null && !teacher.HasLevel(UserLevel.Teacher))
                         {
                             Console.WriteLine("Användaren är inte en lärare");
                         }
                         else
                         {
-                            courseTeacher = teacher.UserName;
+                            if (teacher == null)
+                            {
+                                courseTeacher = string.Empty;
+                            }
+                            else
+                            {
+                                courseTeacher = teacher.UserName;
+                            }
                             break;
                         }
                     } while (loop);
@@ -280,5 +291,14 @@ namespace Tiger_YH_Admin.Presenters
         {
             throw new NotImplementedException();
         }
+
+        private static void TeacherStaffingUnmannedCourses()
+        {
+            CourseStore courseStore = new CourseStore();
+            List<Course> unmannedCourses = courseStore.GetUnmannedCourses().ToList();
+
+            ListCourses(unmannedCourses);
+        }
+
     }
 }

@@ -116,5 +116,23 @@ namespace UnitTests.Models
             Assert.AreEqual(expectedCourseCount, actualCourseCount);
             Assert.AreEqual(expectedCourseName, actualCourseName);
         }
+
+        [TestMethod]
+        public void GetMannedCourses__Finds_Manned_Course()
+        {
+            int expectedCourseCount = 1;
+            string expectedCourseName = "Framtida kurs";
+            string expectedTeacherId = "pontus";
+
+            List<Course> actualCourseList = testCourseStore.GetMannedCourses().ToList();
+            int actualCourseCount = actualCourseList.Count;
+            string actualCourseName = actualCourseList.First().CourseName;
+            string actualTeacherId = actualCourseList.First().CourseTeacher;
+
+            Assert.AreEqual(expectedCourseCount, actualCourseCount);
+            Assert.AreEqual(expectedCourseName, actualCourseName);
+            Assert.AreEqual(expectedTeacherId, actualTeacherId);
+        }
+
     }
 }

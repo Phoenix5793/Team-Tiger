@@ -43,5 +43,10 @@ namespace Tiger_YH_Admin.Models
         {
             return DataSet.Where(c => c.CourseTeacher == string.Empty);
         }
+
+        public IEnumerable<Course> GetMannedCourses()
+        {
+            return GetFutureCourses().Where(c => c.CourseTeacher != string.Empty);
+        }
     }
 }
