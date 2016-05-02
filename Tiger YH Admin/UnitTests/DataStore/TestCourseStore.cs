@@ -14,20 +14,37 @@ namespace UnitTests.Models
         [TestInitialize]
         public void Initialize()
         {
-            testCourse = new Course
-            {
-                CourseId = "oop1",
-                CourseName = "Objektorienterad Programmering 1",
-                CourseTeacher = "pontus",
-                StartDate = DateTime.Today,
-                EndDate = DateTime.Today
-            };
 
             List<Course> courseList = new List<Course>();
-            courseList.Add(testCourse);
 
-            testCourseStore = new CourseStore();
-            testCourseStore.DataSet = courseList;
+            courseList.Add(new Course
+            {
+                CourseId = "oop1",
+                CourseName = "Pågående kurs",
+                CourseTeacher = "pontus",
+                StartDate = DateTime.Today.Subtract(new TimeSpan(7)),
+                EndDate = DateTime.Today.AddDays(7)
+            });
+
+            courseList.Add(new Course
+            {
+                CourseId = "oop2",
+                CourseName = "Avslutad kurs",
+                CourseTeacher = "pontus",
+                StartDate = DateTime.Parse("2016-01-01"),
+                EndDate = DateTime.Parse("2016-01-30")
+            });
+
+            courseList.Add(new Course
+            {
+                CourseId = "oop3",
+                CourseName = "Framtida kurs",
+                CourseTeacher = "pontus",
+                StartDate = DateTime.Today.AddDays(7),
+                EndDate = DateTime.Today.AddDays(30)
+            });
+
+            testCourseStore = new CourseStore {DataSet = courseList};
         }
 
     }
