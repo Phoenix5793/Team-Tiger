@@ -8,25 +8,19 @@ using Tiger_YH_Admin.Models;
 
 namespace Tiger_YH_Admin.Presenters
 {
-    class EducationSupervisorPresenter
+    static class EducationSupervisorPresenter
     {
-       
         public static void ManageTeacherMenu()
         {
-            
             Console.WriteLine("Utbildningsledare - Hantera lärare");
             Console.WriteLine();
             Console.WriteLine("1. Visa alla lärare");
-            Console.WriteLine("2. Visa alla studenter för en lärare");
-
-        
-
+            Console.WriteLine("2. Lärarbemanning");
+            Console.ReadKey();
         }
 
         internal static void ManageClassMenu(User user)
         {
-
-
             Console.WriteLine("Hantera klasser");
             Console.WriteLine();
             Console.WriteLine("1. Skapa ny klass");
@@ -42,7 +36,6 @@ namespace Tiger_YH_Admin.Presenters
             string menuChoice = UserInput.GetInput<string>();
 
 
-
             switch (menuChoice)
             {
                 case "1":
@@ -51,13 +44,13 @@ namespace Tiger_YH_Admin.Presenters
                     creator.Create(classStore);
                     break;
                 case "2":
-                 ClassListPresenter.ListAllClasses(user);
+                    ClassListPresenter.ListAllClasses(user);
                     break;
                 case "3":
-                  ClassListPresenter.ShowCoursesForClass();
+                    ClassListPresenter.ShowCoursesForClass();
                     break;
                 case "4":
-                 ClassListPresenter.ShowClass();
+                    ClassListPresenter.ShowClass();
                     break;
                 case "5":
                     CoursePresenter.ChangeTeacherForCourses();
@@ -71,10 +64,7 @@ namespace Tiger_YH_Admin.Presenters
 
                 default:
                     return;
-
             }
-
-
         }
     }
 }
