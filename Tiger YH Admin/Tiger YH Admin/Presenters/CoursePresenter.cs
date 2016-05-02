@@ -18,6 +18,10 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("3. Ändra lärare för en kurs");
             Console.WriteLine("4. Ändra kurs");
             Console.WriteLine("5. Visa kurser");
+            Console.WriteLine("6. Visa avslutade kurser");
+            Console.WriteLine("7. Visa pågående kurser");
+            Console.WriteLine("8. Visa kommande kurser");
+
 
             Console.WriteLine();
             Console.Write("Ditt val: ");
@@ -40,6 +44,16 @@ namespace Tiger_YH_Admin.Presenters
                 case "5":
                     CoursePresenter.ListAllCourses();
                     break;
+                case "6":
+                    TeacherStaffingFinishedCourses();
+                    break;
+                case "7":
+                    TeacherStaffingCurrentCourses();
+                    break;
+                case "8":
+                    TeacherStaffingFutureCourses();
+                    break;
+
             }
             Console.ReadKey();
         }
@@ -234,6 +248,37 @@ namespace Tiger_YH_Admin.Presenters
                 course.EndDate.ToShortDateString().PadRight(12) +
                 course.CourseTeacher
                 );
+        }
+
+        private static void TeacherStaffingMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("Lärarbemanning");
+            Console.WriteLine();
+            Console.WriteLine("0. Föregående meny");
+
+            string menu = UserInput.GetInput<string>("Val:");
+
+            switch (menu)
+            {
+                case "0":
+                    return;
+            }
+        }
+
+        private static void TeacherStaffingFutureCourses()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void TeacherStaffingCurrentCourses()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void TeacherStaffingFinishedCourses()
+        {
+            throw new NotImplementedException();
         }
     }
 }
