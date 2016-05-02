@@ -8,6 +8,14 @@ namespace Tiger_YH_Admin.Models
 {
     public class CourseStore : DataStore<Course>
     {
+        public CourseStore() : base()
+        {
+        }
+
+        public CourseStore(IEnumerable<Course> courses) : base(courses)
+        {
+        }
+
         public override Course FindById(string id)
         {
             return DataSet.SingleOrDefault(c => c.CourseId == id);

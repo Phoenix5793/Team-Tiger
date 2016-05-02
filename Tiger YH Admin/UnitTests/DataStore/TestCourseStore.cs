@@ -45,7 +45,7 @@ namespace UnitTests.Models
                 EndDate = DateTime.Today.AddDays(30)
             });
 
-            testCourseStore = new CourseStore {DataSet = courseList};
+            testCourseStore = new CourseStore(courseList);
         }
 
         [TestMethod]

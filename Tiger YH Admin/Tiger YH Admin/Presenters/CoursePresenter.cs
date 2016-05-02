@@ -47,7 +47,7 @@ namespace Tiger_YH_Admin.Presenters
         private static void ListAllCourses()
         {
             CourseStore courseStore = new CourseStore();
-            List<Course> courseList = courseStore.DataSet.ToList();
+            List<Course> courseList = courseStore.All().ToList();
 
 
             Console.WriteLine("Kurs-id".PadRight(10) +
@@ -147,14 +147,14 @@ namespace Tiger_YH_Admin.Presenters
             }
 
             Course courseToRemove = courseStore.FindById(courseId);
-            List<Course> courseList = courseStore.DataSet.ToList();
+            List<Course> courseList = courseStore.All().ToList();
 
             bool confirm = UserInput.AskConfirmation($"Vill du radera {courseToRemove.CourseName}?");
 
             if (confirm)
             {
                 courseList.Remove(courseToRemove);
-                courseStore.DataSet = courseList;
+                courseStore = new CourseStore(courseList);
                 courseStore.Save();
 
                 Console.WriteLine("Kursen raderad");

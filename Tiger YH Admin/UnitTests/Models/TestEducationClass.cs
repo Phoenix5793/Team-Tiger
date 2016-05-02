@@ -50,7 +50,7 @@ namespace UnitTests.Models
 
             var courseList = new List<Course>();
             courseList.Add(_testCourse);
-            _courseStore.DataSet = courseList;
+            _courseStore = new CourseStore(courseList);
         }
 
         [TestMethod]

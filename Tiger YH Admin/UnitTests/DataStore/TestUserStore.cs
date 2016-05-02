@@ -29,7 +29,7 @@ namespace UnitTests.DataStore
 
             _userList = new List<User>();
             _userList.Add(_testUser);
-            _userStore = new UserStore {DataSet = _userList};
+            _userStore = new UserStore(_userList);
         }
 
         [TestMethod]
