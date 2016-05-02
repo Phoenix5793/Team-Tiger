@@ -63,7 +63,7 @@ namespace UnitTests.Models
         }
 
         [TestMethod]
-        public void GetFinishedCourses__Finds_Current_Course()
+        public void GetCurrentCourses__Finds_Current_Course()
         {
             int expectedCourseCount = 1;
             string expectedCourseName = "Pågående kurs";
@@ -77,7 +77,7 @@ namespace UnitTests.Models
         }
 
         [TestMethod]
-        public void GetFinishedCourses__Finds_Future_Course()
+        public void GetFutureCourses__Finds_Future_Course()
         {
             int expectedCourseCount = 1;
             string expectedCourseName = "Framtida kurs";
