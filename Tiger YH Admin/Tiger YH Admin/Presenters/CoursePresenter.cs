@@ -18,7 +18,7 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("2. Ta bort kurs");
             Console.WriteLine("3. Ändra lärare för en kurs");
             Console.WriteLine("4. Ändra kurs");
-            Console.WriteLine("5. Visa kurser");
+            Console.WriteLine("5. Visa alla kurser");
             Console.WriteLine("6. Visa avslutade kurser");
             Console.WriteLine("7. Visa pågående kurser");
             Console.WriteLine("8. Visa kommande kurser");
@@ -222,22 +222,31 @@ namespace Tiger_YH_Admin.Presenters
 
         private static void TeacherStaffingFutureCourses()
         {
-            throw new NotImplementedException();
+            var courseStore = new CourseStore();
+            List<Course> futureCourses = courseStore.GetFutureCourses().ToList();
+
+            ListCourses(futureCourses);
         }
 
         private static void TeacherStaffingCurrentCourses()
         {
-            throw new NotImplementedException();
+            var courseStore = new CourseStore();
+            List<Course> currentCourses = courseStore.GetCurrentCourses().ToList();
+
+            ListCourses(currentCourses);
         }
 
         private static void TeacherStaffingFinishedCourses()
         {
-            throw new NotImplementedException();
+            var courseStore = new CourseStore();
+            List<Course> finishedCourses = courseStore.GetFinishedCourses().ToList();
+
+            ListCourses(finishedCourses);
         }
 
         private static void TeacherStaffingUnmannedCourses()
         {
-            CourseStore courseStore = new CourseStore();
+            var courseStore = new CourseStore();
             List<Course> unmannedCourses = courseStore.GetUnmannedCourses().ToList();
 
             ListCourses(unmannedCourses);
