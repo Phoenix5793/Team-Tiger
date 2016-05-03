@@ -23,6 +23,7 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("7. Visa pågående kurser");
             Console.WriteLine("8. Visa kommande kurser");
             Console.WriteLine("9. Visa obemannade kurser");
+            Console.WriteLine("10. Visa avtalade kurser");
 
 
             Console.WriteLine();
@@ -60,10 +61,14 @@ namespace Tiger_YH_Admin.Presenters
                 case "9":
                     TeacherStaffingUnmannedCourses();
                     break;
+                case "10":
+                    TeacherStaffingArrangedCourses();
+                    break;
 
             }
             Console.ReadKey();
         }
+
 
         private static void ListCourses(IEnumerable<Course> courseList)
         {
@@ -248,6 +253,14 @@ namespace Tiger_YH_Admin.Presenters
         {
             var courseStore = new CourseStore();
             List<Course> unmannedCourses = courseStore.GetUnmannedCourses().ToList();
+
+            ListCourses(unmannedCourses);
+        }
+
+        private static void TeacherStaffingArrangedCourses()
+        {
+            var courseStore = new CourseStore();
+            List<Course> unmannedCourses = courseStore.GetAllAgreedCourses().ToList();
 
             ListCourses(unmannedCourses);
         }
