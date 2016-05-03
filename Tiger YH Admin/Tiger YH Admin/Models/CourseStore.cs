@@ -23,30 +23,35 @@ namespace Tiger_YH_Admin.Models
 
         public IEnumerable<Course> GetFinishedCourses()
         {
-            return DataSet.Where(c => c.EndDate < DateTime.Today);
+            return All().Finished();
         }
 
         public IEnumerable<Course> GetCurrentCourses()
         {
-            return DataSet.Where(c =>
-                c.StartDate < DateTime.Today &&
-                c.EndDate > DateTime.Today
-                );
+            return All().Current();
         }
 
         public IEnumerable<Course> GetFutureCourses()
         {
-            return DataSet.Where(c => c.StartDate > DateTime.Today);
+            return All().Future();
         }
 
         public IEnumerable<Course> GetUnmannedCourses()
         {
-            return DataSet.Where(c => c.CourseTeacher == string.Empty);
+            return All().Unmanned();
         }
 
         public IEnumerable<Course> GetMannedCourses()
         {
-            return GetFutureCourses().Where(c => c.CourseTeacher != string.Empty);
+            return All().Manned();
+        }
+
+        public IEnumerable<Course> GetAllAgreedCourses()
+        {
+            IEnumerable<Course> currentManned = All().Current().Manned();
+            IEnumerable<Course> futureManned = All().Future().Manned();
+
+            return currentManned.Concat(futureManned);
         }
     }
 }
