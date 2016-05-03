@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Tiger_YH_Admin.Models;
+using Tiger_YH_Admin.Models.Creators;
 
 namespace Tiger_YH_Admin.Presenters
 {
@@ -26,7 +27,9 @@ namespace Tiger_YH_Admin.Presenters
             switch (menuChoice)
             {
                 case "1":
-                    CoursePresenter.CreateCourse();
+                    var creator = new CourseCreator();
+                    var courseStore = new CourseStore();
+                    creator.Create(courseStore);
                     break;
                 case "2":
                     CoursePresenter.DeleteCourse();
@@ -161,64 +164,7 @@ namespace Tiger_YH_Admin.Presenters
             }
         }
 
-        private static void CreateCourse()
-        {
-            CourseStore courseStore = new CourseStore();
-            UserStore userStore = new UserStore();
-
-            string courseId;
-            bool courseExists;
-
-            do
-            {
-                courseId = UserInput.GetInput<string>("Kurs-id:");
-                courseExists = courseStore.FindById(courseId) != null;
-                if (courseExists)
-                {
-                    Console.WriteLine("Kurs-id redan använt");
-                }
-                else
-                {
-                    string courseName = UserInput.GetInput<string>("Kursbeskrivning:");
-                    Console.WriteLine("Skriv datum enligt YYYY-MM-DD");
-                    DateTime courseStartDate = UserInput.GetDate("Startdatum:");
-                    DateTime courseEndDate = UserInput.GetDate("Slutdatum:");
-
-                    string courseTeacher = string.Empty;
-                    bool loop = true;
-                    do
-                    {
-                        string teacherName = UserInput.GetInput<string>("Lärare:");
-                        User teacher = userStore.FindById(teacherName);
-                        if (teacher == null)
-                        {
-                            Console.WriteLine("Användaren existerar inte");
-                        }
-                        else if (!teacher.HasLevel(UserLevel.Teacher))
-                        {
-                            Console.WriteLine("Användaren är inte en lärare");
-                        }
-                        else
-                        {
-                            courseTeacher = teacher.UserName;
-                            break;
-                        }
-                    } while (loop);
-
-                    Course newCourse = new Course
-                    {
-                        CourseId = courseId,
-                        CourseName = courseName,
-                        StartDate = courseStartDate,
-                        EndDate = courseEndDate,
-                        CourseTeacher = courseTeacher
-                    };
-
-                    courseStore.AddItem(newCourse);
-                    Console.WriteLine("Kursen skapad");
-                }
-            } while (courseExists);
-        }
+       
 
         internal static void ChangeTeacherForCourses()
         {
