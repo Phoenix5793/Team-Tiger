@@ -38,7 +38,7 @@ namespace UnitTests.Models
             courseList.Add(new Course
             {
                 CourseId = "oop3",
-                CourseName = "Framtida kurs",
+                CourseName = "Framtida bemannad kurs",
                 CourseTeacher = "pontus",
                 StartDate = DateTime.Today.AddDays(7),
                 EndDate = DateTime.Today.AddDays(30)
@@ -47,7 +47,7 @@ namespace UnitTests.Models
             courseList.Add(new Course
             {
                 CourseId = "oop4",
-                CourseName = "Obemannad kurs",
+                CourseName = "Framtida obemannad kurs",
                 CourseTeacher = string.Empty,
                 StartDate = DateTime.Today.AddDays(7),
                 EndDate = DateTime.Today.AddDays(30)
@@ -89,8 +89,8 @@ namespace UnitTests.Models
         public void GetFutureCourses__Finds_Future_Course()
         {
             int expectedCourseCount = 2;
-            string expectedCourseName1 = "Framtida kurs";
-            string expectedCourseName2 = "Obemannad kurs";
+            string expectedCourseName1 = "Framtida bemannad kurs";
+            string expectedCourseName2 = "Framtida obemannad kurs";
 
             List<Course> actualCourse = testCourseStore.GetFutureCourses().ToList();
             int actualCourseCount = actualCourse.Count;
@@ -107,7 +107,7 @@ namespace UnitTests.Models
         public void GetUnmannedCourses__Finds_Unmanned_Course()
         {
             int expectedCourseCount = 1;
-            string expectedCourseName = "Obemannad kurs";
+            string expectedCourseName = "Framtida obemannad kurs";
 
             List<Course> actualCourse = testCourseStore.GetUnmannedCourses().ToList();
             int actualCourseCount = actualCourse.Count;
@@ -120,19 +120,35 @@ namespace UnitTests.Models
         [TestMethod]
         public void GetMannedCourses__Finds_Manned_Course()
         {
-            int expectedCourseCount = 1;
-            string expectedCourseName = "Framtida kurs";
-            string expectedTeacherId = "pontus";
+            int expectedCourseCount = 3;
+            string[] expectedCourseNames = {"Pågående kurs", "Avslutad kurs", "Framtida bemannad kurs"};
+            string[] expectedTeachers = {"pontus", "pontus", "pontus"};
 
-            List<Course> actualCourseList = testCourseStore.GetMannedCourses().ToList();
-            int actualCourseCount = actualCourseList.Count;
-            string actualCourseName = actualCourseList.First().CourseName;
-            string actualTeacherId = actualCourseList.First().CourseTeacher;
+            List<Course> actualCourses = testCourseStore.GetMannedCourses().ToList();
+            int actualCourseCount = actualCourses.Count;
+            string[] actualCourseNames = actualCourses.Select(c => c.CourseName).ToArray();
+            string[] actualTeachers = actualCourses.Select(c => c.CourseTeacher).ToArray();
 
             Assert.AreEqual(expectedCourseCount, actualCourseCount);
-            Assert.AreEqual(expectedCourseName, actualCourseName);
-            Assert.AreEqual(expectedTeacherId, actualTeacherId);
+            CollectionAssert.AreEqual(expectedCourseNames, actualCourseNames);
+            CollectionAssert.AreEqual(expectedTeachers, actualTeachers);
         }
 
+        [TestMethod]
+        public void GetAgreedCourses__Finds_Agreed_Courses()
+        {
+            int expectedCourseCount = 2;
+            string[] expectedCourseNames = { "Pågående kurs", "Framtida bemannad kurs" };
+            string[] expectedTeachers = {"pontus", "pontus"};
+
+            List<Course> actualCourses = testCourseStore.GetAllAgreedCourses().ToList();
+            int actualCourseCount = actualCourses.Count;
+            string[] actualCourseNames = actualCourses.Select(c => c.CourseName).ToArray();
+            string[] actualTeachers = actualCourses.Select(c => c.CourseTeacher).ToArray();
+
+            Assert.AreEqual(expectedCourseCount, actualCourseCount);
+            CollectionAssert.AreEqual(expectedCourseNames, actualCourseNames);
+            CollectionAssert.AreEqual(expectedTeachers, actualTeachers);
+        }
     }
 }
