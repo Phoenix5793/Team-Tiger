@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Enumerators.cs" />
     <Compile Include="Menu.cs" />
+    <Compile Include="Models\CourseStoreExtensions.cs" />
     <Compile Include="Models\Creators\CourseCreator.cs" />
     <Compile Include="Models\Creators\EducationClassCreator.cs" />
     <Compile Include="Models\EducationClass.cs" />
