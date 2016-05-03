@@ -7,20 +7,26 @@ namespace Tiger_YH_Admin.Models
 {
     public abstract class DataStore<T> : IDataStore<T> where T : class
     {
-        private readonly string _fileName;
+        private string _fileName;
         private const string FilePrefix = "Data/";
 
         protected IEnumerable<T> DataSet { get; set; }
 
         protected DataStore()
         {
-            _fileName = FilePrefix + typeof(T).Name + "List.csv";
+            InitializeState();
             DataSet = Load();
         }
 
         protected DataStore(IEnumerable<T> items)
         {
+            InitializeState();
             DataSet = items;
+        }
+
+        private void InitializeState()
+        {
+            _fileName = FilePrefix + typeof(T).Name + "List.csv";
         }
 
         public abstract T FindById(string id);
