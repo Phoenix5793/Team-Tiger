@@ -9,7 +9,6 @@ namespace UnitTests.Models
     [TestClass]
     public class TestCourseStore
     {
-        private Course testCourse;
         private CourseStore testCourseStore;
 
         [TestInitialize]
