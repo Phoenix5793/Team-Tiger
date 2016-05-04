@@ -65,7 +65,7 @@ namespace Tiger_YH_Admin.Models.Creators
                         userStore.AddItem(newUser);
 
                         Console.WriteLine($"Ny användare {newUser.UserName} skapad");
-                        Console.ReadKey();
+                        UserInput.WaitForContinue();
                         keepLooping = false;
                     }
                 }

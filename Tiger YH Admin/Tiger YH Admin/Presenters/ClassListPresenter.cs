@@ -59,7 +59,7 @@ namespace Tiger_YH_Admin.Presenters
                     );
             }
 
-            Console.ReadKey();
+            UserInput.WaitForContinue();
         }
 
         public static void ShowClass()
@@ -104,8 +104,8 @@ namespace Tiger_YH_Admin.Presenters
                             student.PhoneNumber.PadRight(15)
                             );
                     }
-                    Console.WriteLine();
                 }
+                UserInput.WaitForContinue();
             } while (keepLooping);
         }
 

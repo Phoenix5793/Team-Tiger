@@ -78,5 +78,16 @@ namespace Tiger_YH_Admin
 
             return date;
         }
+
+        public static void WaitForContinue()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Tryck enter för att fortsätta");
+            ConsoleKey key;
+            do
+            {
+                key = Console.ReadKey().Key;
+            } while (key != ConsoleKey.Enter);
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine();
             Console.WriteLine("1. Visa alla lärare");
             Console.WriteLine("2. Lärarbemanning");
-            Console.ReadKey();
+            UserInput.WaitForContinue();
         }
 
         internal static void ManageClassMenu(User user)

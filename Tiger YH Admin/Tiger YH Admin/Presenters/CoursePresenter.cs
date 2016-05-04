@@ -94,6 +94,8 @@ namespace Tiger_YH_Admin.Presenters
                     );
             }
 
+            UserInput.WaitForContinue();
+
         }
 
         private static void ListAllCourses()

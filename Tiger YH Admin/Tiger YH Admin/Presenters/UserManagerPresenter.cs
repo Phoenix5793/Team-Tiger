@@ -68,7 +68,8 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine($"Namn: {user.FullName()}");
             Console.WriteLine($"Personnummer: {user.SSN}");
             Console.WriteLine($"Telefonnummer: {user.PhoneNumber}");
-            Console.WriteLine();
+
+            UserInput.WaitForContinue();
         }
 
         private static void ListAllUsers()
@@ -93,6 +94,8 @@ namespace Tiger_YH_Admin.Presenters
                 Console.Write(user.SSN.PadRight(12));
                 Console.WriteLine();
             }
+
+            UserInput.WaitForContinue();
         }
 
         public static void ManageStudents()
@@ -152,7 +155,7 @@ namespace Tiger_YH_Admin.Presenters
                 else
                 {
                     Console.WriteLine("Fel användarnamn eller lösenord");
-                    Console.ReadKey();
+                    UserInput.WaitForContinue();
                 }
             } while (loopMenu);
 
@@ -179,6 +182,8 @@ namespace Tiger_YH_Admin.Presenters
                     student.PhoneNumber.PadRight(15)
                     );
             }
+
+            UserInput.WaitForContinue();
         }
     }
 }
