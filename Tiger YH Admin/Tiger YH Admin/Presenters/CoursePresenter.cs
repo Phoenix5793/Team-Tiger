@@ -19,6 +19,7 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("3. Ändra lärare för en kurs");
             Console.WriteLine("4. Ändra kurs");
             Console.WriteLine("5. Visa kurser");
+            Console.WriteLine("6. Visa studenter för en kurs");
 
             Console.WriteLine();
             Console.Write("Ditt val: ");
@@ -42,6 +43,9 @@ namespace Tiger_YH_Admin.Presenters
                     break;
                 case "5":
                     CoursePresenter.ListAllCourses();
+                    break;
+                case "6":
+                    ShowStudentsForCourse();
                     break;
             }
             Console.ReadKey();
@@ -180,6 +184,35 @@ namespace Tiger_YH_Admin.Presenters
                 course.EndDate.ToShortDateString().PadRight(12) +
                 course.CourseTeacher
                 );
+        }
+
+        private static void ShowStudentsForCourse()
+        {
+            CourseStore courseStore = new CourseStore();
+            string courseName = UserInput.GetInput<string>("Ange kurs-id:");
+
+            Course course = courseStore.FindById(courseName);
+
+            UserStore userStore = new UserStore();
+            List<string> studentNames = course.GetStudentList();
+
+            Console.WriteLine(
+                "Anv.namn".PadRight(10) +
+                "Namn".PadRight(30) +
+                "Telefon".PadRight(15)
+                );
+            Console.WriteLine(new string('-', 60));
+
+            foreach (string studentName in studentNames)
+            {
+                User student = userStore.FindById(studentName);
+
+                Console.WriteLine(
+                    student.UserName.PadRight(10) +
+                    student.FullName().PadRight(30) +
+                    student.PhoneNumber.PadRight(15)
+                    );
+            }
         }
     }
 }
