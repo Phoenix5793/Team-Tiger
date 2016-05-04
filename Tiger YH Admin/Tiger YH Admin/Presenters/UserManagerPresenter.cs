@@ -27,8 +27,7 @@ namespace Tiger_YH_Admin.Presenters
                         SearchForUser();
                         break;
                     case "2":
-                        ListAllUsers();
-                        Console.ReadKey();
+                        ListAllUsers();                        
                         break;
                 }
             }
@@ -38,6 +37,7 @@ namespace Tiger_YH_Admin.Presenters
         {
             while (true)
             {
+                Console.Clear();
                 Console.WriteLine("Tryck enter utan att ange namn för att avbryta.");
                 string input = UserInput.GetInput<string>("Sök användarnamn:");
 
@@ -62,6 +62,7 @@ namespace Tiger_YH_Admin.Presenters
 
         public static void ShowUserInfo(User user)
         {
+            Console.Clear();
             Console.WriteLine("Visar användare");
             Console.WriteLine();
             Console.WriteLine($"Användarnamn: {user.UserName} ({user.UserLevel})");
@@ -104,8 +105,8 @@ namespace Tiger_YH_Admin.Presenters
 
             Console.WriteLine("Hantera studenter");
             Console.WriteLine();
-            Console.WriteLine("1. Visa student information");
-            Console.WriteLine("2. Ändra student information");
+            Console.WriteLine("1. Visa student-information");
+            Console.WriteLine("2. Ändra student-information");
             Console.WriteLine("3. Sätt betyg");
             Console.WriteLine("4. Lägg till student");
             Console.WriteLine("5. Ta bort student");
@@ -164,6 +165,7 @@ namespace Tiger_YH_Admin.Presenters
 
         public static void PrintStudentList(List<string> studentNames)
         {
+            Console.Clear();
             Console.WriteLine(
                 "Anv.namn".PadRight(14) +
                 "Namn".PadRight(30) +

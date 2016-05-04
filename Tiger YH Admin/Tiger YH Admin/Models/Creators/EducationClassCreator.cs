@@ -11,10 +11,6 @@ namespace Tiger_YH_Admin.Models.Creators
     {
         public EducationClass Create(IDataStore<EducationClass> dataStore)
         {
-            Console.Clear();
-            Console.WriteLine("Skapa ny klass");
-            Console.WriteLine();
-
             EducationClass newClass = new EducationClass();
             UserStore userStore = new UserStore();
 
@@ -22,13 +18,15 @@ namespace Tiger_YH_Admin.Models.Creators
             do
             {
                 Console.Clear();
+                Console.WriteLine("Skapa ny klass");
+                Console.WriteLine();
                 string classId = UserInput.GetInput<string>("Klass-id:");
                 EducationClass existingClass = dataStore.FindById(classId);
 
                 if (existingClass != null && keepLooping)
                 {
                     Console.WriteLine("Klass-id redan använt");
-                    Console.ReadKey();
+                    UserInput.WaitForContinue();
                 }
                 else
                 {

@@ -69,12 +69,12 @@ namespace Tiger_YH_Admin.Presenters
                     ShowStudentsForCourse(user);
                     break;
             }
-            Console.ReadKey();
         }
 
 
         private static void ListCourses(IEnumerable<Course> courseList)
         {
+            Console.Clear();
             Console.WriteLine("Kurs-id".PadRight(10) +
                               "Kursnamn".PadRight(40) +
                               "Startdatum".PadRight(12) +
@@ -109,6 +109,9 @@ namespace Tiger_YH_Admin.Presenters
         {
             CourseStore courseStore = new CourseStore();
 
+            Console.Clear();
+            Console.WriteLine("Redigera kurs");
+            Console.WriteLine();
             string courseId = UserInput.GetInput<string>("Kurs-id:");
             Course existingCourse = courseStore.FindById(courseId);
 
@@ -172,6 +175,10 @@ namespace Tiger_YH_Admin.Presenters
         {
             CourseStore courseStore = new CourseStore();
 
+            Console.Clear();
+            Console.WriteLine("Radera kurs");
+            Console.WriteLine();
+
             string courseId = UserInput.GetInput<string>("Kurs-id:");
             bool courseExists = courseStore.FindById(courseId) != null;
 
@@ -212,22 +219,6 @@ namespace Tiger_YH_Admin.Presenters
                 course.EndDate.ToShortDateString().PadRight(12) +
                 course.CourseTeacher
                 );
-        }
-
-        private static void TeacherStaffingMenu()
-        {
-            Console.Clear();
-            Console.WriteLine("Lärarbemanning");
-            Console.WriteLine();
-            Console.WriteLine("0. Föregående meny");
-
-            string menu = UserInput.GetInput<string>("Val:");
-
-            switch (menu)
-            {
-                case "0":
-                    return;
-            }
         }
 
         private static void TeacherStaffingFutureCourses()
@@ -278,6 +269,10 @@ namespace Tiger_YH_Admin.Presenters
             {
                 CourseStore courseStore = new CourseStore();
 
+                Console.Clear();
+                Console.WriteLine("Visa klasslista för kurs");
+                Console.WriteLine();
+
                 Console.WriteLine("Tryck enter för att avbryta.");
                 string courseName = UserInput.GetInput<string>("Ange kurs-id:");
 
@@ -302,7 +297,6 @@ namespace Tiger_YH_Admin.Presenters
                 }
                 else
                 {
-                    UserStore userStore = new UserStore();
                     List<string> studentNames = course.GetStudentList();
                     UserManagerPresenter.PrintStudentList(studentNames);
                 }

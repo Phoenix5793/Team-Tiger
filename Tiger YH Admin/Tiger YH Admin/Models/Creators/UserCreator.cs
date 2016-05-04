@@ -10,15 +10,13 @@ namespace Tiger_YH_Admin.Models.Creators
     {
         public User Create(IDataStore<User> userStore)
         {
-            Console.Clear();
-            Console.WriteLine("Skapa ny användare");
-            Console.WriteLine();
-
             User existingUser = null;
             bool keepLooping = true;
             do
             {
                 Console.Clear();
+                Console.WriteLine("Skapa ny användare");
+                Console.WriteLine();
                 Console.WriteLine("Lämna namnet tomt för att avbryta");
                 string input = UserInput.GetInput<string>("Användarnamn:");
 

@@ -147,11 +147,11 @@ namespace Tiger_YH_Admin
                         break;
                     case "2":
                         Console.WriteLine("Ej implementerad");
-                        Console.ReadKey();
+                        UserInput.WaitForContinue();
                         break;
                     case "3":
                         Console.WriteLine("Ej implementerad");
-                        Console.ReadKey();
+                        UserInput.WaitForContinue();
                         break;
                     case "4":
                         var ds = new EducationClassStore();
@@ -160,7 +160,6 @@ namespace Tiger_YH_Admin
                         break;
                     case "5":
                         ClassListPresenter.MainMenu();
-                        Console.ReadKey();
                         break;
                 }
 
@@ -171,6 +170,7 @@ namespace Tiger_YH_Admin
 
         public static string[] LoginMenu()
         {
+            Console.Clear();
             Console.WriteLine("Inloggning");
             Console.WriteLine();
             Console.WriteLine("Lämna användarnamn tomt för att avsluta");
@@ -224,7 +224,6 @@ namespace Tiger_YH_Admin
                         break;
                     case "2":
                         EducationSupervisorPresenter.ManageTeacherMenu();
-                        Console.ReadKey();
                         break;
                     case "3":
                         EducationSupervisorPresenter.ManageClassMenu(educationSupervisor);
@@ -234,11 +233,9 @@ namespace Tiger_YH_Admin
                         break;
                     case "5":
                         CoursePresenter.CourseManagementMenu(educationSupervisor);
-                        Console.ReadKey();
                         break;
                     case "6":
                         AccountPresenter.ManageAccountMenu(educationSupervisor);
-                        Console.ReadKey();
                         break;
                 }
             } while (loop);

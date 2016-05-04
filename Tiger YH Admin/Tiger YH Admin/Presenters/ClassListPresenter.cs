@@ -34,6 +34,8 @@ namespace Tiger_YH_Admin.Presenters
 
         public static void ListAllClasses(User supervisor = null)
         {
+            Console.Clear();
+
             EducationClassStore classStore = new EducationClassStore();
             List<EducationClass> classList = classStore.All().ToList();
 
@@ -69,6 +71,9 @@ namespace Tiger_YH_Admin.Presenters
             bool keepLooping = true;
             do
             {
+                Console.Clear();
+                Console.WriteLine("Visa klass");
+                Console.WriteLine();
                 Console.WriteLine("Tryck enter för att avbryta");
                 string classId = UserInput.GetInput<string>("Ange klass-id:");
 
@@ -114,7 +119,10 @@ namespace Tiger_YH_Admin.Presenters
             var classStore = new EducationClassStore();
             var studentStore = new UserStore();
 
-            Console.WriteLine("Ange klass id: ");
+            Console.Clear();
+            Console.WriteLine("Lägg till student i klass");
+            Console.WriteLine();
+            Console.WriteLine("Ange klass-id: ");
             string classID = UserInput.GetInput<string>();
             var educationClass = classStore.FindById(classID);
 
@@ -124,7 +132,7 @@ namespace Tiger_YH_Admin.Presenters
                 return;
             }
 
-            Console.WriteLine("Ange student id: ");
+            Console.WriteLine("Ange student-id: ");
             string studentID = UserInput.GetInput<string>();
 
             var studentUser = studentStore.FindById(studentID);
@@ -151,11 +159,7 @@ namespace Tiger_YH_Admin.Presenters
                 {
                     List<string> studentList = educationClass.GetStudentList();
 
-                    Console.WriteLine($"Före add: studentList har {studentList.Count} studenter");
                     studentList.Add(studentUser.UserName);
-                    Console.WriteLine($"Efter add: studentList har {studentList.Count} studenter");
-                    Console.ReadKey();
-
                     educationClass.SetStudentList(studentList);
 
                     var educationList = classStore.All().ToList();
@@ -170,7 +174,6 @@ namespace Tiger_YH_Admin.Presenters
                     }
                 }
             }
-            Console.ReadKey();
         }
 
         public static void RemoveStudentFromClass()
@@ -180,6 +183,9 @@ namespace Tiger_YH_Admin.Presenters
 
             do
             {
+                Console.Clear();
+                Console.WriteLine("Ta bort student från klass");
+                Console.WriteLine();
                 Console.WriteLine("Tryck enter för att avbryta");
                 string input = UserInput.GetInput<string>("Ange klass-id:");
 

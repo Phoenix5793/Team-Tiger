@@ -12,6 +12,7 @@ namespace Tiger_YH_Admin.Presenters
     {
         public static void ManageTeacherMenu()
         {
+            Console.Clear();
             Console.WriteLine("Utbildningsledare - Hantera lärare");
             Console.WriteLine();
             Console.WriteLine("1. Visa alla lärare");
@@ -21,6 +22,7 @@ namespace Tiger_YH_Admin.Presenters
 
         internal static void ManageClassMenu(User user)
         {
+            Console.Clear();
             Console.WriteLine("Hantera klasser");
             Console.WriteLine();
             Console.WriteLine("1. Skapa ny klass");
