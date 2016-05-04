@@ -303,5 +303,13 @@ namespace Tiger_YH_Admin.Presenters
 
             } while (true);
         }
+
+        public static void ShowTeacherCourses(User teacher)
+        {
+            CourseStore courseStore = new CourseStore();
+            List<Course> courses = courseStore.All().ForTeacher(teacher).ToList();
+
+            ListCourses(courses);
+        }
     }
 }

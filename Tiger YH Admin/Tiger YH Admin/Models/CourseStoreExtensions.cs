@@ -32,5 +32,10 @@ namespace Tiger_YH_Admin.Models
         {
             return courses.Where(c => c.StartDate > DateTime.Today);
         }
+
+        public static IEnumerable<Course> ForTeacher(this IEnumerable<Course> courses, User teacher)
+        {
+            return courses.Where(c => c.CourseTeacher == teacher.UserName);
+        }
     }
 }
