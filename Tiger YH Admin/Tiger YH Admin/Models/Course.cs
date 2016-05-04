@@ -9,7 +9,7 @@ namespace Tiger_YH_Admin.Models
 {
     [DelimitedRecord("|")]
     [IgnoreEmptyLines]
-    public class Course
+    public class Course : IHasStudentList
     {
         public string CourseId { get; set; }
         public string CourseName { get; set; }
