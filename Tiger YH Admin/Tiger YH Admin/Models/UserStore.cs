@@ -19,7 +19,7 @@ namespace Tiger_YH_Admin.Models
 
         public override User FindById(string id)
         {
-            return DataSet.ToList().SingleOrDefault(u => u.UserName == id);
+            return DataSet.SingleOrDefault(u => u.UserName == id);
         }
 
         public User LoginUser(string name, string password)
