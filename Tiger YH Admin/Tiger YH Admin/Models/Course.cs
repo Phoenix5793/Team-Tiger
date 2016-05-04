@@ -8,6 +8,7 @@ using FileHelpers;
 namespace Tiger_YH_Admin.Models
 {
     [DelimitedRecord("|")]
+    [IgnoreEmptyLines]
     public class Course
     {
         public string CourseId { get; set; }
@@ -15,5 +16,15 @@ namespace Tiger_YH_Admin.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string CourseTeacher { get; set; }
+        private string StudentString { get; set; } = string.Empty;
+
+        public void SetStudentList(List<string> users)
+        {
+            StudentString = string.Join(",", users);
+        }
+
     }
+   
+
+
 }

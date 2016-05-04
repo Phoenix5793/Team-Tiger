@@ -38,6 +38,7 @@ namespace Tiger_YH_Admin.Models.Creators
                     bool loop = true;
                     do
                     {
+                        Console.WriteLine("Lämna fältet tomt för att skapa kurs utan lärare");
                         string teacherName = UserInput.GetInput<string>("Lärare:");
                         User teacher = userStore.FindById(teacherName);
 
@@ -72,10 +73,29 @@ namespace Tiger_YH_Admin.Models.Creators
                         CourseTeacher = courseTeacher
                     };
 
-                   
+
+                    string newStudent;
+                    List<string> studentList = new List<string>();
+                    do
+                    {
+                        newStudent = UserInput.GetInput<string>("Ange student-id för att lägga till student:");
+                        User student = userStore.FindById(newStudent);
+                        bool checkList = studentList.Contains(newStudent);
+
+                        if (student != null && student.UserLevel == UserLevel.Student && checkList == false)
+                        {
+                            studentList.Add(student.UserName);
+                            Console.WriteLine(student.UserName + " är nu tillagd i kursen");
+                        }
+                        else if(student == null && newStudent.Length > 0)
+                        {
+                            Console.WriteLine("Användaren är inte student");
+                        }
+                    } while (newStudent.Length > 0);
+                    newCourse.SetStudentList(studentList);
                     Console.WriteLine("Kursen skapad");
-                    
                 }
+                
                 return courseStore.AddItem(newCourse);
 
             } while (courseExists);
