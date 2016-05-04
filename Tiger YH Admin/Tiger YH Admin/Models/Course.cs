@@ -25,7 +25,7 @@ namespace Tiger_YH_Admin.Models
 
         public List<string> GetStudentList()
         {
-            return StudentString.Split(',').ToList();
+            return StudentString.Split(',').Where(s => s.Length > 0).ToList();
         }
 
         public bool HasStudent(User student)
