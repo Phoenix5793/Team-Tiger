@@ -9,26 +9,18 @@ namespace UnitTests.Models
     [TestClass]
     public class TestCourse
     {
-        private EducationClass _testClass;
         private Course _testCourse;
         private User _testUser;
+        private List<string> _studentList;
 
         [TestInitialize]
         public void Initialize()
         {
-            _testClass = new EducationClass()
-            {
-                ClassId = "testclass",
-                Description = "The Joy of Painting with Bob Ross",
-                EducationSupervisorId = "bobross"
-            };
 
-            var studentList = new List<string>
+            _studentList = new List<string>
             {
                 "adam", "bertil", "caesar", "david", "erik", "johndoe"
             };
-
-            _testClass.SetStudentList(studentList);
 
             _testCourse = new Course
             {
@@ -39,21 +31,20 @@ namespace UnitTests.Models
                 EndDate = DateTime.Today
             };
 
+            _testCourse.SetStudentList(new List<string> {"bertil"});
+
             _testUser = new User
             {
                 UserName = "bertil"
             };
-
-            var courseList = new List<Course>();
-            courseList.Add(_testCourse);
         }
 
 
         [TestMethod]
         public void GetStudentList__Returns_Student_List()
         {
-            List<string> expected = new List<string>() { "adam", "bertil", "caesar", "david", "erik", "johndoe" };
-            List<string> actual = _testClass.GetStudentList();
+            List<string> expected = new List<string> { "bertil" };
+            List<string> actual = _testCourse.GetStudentList();
 
             CollectionAssert.AreEqual(expected, actual);
         }
@@ -61,22 +52,26 @@ namespace UnitTests.Models
         [TestMethod]
         public void GetStudentList__Returns_Correct_Number_Of_Students()
         {
-            int expected = 6;
+            int expectedCount = 1;
+            string expectedStudent = "bertil";
 
-            int actual = _testClass.GetStudentList().Count;
+            var actualList = _testCourse.GetStudentList();
+            int actualCount = actualList.Count;
+            string actualStudent = actualList.First();
 
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expectedCount, actualCount);
+            Assert.AreEqual(expectedStudent, actualStudent);
         }
 
         [TestMethod]
         public void SetStudentList__Can_Set_With_A_List()
         {
-            List<string> input = new List<string>() { "dilbert", "dogbert", "catbert" };
-            List<string> expected = input.ToList();
+            List<string> input = _studentList;
+            List<string> expected = _studentList;
 
             // Set and get new list
-            _testClass.SetStudentList(input);
-            List<string> actual = _testClass.GetStudentList();
+            _testCourse.SetStudentList(input);
+            List<string> actual = _testCourse.GetStudentList();
 
             CollectionAssert.AreEqual(expected, actual);
         }
@@ -84,10 +79,10 @@ namespace UnitTests.Models
         [TestMethod]
         public void HasStudent__Student_Exists_In_String()
         {
-            string input = "david";
+            string input = "bertil";
 
             bool expected = true;
-            bool actual = _testClass.HasStudent(input);
+            bool actual = _testCourse.HasStudent(input);
 
             Assert.AreEqual(expected, actual);
         }
@@ -98,30 +93,32 @@ namespace UnitTests.Models
             string input = "john";
 
             bool expected = false;
-            bool actual = _testClass.HasStudent(input);
+            bool actual = _testCourse.HasStudent(input);
 
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void HasStudent__Runs_With_User_Object__Student_In_Class()
+        public void HasStudent__Runs_With_User_Object__Student_In_Course()
         {
             User input = _testUser;
 
             bool expected = true;
-            bool actual = _testClass.HasStudent(input);
+            bool actual = _testCourse.HasStudent(input);
 
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void HasStudent__Runs_With_User_Object__Student_Not_In_class()
+        public void HasStudent__Runs_With_User_Object__Student_Not_In_Course()
         {
-            _testUser.UserName = "john";
-            User input = _testUser;
+            User input = new User
+            {
+                UserName = "usernotincourse"
+            };
 
             bool expected = false;
-            bool actual = _testClass.HasStudent(input);
+            bool actual = _testCourse.HasStudent(input);
 
             Assert.AreEqual(expected, actual);
         }
