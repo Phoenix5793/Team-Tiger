@@ -24,6 +24,7 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("8. Visa kommande kurser");
             Console.WriteLine("9. Visa obemannade kurser");
             Console.WriteLine("10. Visa avtalade kurser");
+            Console.WriteLine("11. Visa klasslista för en kurs");
 
 
             Console.WriteLine();
