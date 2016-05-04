@@ -69,6 +69,7 @@ namespace UnitTests.Models
             CollectionAssert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
         public void GetStudentList__Returns_Correct_Number_Of_Students()
         {
             int expected = 6;
