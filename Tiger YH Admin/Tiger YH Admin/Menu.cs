@@ -37,7 +37,7 @@ namespace Tiger_YH_Admin
 
         private static bool StudentMainMenu(User user)
         {
-            bool loop = true;
+            bool logout = false;
 
             do
             {
@@ -59,7 +59,8 @@ namespace Tiger_YH_Admin
                 switch (menuChoice)
                 {
                     case "0":
-                        return false;
+                        logout = LogoutConfirmation();
+                        break;
                     case "1":
                         Console.WriteLine("Ej implementerad");
                         break;
@@ -73,13 +74,13 @@ namespace Tiger_YH_Admin
                         Console.WriteLine("Ej implementerad");
                         break;
                 }
-            } while (loop);
+            } while (!logout);
             return false;
         }
 
         private static bool TeacherMainMenu(User user)
         {
-            bool loop = true;
+            bool logout = false;
             do
             {
                 Console.Clear();
@@ -89,8 +90,7 @@ namespace Tiger_YH_Admin
                 Console.WriteLine("0. Logga ut");
                 Console.WriteLine("1. Visa mina kurser");
                 Console.WriteLine("2. Visa studentlista för en kurs");
-                Console.WriteLine("3. Visa klasslistor");
-                Console.WriteLine("4. Betygsätt studenter");
+                Console.WriteLine("3. Betygsätt studenter");
 
                 Console.WriteLine();
                 Console.Write("Ditt val: ");
@@ -100,10 +100,10 @@ namespace Tiger_YH_Admin
                 switch (menuChoice)
                 {
                     case "0":
-                        loop = false;
+                        logout = LogoutConfirmation();
                         break;
                     case "1":
-                        Console.WriteLine("Ej implementerad");
+                        CoursePresenter.ShowTeacherCourses(user);
                         break;
                     case "2":
                         CoursePresenter.ShowStudentsForCourse(user);
@@ -111,17 +111,14 @@ namespace Tiger_YH_Admin
                     case "3":
                         Console.WriteLine("Ej implementerad");
                         break;
-                    case "4":
-                        Console.WriteLine("Ej implementerad");
-                        break;
                 }
-            } while (loop);
+            } while (!logout);
             return false;
         }
 
         public static bool AdminMainMenu()
         {
-            bool loop = true;
+            bool logout = false;
             do
             {
                 Console.Clear();
@@ -139,7 +136,8 @@ namespace Tiger_YH_Admin
                 switch (menuChoice)
                 {
                     case "0":
-                        return false;
+                        logout = LogoutConfirmation();
+                        break;
                     case "1":
                         UserStore userStore = new UserStore();
                         UserCreator creator = new UserCreator();
@@ -164,7 +162,7 @@ namespace Tiger_YH_Admin
                 }
 
 
-            } while (loop);
+            } while (!logout);
             return false;
         }
 
@@ -193,7 +191,7 @@ namespace Tiger_YH_Admin
 
         public static bool EducationSupervisorMainMenu(User educationSupervisor)
         {
-            bool loop = true;
+            bool logout = false;
 
             do
             {
@@ -215,7 +213,8 @@ namespace Tiger_YH_Admin
                 switch (menuChoice)
                 {
                     case "0":
-                        return false;
+                        logout = LogoutConfirmation();
+                        break;
                     case "1":
                         //TODO: Inte köra samma rutin som admin
                         UserStore userStore = new UserStore();
@@ -238,8 +237,14 @@ namespace Tiger_YH_Admin
                         AccountPresenter.ManageAccountMenu(educationSupervisor);
                         break;
                 }
-            } while (loop);
+            } while (!logout);
             return false;
+        }
+
+        private static bool LogoutConfirmation()
+        {
+            Console.Clear();
+            return UserInput.AskConfirmation("Vill du logga ut?");
         }
     }
 }
