@@ -14,7 +14,7 @@ namespace Tiger_YH_Admin.Models
         }
 
         public UserStore(IEnumerable<User> users) : base(users)
-        {            
+        {
         }
 
         public override User FindById(string id)

@@ -27,7 +27,12 @@ namespace UnitTests.Models
 
             var studentList = new List<string>
             {
-                "adam", "bertil", "caesar", "david", "erik", "johndoe"
+                "adam",
+                "bertil",
+                "caesar",
+                "david",
+                "erik",
+                "johndoe"
             };
 
             _testClass.SetStudentList(studentList);
@@ -170,7 +175,6 @@ namespace UnitTests.Models
 
             Assert.AreEqual(expected, actual);
         }
-
 
         [TestMethod]
         public void RemoveCourse__Can_Remove_Course()

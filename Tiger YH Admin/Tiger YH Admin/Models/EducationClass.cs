@@ -87,6 +87,5 @@ namespace Tiger_YH_Admin.Models
 
             return courseList.Contains(courseId);
         }
-
     }
 }

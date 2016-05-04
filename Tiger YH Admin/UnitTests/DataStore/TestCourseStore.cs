@@ -137,7 +137,7 @@ namespace UnitTests.Models
         public void GetAgreedCourses__Finds_Agreed_Courses()
         {
             int expectedCourseCount = 2;
-            string[] expectedCourseNames = { "Pågående kurs", "Framtida bemannad kurs" };
+            string[] expectedCourseNames = {"Pågående kurs", "Framtida bemannad kurs"};
             string[] expectedTeachers = {"pontus", "pontus"};
 
             List<Course> actualCourses = testCourseStore.GetAllAgreedCourses().ToList();
