@@ -8,7 +8,7 @@ namespace Tiger_YH_Admin.Presenters
 {
     static class CoursePresenter
     {
-        public static void CourseManagementMenu()
+        public static void CourseManagementMenu(User user)
         {
             Console.Clear();
 
@@ -64,7 +64,9 @@ namespace Tiger_YH_Admin.Presenters
                 case "10":
                     TeacherStaffingArrangedCourses();
                     break;
-
+                case "11":
+                    ShowStudentsForCourse(user);
+                    break;
             }
             Console.ReadKey();
         }
@@ -265,5 +267,44 @@ namespace Tiger_YH_Admin.Presenters
             ListCourses(unmannedCourses);
         }
 
+        public static void ShowStudentsForCourse(User user)
+        {
+            bool isTeacher = user.HasLevel(UserLevel.Teacher);
+
+            do
+            {
+                CourseStore courseStore = new CourseStore();
+
+                Console.WriteLine("Tryck enter för att avbryta.");
+                string courseName = UserInput.GetInput<string>("Ange kurs-id:");
+
+                if (courseName == string.Empty)
+                {
+                    break;
+                }
+
+                Course course = courseStore.FindById(courseName);
+
+                if (course == null)
+                {
+                    Console.WriteLine("Finns ingen kurs med det namnet");
+                    Console.WriteLine();
+                    continue;
+                }
+
+                if (isTeacher && course.CourseTeacher != user.UserName)
+                {
+                    Console.WriteLine("Du är ej lärare för den kursen.");
+                    Console.WriteLine();
+                }
+                else
+                {
+                    UserStore userStore = new UserStore();
+                    List<string> studentNames = course.GetStudentList();
+                    UserManagerPresenter.PrintStudentList(studentNames);
+                }
+
+            } while (true);
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace Tiger_YH_Admin.Models
 {
     [DelimitedRecord("|")]
     [IgnoreEmptyLines]
-    public class Course
+    public class Course : IHasStudentList
     {
         public string CourseId { get; set; }
         public string CourseName { get; set; }
@@ -23,8 +23,26 @@ namespace Tiger_YH_Admin.Models
             StudentString = string.Join(",", users);
         }
 
+        public List<string> GetStudentList()
+        {
+            return StudentString.Split(',').ToList();
+        }
+
+        public bool HasStudent(User student)
+        {
+            return HasStudent(student.UserName);
+        }
+
+        public bool HasStudent(string studentName)
+        {
+            List<string> studentList = GetStudentList();
+            return studentList.Contains(studentName);
+        }
+
+
+
     }
-   
+
 
 
 }
