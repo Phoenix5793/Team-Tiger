@@ -88,8 +88,9 @@ namespace Tiger_YH_Admin
                 Console.WriteLine();
                 Console.WriteLine("0. Logga ut");
                 Console.WriteLine("1. Visa mina kurser");
-                Console.WriteLine("2. Visa klasslistor");
-                Console.WriteLine("3. Betygsätt studenter");
+                Console.WriteLine("2. Visa studentlista för en kurs");
+                Console.WriteLine("3. Visa klasslistor");
+                Console.WriteLine("4. Betygsätt studenter");
 
                 Console.WriteLine();
                 Console.Write("Ditt val: ");
@@ -105,9 +106,12 @@ namespace Tiger_YH_Admin
                         Console.WriteLine("Ej implementerad");
                         break;
                     case "2":
-                        
+                        CoursePresenter.ShowStudentsForCourse(user);
                         break;
                     case "3":
+                        Console.WriteLine("Ej implementerad");
+                        break;
+                    case "4":
                         Console.WriteLine("Ej implementerad");
                         break;
                 }
@@ -229,7 +233,7 @@ namespace Tiger_YH_Admin
                         UserManagerPresenter.ManageStudents();
                         break;
                     case "5":
-                        CoursePresenter.CourseManagementMenu();
+                        CoursePresenter.CourseManagementMenu(educationSupervisor);
                         Console.ReadKey();
                         break;
                     case "6":
