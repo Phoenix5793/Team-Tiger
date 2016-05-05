@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tiger_YH_Admin.DataStore;
 using Tiger_YH_Admin.Models;
 
 namespace UnitTests.DataStore

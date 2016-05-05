@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Tiger_YH_Admin.Models
+namespace Tiger_YH_Admin.DataStore
 {
     public interface IDataStore<T> where T : class
     {

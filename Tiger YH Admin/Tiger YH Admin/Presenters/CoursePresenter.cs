@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Tiger_YH_Admin.Creators;
+using Tiger_YH_Admin.DataStore;
 using Tiger_YH_Admin.Models;
-using Tiger_YH_Admin.Models.Creators;
 
 namespace Tiger_YH_Admin.Presenters
 {
@@ -25,7 +26,6 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("9. Visa obemannade kurser");
             Console.WriteLine("10. Visa avtalade kurser");
             Console.WriteLine("11. Visa klasslista för en kurs");
-
 
             Console.WriteLine();
             Console.Write("Ditt val: ");
@@ -71,7 +71,6 @@ namespace Tiger_YH_Admin.Presenters
             }
         }
 
-
         private static void ListCourses(IEnumerable<Course> courseList)
         {
             Console.Clear();
@@ -95,7 +94,6 @@ namespace Tiger_YH_Admin.Presenters
             }
 
             UserInput.WaitForContinue();
-
         }
 
         private static void ListAllCourses()
@@ -203,8 +201,6 @@ namespace Tiger_YH_Admin.Presenters
             }
         }
 
-       
-
         internal static void ChangeTeacherForCourses()
         {
             throw new NotImplementedException();
@@ -300,7 +296,6 @@ namespace Tiger_YH_Admin.Presenters
                     List<string> studentNames = course.GetStudentList();
                     UserManagerPresenter.PrintStudentList(studentNames);
                 }
-
             } while (true);
         }
 

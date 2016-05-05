@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Tiger_YH_Admin.DataStore;
+using Tiger_YH_Admin.Models;
 
-namespace Tiger_YH_Admin.Models.Creators
+namespace Tiger_YH_Admin.Creators
 {
     class UserCreator : ICreator<User>
     {

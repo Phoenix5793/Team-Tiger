@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Tiger_YH_Admin.DataStore;
 using Tiger_YH_Admin.Models;
 
 namespace Tiger_YH_Admin.Presenters
@@ -27,7 +28,7 @@ namespace Tiger_YH_Admin.Presenters
                         SearchForUser();
                         break;
                     case "2":
-                        ListAllUsers();                        
+                        ListAllUsers();
                         break;
                 }
             }

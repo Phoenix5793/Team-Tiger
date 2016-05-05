@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tiger_YH_Admin.DataStore;
 using Tiger_YH_Admin.Models;
 
 namespace UnitTests.Models

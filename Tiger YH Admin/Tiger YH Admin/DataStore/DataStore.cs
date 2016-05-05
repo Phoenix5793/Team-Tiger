@@ -2,8 +2,9 @@
 using System.Linq;
 using System.Text;
 using FileHelpers;
+using Tiger_YH_Admin.Models;
 
-namespace Tiger_YH_Admin.Models
+namespace Tiger_YH_Admin.DataStore
 {
     public abstract class DataStore<T> : IDataStore<T> where T : class
     {
