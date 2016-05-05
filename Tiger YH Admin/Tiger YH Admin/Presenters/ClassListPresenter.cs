@@ -140,7 +140,7 @@ namespace Tiger_YH_Admin.Presenters
                     Console.WriteLine($"Finns ingen klass med id {classId}");
                 }
 
-                if (!edClass.HasStudent(activeStudent.UserName))
+                else if (!edClass.HasStudent(activeStudent.UserName))
                 {
                     Console.WriteLine("Studenten ingår inte i denna klass.");
                 }
