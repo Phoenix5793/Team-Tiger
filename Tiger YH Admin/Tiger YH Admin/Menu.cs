@@ -65,7 +65,7 @@ namespace Tiger_YH_Admin
                         Console.WriteLine("Ej implementerad");
                         break;
                     case "2":
-                        Console.WriteLine("Ej implementerad");
+                        ClassListPresenter.ShowClassForStudent(user);
                         break;
                     case "3":
                         Console.WriteLine("Ej implementerad");
