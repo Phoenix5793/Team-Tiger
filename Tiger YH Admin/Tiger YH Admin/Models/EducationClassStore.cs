@@ -18,7 +18,7 @@ namespace Tiger_YH_Admin.Models
 
         public override EducationClass FindById(string id)
         {
-            return DataSet.SingleOrDefault(c => c.ClassId == id);
+            return DataSet.SingleOrDefault(c => c.ClassId.ToLower() == id.ToLower());
         }
     }
 }
