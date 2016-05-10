@@ -289,7 +289,35 @@ namespace Tiger_YH_Admin.Presenters
 
         public static void ShowCoursesForClass()
         {
-            //TODO: Visa kurser för klass
+            EducationClassStore classStore = new EducationClassStore();
+
+            bool loop = true;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Tryck enter för att avbryta");
+                string input = UserInput.GetInput<string>("Ange klass-id:");
+
+                if (input == string.Empty)
+                {
+                    break;
+                }
+
+                EducationClass klass = classStore.FindById(input);
+                if (klass == null)
+                {
+                    Console.WriteLine("Finns ingen klass med det id:t");
+                    UserInput.WaitForContinue();
+                }
+                else
+                {
+                    CoursePresenter.ShowClassCoursePlan(klass);
+                    loop = false;
+                }
+
+            } while (loop);
+
+
         }
     }
 }

@@ -69,7 +69,7 @@ namespace Tiger_YH_Admin
                         ClassListPresenter.ShowClassForStudent(user);
                         break;
                     case "3":
-                        Console.WriteLine("Ej implementerad");
+                        CoursePresenter.ShowStudentCoursePlan(user);
                         break;
                     case "4":
                         Console.WriteLine("Ej implementerad");

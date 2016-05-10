@@ -217,6 +217,27 @@ namespace Tiger_YH_Admin.Presenters
                 );
         }
 
+        private static void PrintCourseList(List<string> courses)
+        {
+            CourseStore courseStore = new CourseStore();
+
+            Console.Clear();
+            Console.WriteLine(
+                "Kurs-id".PadRight(10) +
+                "Kursnamn".PadRight(40) +
+                "Startdatum".PadRight(12) +
+                "Slutdatum".PadRight(12) +
+                "Lärare"
+                );
+            Console.WriteLine(new string('-', 80));
+
+            foreach (string c in courses)
+            {
+                Course course = courseStore.FindById(c);
+                PrintCourseInfo(course);
+            }
+        }
+
         private static void TeacherStaffingFutureCourses()
         {
             var courseStore = new CourseStore();
@@ -305,6 +326,33 @@ namespace Tiger_YH_Admin.Presenters
             List<Course> courses = courseStore.All().ForTeacher(teacher).ToList();
 
             ListCourses(courses);
+        }
+
+        public static void ShowStudentCoursePlan(User student)
+        {
+            EducationClassStore classStore = new EducationClassStore();
+
+            foreach (EducationClass klass in classStore.All())
+            {
+                if (klass.HasStudent(student.UserName))
+                {
+                    EducationClass studentClass = klass;
+                    List<string> courseList = studentClass.GetCourseList();
+
+                    PrintCourseList(courseList);
+                    UserInput.WaitForContinue();
+
+                    break;
+                }
+            }
+        }
+
+        public static void ShowClassCoursePlan(EducationClass klass)
+        {
+            List<string> courses = klass.GetCourseList();
+
+            PrintCourseList(courses);
+            UserInput.WaitForContinue();
         }
     }
 }
