@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Tiger_YH_Admin
 {
@@ -22,6 +23,10 @@ namespace Tiger_YH_Admin
                     checksum += deltas[j];
             }
             return (checksum % 10) == 0;
+        }
+       public static bool IsAllDigits(this string s)
+        {
+            return s.All(char.IsDigit);
         }
     }
 }
