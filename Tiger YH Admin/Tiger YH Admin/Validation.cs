@@ -4,7 +4,7 @@ namespace Tiger_YH_Admin
 {
     public static class Validation
     {
-        public static bool IsValidEmail(string email)
+        public static bool IsValidEmail(this string email)
         {
             return Regex.IsMatch(email, @"^\S*@([a-z0-9-]+[.])+[a-z]+");
         }

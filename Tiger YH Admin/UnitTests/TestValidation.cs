@@ -13,7 +13,7 @@ namespace UnitTests
             string input = "foo@example.net";
             bool expected = true;
 
-            bool actual = Validation.IsValidEmail(input);
+            bool actual = input.IsValidEmail();
 
             Assert.AreEqual(expected, actual);
         }
@@ -24,7 +24,7 @@ namespace UnitTests
             string input = "foo@example,net";
             bool expected = false;
 
-            bool actual = Validation.IsValidEmail(input);
+            bool actual = input.IsValidEmail();
 
             Assert.AreEqual(expected, actual);
         }
@@ -34,7 +34,7 @@ namespace UnitTests
             string input = "foo@bar.example.net";
             bool expected = true;
 
-            bool actual = Validation.IsValidEmail(input);
+            bool actual = input.IsValidEmail();
 
             Assert.AreEqual(expected, actual);
         }
@@ -45,7 +45,7 @@ namespace UnitTests
             string input = "foo.bar@example.net";
             bool expected = true;
 
-            bool actual = Validation.IsValidEmail(input);
+            bool actual = input.IsValidEmail();
 
             Assert.AreEqual(expected, actual);
         }
@@ -56,7 +56,7 @@ namespace UnitTests
             string input = "foo+spamtrap@example.net";
             bool expected = true;
 
-            bool actual = Validation.IsValidEmail(input);
+            bool actual = input.IsValidEmail();
 
             Assert.AreEqual(expected, actual);
         }
@@ -67,7 +67,7 @@ namespace UnitTests
             string input = "foo.bar+spamtrap@example.net";
             bool expected = true;
 
-            bool actual = Validation.IsValidEmail(input);
+            bool actual = input.IsValidEmail();
 
             Assert.AreEqual(expected, actual);
         }
@@ -78,7 +78,7 @@ namespace UnitTests
             string input = "foo bar@example.net";
             bool expected = false;
 
-            bool actual = Validation.IsValidEmail(input);
+            bool actual = input.IsValidEmail();
 
             Assert.AreEqual(expected, actual);
         }
@@ -89,7 +89,7 @@ namespace UnitTests
             string input = "foobar@exam ple.net";
             bool expected = false;
 
-            bool actual = Validation.IsValidEmail(input);
+            bool actual = input.IsValidEmail();
 
             Assert.AreEqual(expected, actual);
         }
