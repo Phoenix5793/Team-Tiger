@@ -26,11 +26,25 @@ namespace Tiger_YH_Admin.Presenters
                 Console.WriteLine();
 
                 string oldPassword = UserInput.GetInput<string>("Ange nuvarande lösenord:");
+                if (oldPassword == string.Empty)
+                {
+                    break;
+                }
 
                 if (user.Password == oldPassword)
                 {
-                    string newPassword = UserInput.GetInput<string>("Ange nytt lösenord:");
-                    user.Password = newPassword;
+                    
+                    string newPassword;
+                    bool isValid;
+                    do
+                    {                        
+                        newPassword = UserInput.GetInput<string>("Ange nytt lösenord:");
+                        isValid = newPassword.Length >= 3;
+                        if (!isValid)
+                        {
+                            Console.WriteLine("Du måste ange ett lösenord som är minst 3 tecken");
+                        }
+                    } while (!isValid);                   
 
                     List<User> users = userStore.All().ToList();
 
@@ -42,7 +56,7 @@ namespace Tiger_YH_Admin.Presenters
                         }
                     }
                     userStore.Save();
-                    Console.WriteLine("Lösenord ändrat");
+                    Console.WriteLine("Lösenord ändrat, det nya lösenordet börjar gälla vid nästa inloggning");
                     UserInput.WaitForContinue();
                     loop = false;
                 }
