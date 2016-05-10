@@ -116,5 +116,27 @@ namespace UnitTests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void IsAllDigits__Is_All_Digits()
+        {
+            string input = "123456789";
+            bool expected = true;
+
+            bool actual = input.IsAllDigits();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void IsAllDigits__Has_Non_Digits()
+        {
+            string input = "1234q56789";
+            bool expected = false;
+
+            bool actual = input.IsAllDigits();
+
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }
