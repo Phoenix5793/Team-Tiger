@@ -100,7 +100,7 @@ namespace UnitTests
             string input = "4170663214699432";
             bool expected = true;
 
-            bool actual = Validation.IsValidLuhn(input);
+            bool actual = input.IsValidLuhn();
 
             Assert.AreEqual(expected, actual);
         }
@@ -111,7 +111,7 @@ namespace UnitTests
             string input = "4170663214699439";
             bool expected = false;
 
-            bool actual = Validation.IsValidLuhn(input);
+            bool actual = input.IsValidLuhn();
 
             Assert.AreEqual(expected, actual);
         }
