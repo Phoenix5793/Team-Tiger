@@ -72,7 +72,7 @@ namespace Tiger_YH_Admin
                         CoursePresenter.ShowStudentCoursePlan(user);
                         break;
                     case "4":
-                        Console.WriteLine("Ej implementerad");
+                           AccountPresenter.ChangePassword(user);
                         break;
                 }
             } while (!logout);
