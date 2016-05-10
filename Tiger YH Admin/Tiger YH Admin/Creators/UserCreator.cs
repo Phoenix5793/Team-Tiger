@@ -68,6 +68,7 @@ namespace Tiger_YH_Admin.Creators
                 else
                 {
                     Console.WriteLine("Användarnamnet är upptaget");
+                    Console.ReadKey();
                 }
             } while (existingUser == null && keepLooping);
 
