@@ -93,5 +93,28 @@ namespace UnitTests
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void IsValidLuhn__Valid_Number()
+        {
+            string input = "4170663214699432";
+            bool expected = true;
+
+            bool actual = Validation.IsValidLuhn(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void IsValidLuhn__Invalid_Number()
+        {
+            string input = "4170663214699439";
+            bool expected = false;
+
+            bool actual = Validation.IsValidLuhn(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }
