@@ -29,6 +29,7 @@ namespace UnitTests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
         public void IsValidEmail__Has_Subdomain()
         {
             string input = "foo@bar.example.net";
