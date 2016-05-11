@@ -32,18 +32,25 @@ namespace Tiger_YH_Admin.Presenters
             }
         }
 
-        public static void ListAllClasses(User supervisor = null)
+        public static void ListAllClasses(User supervisor)
         {
-            Console.Clear();
+            EducationClassStore classStore = new EducationClassStore();
+            List<EducationClass> classList = classStore.All().ForSupervisor(supervisor).ToList();
 
+            ShowClass(classList);
+        }
+
+        public static void ListAllClasses()
+        {
             EducationClassStore classStore = new EducationClassStore();
             List<EducationClass> classList = classStore.All().ToList();
 
-            if (supervisor != null)
-            {
-                classList = classList.ForSupervisor(supervisor).ToList();
-            }
+            ShowClass(classList);
+        }
 
+        public static void ShowClass(IEnumerable<EducationClass> classes)
+        {
+            Console.Clear();
             Console.WriteLine(
                 "Klassnamn".PadRight(10) +
                 "Utb.ledare".PadRight(11) +
@@ -52,7 +59,7 @@ namespace Tiger_YH_Admin.Presenters
 
             Console.WriteLine(new string('-', 66));
 
-            foreach (EducationClass educationClass in classList)
+            foreach (EducationClass educationClass in classes)
             {
                 Console.WriteLine(
                     educationClass.ClassId.PadRight(10) +
