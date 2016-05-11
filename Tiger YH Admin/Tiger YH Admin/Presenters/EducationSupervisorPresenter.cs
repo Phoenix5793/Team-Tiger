@@ -53,7 +53,7 @@ namespace Tiger_YH_Admin.Presenters
                     ClassListPresenter.ShowCoursesForClass();
                     break;
                 case "4":
-                    ClassListPresenter.ShowClass();
+                    ClassListPresenter.ShowClassStudentList();
                     break;
                 case "5":
                     CoursePresenter.ChangeTeacherForCourses();

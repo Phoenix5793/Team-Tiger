@@ -27,7 +27,7 @@ namespace Tiger_YH_Admin.Presenters
                     ListAllClasses();
                     break;
                 case "2":
-                    ShowClass();
+                    ShowClassStudentList();
                     break;
             }
         }
@@ -64,7 +64,7 @@ namespace Tiger_YH_Admin.Presenters
             UserInput.WaitForContinue();
         }
 
-        public static void ShowClass()
+        public static void ShowClassStudentList()
         {
             EducationClassStore classStore = new EducationClassStore();
             UserStore studentStore = new UserStore();
