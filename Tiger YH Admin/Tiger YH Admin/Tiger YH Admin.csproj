@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataStore\EducationClassStoreExtensions.cs" />
     <Compile Include="Enumerators.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="DataStore\CourseStoreExtensions.cs" />
