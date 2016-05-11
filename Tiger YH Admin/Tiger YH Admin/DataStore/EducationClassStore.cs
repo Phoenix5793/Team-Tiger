@@ -18,5 +18,10 @@ namespace Tiger_YH_Admin.DataStore
         {
             return DataSet.SingleOrDefault(c => c.ClassId.ToLower() == id.ToLower());
         }
+
+        public IEnumerable<EducationClass> GetClassesForSupervisor(User supervisor)
+        {
+            return DataSet.ForSupervisor(supervisor);
+        }
     }
 }

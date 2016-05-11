@@ -41,7 +41,7 @@ namespace Tiger_YH_Admin.Presenters
 
             if (supervisor != null)
             {
-                classList = classList.Where(c => c.EducationSupervisorId == supervisor.UserName).ToList();
+                classList = classList.ForSupervisor(supervisor).ToList();
             }
 
             Console.WriteLine(
