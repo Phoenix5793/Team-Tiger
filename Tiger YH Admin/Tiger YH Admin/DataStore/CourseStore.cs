@@ -51,5 +51,10 @@ namespace Tiger_YH_Admin.DataStore
 
             return currentManned.Concat(futureManned);
         }
+
+        public IEnumerable<Course> FindByTeacherId(string teacherId)
+        {
+            return All().Where(c => c.CourseTeacher == teacherId);
+        }
     }
 }
