@@ -121,60 +121,39 @@ namespace Tiger_YH_Admin.Presenters
             } while (keepLooping);
         }
 
-        public static void ShowClassForStudent(User activeStudent)
+        public static void ShowClassForStudent(User student)
         {
             EducationClassStore classStore = new EducationClassStore();
             UserStore studentStore = new UserStore();
-            bool keepLooping = true;
-            do
+            Console.Clear();
+            Console.WriteLine("Visa klass");
+            Console.WriteLine();
+            Console.WriteLine("Tryck enter för att gå tillbaka till föregående skärm.");
+
+
+
+            EducationClass edClass = classStore.FindByStudentId(student.UserName);
+
+            Console.Clear();
+            Console.WriteLine(
+                "Student-id".PadRight(12) +
+                "Namn".PadRight(25) +
+                "Telefon".PadRight(15)
+                );
+            Console.WriteLine(new string('-', 60));
+
+            List<string> studentList = edClass.GetStudentList();
+            foreach (string studentId in studentList)
             {
-                Console.Clear();
-                Console.WriteLine("Visa klass");
-                Console.WriteLine();
-                Console.WriteLine("Tryck enter för att gå tillbaka till föregående skärm.");
+                User s = studentStore.FindById(studentId);
 
-                string classId = UserInput.GetInput<string>("Ange klass-id:");
-
-                if (classId == string.Empty)
-                {
-                    return;
-                }
-
-                EducationClass edClass = classStore.FindById(classId);
-
-                if (edClass == null)
-                {
-                    Console.WriteLine($"Finns ingen klass med id {classId}");
-                }
-
-                else if (!edClass.HasStudent(activeStudent.UserName))
-                {
-                    Console.WriteLine("Studenten ingår inte i denna klass.");
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine(
-                        "Student-id".PadRight(12) +
-                        "Namn".PadRight(25) +
-                        "Telefon".PadRight(15)
-                        );
-                    Console.WriteLine(new string('-', 60));
-
-                    List<string> studentList = edClass.GetStudentList();
-                    foreach (string studentId in studentList)
-                    {
-                        User student = studentStore.FindById(studentId);
-
-                        Console.WriteLine(
-                            student.UserName.PadRight(12) +
-                            student.FullName().PadRight(25) +
-                            student.PhoneNumber.PadRight(15)
-                            );
-                    }
-                }
-                UserInput.WaitForContinue();
-            } while (keepLooping);
+                Console.WriteLine(
+                    s.UserName.PadRight(12) +
+                    s.FullName().PadRight(25) +
+                    s.PhoneNumber.PadRight(15)
+                    );
+            }
+            UserInput.WaitForContinue();
         }
 
         public static void AddStudentToClass()
