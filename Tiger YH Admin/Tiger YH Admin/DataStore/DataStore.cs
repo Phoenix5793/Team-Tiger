@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using FileHelpers;
@@ -40,6 +41,13 @@ namespace Tiger_YH_Admin.DataStore
         public IEnumerable<T> Load()
         {
             var csv = new FileHelperEngine<T>(Encoding.UTF8);
+
+            bool fileExists = File.Exists(_fileName);
+            if (!fileExists)
+            {
+                File.Create(_fileName);
+            }
+
             var records = csv.ReadFile(_fileName);
             return records;
         }
