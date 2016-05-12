@@ -21,15 +21,19 @@ namespace Tiger_YH_Admin
                 switch (user.UserLevel)
                 {
                     case UserLevel.Admin:
+                        Console.ForegroundColor = ConsoleColor.Red;
                         loopMenu = AdminMainMenu();
                         break;
                     case UserLevel.EducationSupervisor:
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         loopMenu = EducationSupervisorMainMenu(user);
                         break;
                     case UserLevel.Teacher:
+                        Console.ForegroundColor = ConsoleColor.Blue;
                         loopMenu = TeacherMainMenu(user);
                         break;
                     case UserLevel.Student:
+                        Console.ForegroundColor = ConsoleColor.Magenta;
                         loopMenu = StudentMainMenu(user);
                         break;
                 }

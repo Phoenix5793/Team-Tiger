@@ -12,6 +12,7 @@ namespace Tiger_YH_Admin
         {
             while (true)
             {
+                Console.ResetColor();
                 UserStore userStore = new UserStore();
                 ProgramSetup(userStore);
                 User user = UserManagerPresenter.LoginUser(userStore);
