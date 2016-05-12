@@ -8,7 +8,7 @@ namespace Tiger_YH_Admin.Models
         public string GradeId => GetGradeId();
         public string StudentId { get; set; }
         public string CourseId { get; set; }
-        public GradeLevel Result { get; set; } = GradeLevel.G;
+        public GradeLevel Result { get; set; } = GradeLevel.IG;
 
         private string GetGradeId()
         {

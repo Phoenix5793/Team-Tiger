@@ -12,7 +12,7 @@ namespace UnitTests.Models
         public void Grade__Has_Default_Grade()
         {
             Grade input = new Grade();
-            GradeLevel expected = GradeLevel.G;
+            GradeLevel expected = GradeLevel.IG;
 
             GradeLevel actual = input.Result;
 
