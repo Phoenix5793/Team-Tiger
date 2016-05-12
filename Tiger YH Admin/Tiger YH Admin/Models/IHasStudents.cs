@@ -12,5 +12,7 @@ namespace Tiger_YH_Admin.Models
         void SetStudentList(List<string> students);
         bool HasStudent(string userName);
         bool HasStudent(User student);
+        void AddStudent(User student);
+        bool RemoveStudent(User student);
     }
 }

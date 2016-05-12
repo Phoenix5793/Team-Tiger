@@ -15,6 +15,7 @@ namespace UnitTests.Models
         private CourseStore _courseStore;
         private Course _testCourse;
         private User _testUser;
+        private User _testAddUser;
 
         [TestInitialize]
         public void Initialize()
@@ -50,6 +51,11 @@ namespace UnitTests.Models
             _testUser = new User
             {
                 UserName = "bertil"
+            };
+
+            _testAddUser = new User
+            {
+                UserName = "addeduser"
             };
 
             var courseList = new List<Course>();
@@ -246,6 +252,33 @@ namespace UnitTests.Models
             List<string> actual = _testClass.GetCourseList();
 
             Assert.AreEqual(expected[0], actual[0]);
+        }
+
+        [TestMethod]
+        public void AddStudent__Adds_A_Student()
+        {
+            User input = _testAddUser;
+            bool expected = true;
+
+            _testCourse.AddStudent(input);
+            bool actual = _testCourse.HasStudent(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void RemoveStudent__Removes_A_Student()
+        {
+            User input = _testAddUser;
+            bool expectedResult = true;
+            bool expectedFound = false;
+
+            _testCourse.AddStudent(input);
+            bool actualResult = _testCourse.RemoveStudent(input);
+            bool actualFound = _testCourse.HasStudent(input);
+
+            Assert.AreEqual(expectedResult, actualResult);
+            Assert.AreEqual(expectedFound, actualFound);
         }
     }
 }

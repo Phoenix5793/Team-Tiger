@@ -88,5 +88,26 @@ namespace Tiger_YH_Admin.Models
 
             return courseList.Contains(courseId);
         }
+
+        public void AddStudent(User student)
+        {
+            List<string> studentList = GetStudentList();
+            bool exists = studentList.Contains(student.UserName);
+
+            if (!exists)
+            {
+                studentList.Add(student.UserName);
+                SetStudentList(studentList);
+            }
+        }
+
+        public bool RemoveStudent(User student)
+        {
+            List<string> studentList = GetStudentList();
+            bool result = studentList.Remove(student.UserName);
+            SetStudentList(studentList);
+
+            return result;
+        }
     }
 }
