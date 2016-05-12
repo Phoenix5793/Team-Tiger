@@ -30,9 +30,8 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("2. Visa klasser jag ansvarar för");
             Console.WriteLine("3. Visa kursplan för en klass");
             Console.WriteLine("4. Visa klasslista för en klass");
-            Console.WriteLine("5. Byt lärare för en kurs");
-            Console.WriteLine("6. Lägg till student i klass");
-            Console.WriteLine("7. Ta bort student från klass");
+            Console.WriteLine("5. Lägg till student i klass");
+            Console.WriteLine("6. Ta bort student från klass");
 
             Console.WriteLine();
             Console.Write("Ditt val: ");
@@ -56,15 +55,11 @@ namespace Tiger_YH_Admin.Presenters
                     ClassListPresenter.ShowClassStudentList();
                     break;
                 case "5":
-                    CoursePresenter.ChangeTeacherForCourses();
-                    break;
-                case "6":
                     ClassListPresenter.AddStudentToClass();
                     break;
-                case "7":
+                case "6":
                     ClassListPresenter.RemoveStudentFromClass();
                     break;
-
                 default:
                     return;
             }
