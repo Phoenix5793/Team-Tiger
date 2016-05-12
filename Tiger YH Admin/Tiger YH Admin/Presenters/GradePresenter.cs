@@ -11,12 +11,13 @@ namespace Tiger_YH_Admin.Presenters
         public static void GradeStudent(User user)
         {
             UserStore userStore = new UserStore();
+            EducationClassStore educationClassStore = new EducationClassStore();
             CourseStore courseStore = new CourseStore();
             GradeStore gradeStore = new GradeStore();
+            List<string> courseList;
             Course course;
             User student;
             GradeLevel gradeLevel;
-
 
             Console.Clear();
             Console.WriteLine("Betygsätt student");
@@ -34,23 +35,6 @@ namespace Tiger_YH_Admin.Presenters
 
             do
             {
-                string courseName = UserInput.GetInput<string>("Ange kurs-id:");
-                if (courses.Exists(c => c.CourseId == courseName))
-                {
-                    Console.WriteLine("kursen finns");
-                    course = courseStore.FindById(courseName);
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Kursen finns inte eller du är inte lärare för den");
-                }
-
-            } while (true);
-
-
-            do
-            {
                 string studentName = UserInput.GetInput<string>("Ange student-id:");
                 student = userStore.FindById(studentName);
 
@@ -60,7 +44,34 @@ namespace Tiger_YH_Admin.Presenters
                 }
                 else
                 {
+                    // TODO: gör extension method
+                    EducationClass studentClass =
+                        educationClassStore.All().Single(e => e.HasStudent(student));
+                    courseList = studentClass.GetCourseList();
                     break;
+                }
+
+            } while (true);
+
+            do
+            {
+                string courseName = UserInput.GetInput<string>("Ange kurs-id:");
+                if (courses.Exists(c => c.CourseId == courseName))
+                {
+                    // TODO: gör extension method
+                    if (courseList.Contains(courseName))
+                    {
+                        course = courseStore.FindById(courseName);
+                        break;
+                    }
+
+                    Console.WriteLine("Studentens klass läser inte kursen");
+                    UserInput.WaitForContinue();
+                }
+                else
+                {
+                    Console.WriteLine("Kursen finns inte eller du är inte lärare för den");
+                    UserInput.WaitForContinue();
                 }
 
             } while (true);
