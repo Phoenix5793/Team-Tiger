@@ -239,6 +239,8 @@ namespace Tiger_YH_Admin.Presenters
         private static void DeleteCourse()
         {
             CourseStore courseStore = new CourseStore();
+            GradeStore gradeStore = new GradeStore();
+
 
             Console.Clear();
             Console.WriteLine("Radera kurs");
@@ -255,16 +257,22 @@ namespace Tiger_YH_Admin.Presenters
 
             Course courseToRemove = courseStore.FindById(courseId);
             List<Course> courseList = courseStore.All().ToList();
+            List<Grade> grades = gradeStore.FindByCourseId(courseToRemove.CourseId).ToList();
 
             bool confirm = UserInput.AskConfirmation($"Vill du radera {courseToRemove.CourseName}?");
 
-            if (confirm)
+            if (confirm && grades.Count == 0  )
             {
                 courseList.Remove(courseToRemove);
                 courseStore = new CourseStore(courseList);
                 courseStore.Save();
 
                 Console.WriteLine("Kursen raderad");
+            }
+            else
+            {
+                Console.WriteLine("Kursen har betygsatta studenter");
+                UserInput.WaitForContinue();
             }
         }
 
