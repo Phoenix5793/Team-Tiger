@@ -26,6 +26,7 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("9. Visa obemannade kurser");
             Console.WriteLine("10. Visa avtalade kurser");
             Console.WriteLine("11. Visa klasslista för en kurs");
+            Console.WriteLine("12. Visa alla betyg för en kurs");
 
             Console.WriteLine();
             Console.Write("Ditt val: ");
@@ -68,7 +69,72 @@ namespace Tiger_YH_Admin.Presenters
                 case "11":
                     ShowStudentsForCourse(user);
                     break;
+                case "12":
+                    ShowGradesForCourse();
+                    break;
             }
+        }
+
+        private static Course SearchForCourse()
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("Tryck enter utan att ange namn för att avbryta.");
+                string input = UserInput.GetInput<string>("Sök kurs-id:");
+
+                if (input == string.Empty)
+                {
+                    return null;
+                }
+
+                var courseStore = new CourseStore();
+                Course course = courseStore.FindById(input);
+
+                if (course == null)
+                {
+                    Console.WriteLine("Det finns ingen kurs med det id:t.");
+                }
+                else
+                {
+                    return course;
+                }
+            }
+        }
+        private static void ShowGradesForCourse()
+        {
+            Course course = SearchForCourse();
+            if (course != null)
+            {
+                PrintCourseGrades(course);
+            }
+        }
+
+        private static void PrintCourseGrades(Course course)
+        {
+            GradeStore gradeStore = new GradeStore();
+            UserStore userStore = new UserStore();
+            List<Grade> grades = gradeStore.FindByCourseId(course.CourseId).ToList();
+
+            Console.Clear();
+            Console.WriteLine(
+                "Student-id".PadRight(12) +
+                "Student".PadRight(40) +
+                "Betyg");
+            Console.WriteLine(new string('-', 60));
+
+            foreach (Grade grade in grades)
+            {
+                User student = userStore.FindById(grade.StudentId);
+
+                Console.WriteLine(
+                    grade.StudentId.PadRight(12) +
+                    student.FullName().PadRight(40) +
+                    grade.Result
+                    );
+            }
+
+            UserInput.WaitForContinue();
         }
 
         private static void ListCourses(IEnumerable<Course> courseList)

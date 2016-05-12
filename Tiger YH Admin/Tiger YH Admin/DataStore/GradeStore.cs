@@ -20,6 +20,11 @@ namespace Tiger_YH_Admin.DataStore
             return DataSet.SingleOrDefault(g => g.GradeId == id);
         }
 
+        public IEnumerable<Grade> FindByCourseId(string id)
+        {
+            return All().Where(g => g.CourseId == id);
+        }
+
         public IEnumerable<Grade> FindGradesForStudent(User student)
         {
             return All().Where(g => g.StudentId == student.UserName);
