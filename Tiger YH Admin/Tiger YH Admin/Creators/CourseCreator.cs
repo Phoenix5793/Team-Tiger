@@ -71,31 +71,12 @@ namespace Tiger_YH_Admin.Creators
                         CourseTeacher = courseTeacher
                     };
 
-
-                    string newStudent;
-                    List<string> studentList = new List<string>();
-                    do
-                    {
-                        newStudent = UserInput.GetInput<string>("Ange student-id för att lägga till student:");
-                        User student = userStore.FindById(newStudent);
-                        bool checkList = studentList.Contains(newStudent);
-
-                        if (student != null && student.HasLevel(UserLevel.Student) && checkList == false)
-                        {
-                            studentList.Add(student.UserName);
-                            Console.WriteLine(student.UserName + " är nu tillagd i kursen");
-                        }
-                        else if(student == null && newStudent.Length > 0)
-                        {
-                            Console.WriteLine("Användaren är inte student");
-                        }
-                    } while (newStudent.Length > 0);
-                    newCourse.SetStudentList(studentList);
-                    Console.WriteLine("Kursen skapad");
                 }
 
                 Course course = courseStore.AddItem(newCourse);
                 courseStore.Save();
+                Console.WriteLine("Kursen skapad");
+                UserInput.WaitForContinue();
                 return course;
 
             } while (courseExists);

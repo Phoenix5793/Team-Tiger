@@ -352,6 +352,7 @@ namespace Tiger_YH_Admin.Presenters
             do
             {
                 CourseStore courseStore = new CourseStore();
+                EducationClassStore classStore = new EducationClassStore();
 
                 Console.Clear();
                 Console.WriteLine("Visa klasslista för kurs");
@@ -371,17 +372,17 @@ namespace Tiger_YH_Admin.Presenters
                 {
                     Console.WriteLine("Finns ingen kurs med det namnet");
                     Console.WriteLine();
-                    continue;
                 }
-
-                if (isTeacher && course.CourseTeacher != user.UserName)
+                else if (isTeacher && course.CourseTeacher != user.UserName)
                 {
                     Console.WriteLine("Du är ej lärare för den kursen.");
                     Console.WriteLine();
                 }
                 else
                 {
-                    List<string> studentNames = course.GetStudentList();
+                    // TODO: skriv extension method
+                    EducationClass klass = classStore.All().Single(c => c.HasCourse(course.CourseId));
+                    List<string> studentNames = klass.GetStudentList();
                     UserManagerPresenter.PrintStudentList(studentNames);
                 }
             } while (true);

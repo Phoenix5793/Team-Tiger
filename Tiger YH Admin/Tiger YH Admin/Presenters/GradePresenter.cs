@@ -35,7 +35,14 @@ namespace Tiger_YH_Admin.Presenters
 
             do
             {
+                Console.WriteLine("Tryck enter för att avbryta");
                 string studentName = UserInput.GetInput<string>("Ange student-id:");
+
+                if (studentName == string.Empty)
+                {
+                    return;
+                }
+
                 student = userStore.FindById(studentName);
 
                 if (student == null)

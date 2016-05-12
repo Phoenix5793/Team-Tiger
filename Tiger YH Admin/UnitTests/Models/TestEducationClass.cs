@@ -260,8 +260,8 @@ namespace UnitTests.Models
             User input = _testAddUser;
             bool expected = true;
 
-            _testCourse.AddStudent(input);
-            bool actual = _testCourse.HasStudent(input);
+            _testClass.AddStudent(input);
+            bool actual = _testClass.HasStudent(input);
 
             Assert.AreEqual(expected, actual);
         }
@@ -273,9 +273,9 @@ namespace UnitTests.Models
             bool expectedResult = true;
             bool expectedFound = false;
 
-            _testCourse.AddStudent(input);
-            bool actualResult = _testCourse.RemoveStudent(input);
-            bool actualFound = _testCourse.HasStudent(input);
+            _testClass.AddStudent(input);
+            bool actualResult = _testClass.RemoveStudent(input);
+            bool actualFound = _testClass.HasStudent(input);
 
             Assert.AreEqual(expectedResult, actualResult);
             Assert.AreEqual(expectedFound, actualFound);
