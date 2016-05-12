@@ -16,14 +16,14 @@ namespace Tiger_YH_Admin.Creators
                 Console.WriteLine("Skapa ny användare");
                 Console.WriteLine();
                 Console.WriteLine("Lämna namnet tomt för att avbryta");
-                string input = UserInput.GetInput<string>("Användarnamn:");
+                string userName = UserInput.GetInput<string>("Användarnamn:");
 
-                if (input == string.Empty)
+                if (userName == string.Empty)
                 {
                     break;
                 }
 
-                existingUser = userStore.FindById(input);
+                existingUser = userStore.FindById(userName);
 
                 if (existingUser == null && keepLooping)
                 {
@@ -41,6 +41,7 @@ namespace Tiger_YH_Admin.Creators
                     string firstName = UserInput.GetInput<string>("Förnamn:");
                     string surname = UserInput.GetInput<string>("Efternamn:");
 
+                    string input;
                     do
                     {
                         Console.Clear();
@@ -89,7 +90,7 @@ namespace Tiger_YH_Admin.Creators
 
                     User newUser = new User
                     {
-                        UserName = input,
+                        UserName = userName,
                         Password = password,
                         UserLevel = (UserLevel)chosenLevel,
                         FirstName = firstName,
