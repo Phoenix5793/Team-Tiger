@@ -99,8 +99,7 @@ namespace Tiger_YH_Admin.Creators
                         PhoneNumber = phoneNumber
                     };
 
-                    //TODO: Fråga om korrekt input
-                    Console.WriteLine($"Andvändarnamn: {newUser.UserName}");
+                    Console.WriteLine($"Användarnamn: {newUser.UserName}");
                     Console.WriteLine($"Lösenord: {newUser.Password}");
                     Console.WriteLine($"Namn: {newUser.FullName()}");
                     Console.WriteLine($"Personnummer: {newUser.SSN}");
