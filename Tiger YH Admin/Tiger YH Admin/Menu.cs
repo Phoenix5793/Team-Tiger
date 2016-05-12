@@ -183,12 +183,30 @@ namespace Tiger_YH_Admin
                 Environment.Exit(0);
             }
 
-            //TODO: Göm lösenordet bättre
             Console.Write("Lösenord: ");
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.BackgroundColor = ConsoleColor.Black;
-            string password = UserInput.GetInput<string>();
-            Console.ResetColor();
+
+            string password = string.Empty;
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+
+            while (keyInfo.Key != ConsoleKey.Enter)
+            {
+                if (keyInfo.Key != ConsoleKey.Backspace)
+                {
+                    password += keyInfo.KeyChar;
+                    Console.Write('*');
+                }
+                else if (!string.IsNullOrEmpty(password))
+                {
+                    password = password.Substring(0, password.Length - 1);
+                    int cursorPos = Console.CursorLeft;
+                    Console.SetCursorPosition(cursorPos - 1, Console.CursorTop);
+                    Console.Write(" ");
+                    Console.SetCursorPosition(cursorPos - 1, Console.CursorTop);
+                }
+
+                keyInfo = Console.ReadKey(true);
+            }
+
 
             return new string[] {userName, password};
         }

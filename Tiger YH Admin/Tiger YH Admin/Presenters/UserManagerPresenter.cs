@@ -185,6 +185,8 @@ namespace Tiger_YH_Admin.Presenters
                 }
                 else
                 {
+                    Console.WriteLine();
+                    Console.WriteLine();
                     Console.WriteLine("Fel användarnamn eller lösenord");
                     UserInput.WaitForContinue();
                 }
