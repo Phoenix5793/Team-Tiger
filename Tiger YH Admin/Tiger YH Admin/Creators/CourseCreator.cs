@@ -80,7 +80,7 @@ namespace Tiger_YH_Admin.Creators
                         User student = userStore.FindById(newStudent);
                         bool checkList = studentList.Contains(newStudent);
 
-                        if (student != null && student.UserLevel == UserLevel.Student && checkList == false)
+                        if (student != null && student.HasLevel(UserLevel.Student) && checkList == false)
                         {
                             studentList.Add(student.UserName);
                             Console.WriteLine(student.UserName + " är nu tillagd i kursen");

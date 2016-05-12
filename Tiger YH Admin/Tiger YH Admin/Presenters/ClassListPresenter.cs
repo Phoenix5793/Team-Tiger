@@ -183,7 +183,7 @@ namespace Tiger_YH_Admin.Presenters
             {
                 Console.WriteLine("Finns ingen student med det namnet");
             }
-            else if (studentUser.UserLevel != UserLevel.Student)
+            else if (!studentUser.HasLevel(UserLevel.Student))
             {
                 Console.WriteLine("Användaren är inte en student");
             }
@@ -191,7 +191,7 @@ namespace Tiger_YH_Admin.Presenters
             {
                 Console.WriteLine("Studenten finns redan i klassen");
             }
-            else if (studentUser.UserLevel == UserLevel.Student)
+            else if (studentUser.HasLevel(UserLevel.Student))
             {
                 Console.Clear();
                 UserManagerPresenter.PrintUserInfo(studentUser);

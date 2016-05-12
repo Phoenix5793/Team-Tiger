@@ -69,11 +69,10 @@ namespace Tiger_YH_Admin.Creators
                     List<string> studentList = new List<string>();
                     do
                     {
-                        //TODO: Bara kunna lägga till studenter
                         Console.WriteLine("Lägg till student-id: ");
                         newStudent = UserInput.GetInput<string>();
                         User student = userStore.FindById(newStudent);
-                        if (student != null && student.UserLevel == UserLevel.Student)
+                        if (student != null && student.HasLevel(UserLevel.Student))
                         {
                             studentList.Add(student.UserName);
                         }
