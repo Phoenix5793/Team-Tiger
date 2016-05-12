@@ -100,7 +100,7 @@ namespace Tiger_YH_Admin.Presenters
             UserInput.WaitForContinue();
         }
 
-        public static void ManageStudents()
+        public static void ManageStudents(User user)
         {
             Console.Clear();
 
@@ -125,7 +125,7 @@ namespace Tiger_YH_Admin.Presenters
                     Console.WriteLine("Ändrar studentinformation"); //TODO: Fixa metod
                     break;
                 case "3":
-                    Console.WriteLine("Sätt betyg på student"); //TODO: Fixa metod
+                    GradePresenter.GradeStudent(user);
                     break;
                 case "4":
                     ClassListPresenter.AddStudentToClass();

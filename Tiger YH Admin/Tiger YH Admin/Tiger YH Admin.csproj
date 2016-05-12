@@ -70,6 +70,7 @@
     <Compile Include="Presenters\ClassListPresenter.cs" />
     <Compile Include="Presenters\CoursePresenter.cs" />
     <Compile Include="Presenters\EducationSupervisorPresenter.cs" />
+    <Compile Include="Presenters\GradePresenter.cs" />
     <Compile Include="Presenters\UserManagerPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -150,5 +150,17 @@ namespace UnitTests.Models
             CollectionAssert.AreEqual(expectedCourseNames, actualCourseNames);
             CollectionAssert.AreEqual(expectedTeachers, actualTeachers);
         }
+
+        [TestMethod]
+        public void FindByTeacherId__Finds_Courses()
+        {
+            int expectedCourseCount = 3;
+            string inputTeacherName = "pontus";
+
+            List<Course> actualCourses = testCourseStore.FindByTeacherId(inputTeacherName).ToList();
+            int actualCourseCount = actualCourses.Count;
+
+            Assert.AreEqual(expectedCourseCount, actualCourseCount);
+        }
     }
 }

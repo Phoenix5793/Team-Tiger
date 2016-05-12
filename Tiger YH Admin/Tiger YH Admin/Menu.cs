@@ -97,7 +97,6 @@ namespace Tiger_YH_Admin
                 Console.Write("Ditt val: ");
                 string menuChoice = UserInput.GetInput<string>();
 
-                // TODO: Implementera
                 switch (menuChoice)
                 {
                     case "0":
@@ -110,7 +109,7 @@ namespace Tiger_YH_Admin
                         CoursePresenter.ShowStudentsForCourse(user);
                         break;
                     case "3":
-                        Console.WriteLine("Ej implementerad");
+                        GradePresenter.GradeStudent(user);
                         break;
                 }
             } while (!logout);
@@ -229,7 +228,7 @@ namespace Tiger_YH_Admin
                         EducationSupervisorPresenter.ManageClassMenu(educationSupervisor);
                         break;
                     case "4":
-                        UserManagerPresenter.ManageStudents();
+                        UserManagerPresenter.ManageStudents(educationSupervisor);
                         break;
                     case "5":
                         CoursePresenter.CourseManagementMenu(educationSupervisor);
