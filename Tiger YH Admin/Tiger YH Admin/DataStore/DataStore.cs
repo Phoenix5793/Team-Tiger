@@ -63,7 +63,6 @@ namespace Tiger_YH_Admin.DataStore
             var itemList = DataSet.ToList();
             itemList.Add(item);
             DataSet = itemList;
-            Save();
 
             return item;
         }

@@ -94,22 +94,12 @@ namespace Tiger_YH_Admin.Creators
                     Console.WriteLine("Kursen skapad");
                 }
 
-                return courseStore.AddItem(newCourse);
+                Course course = courseStore.AddItem(newCourse);
+                courseStore.Save();
+                return course;
 
             } while (courseExists);
-
-
-
-
-
-
-
-
-
-
         }
     }
-
-
 
 }

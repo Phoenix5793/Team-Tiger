@@ -95,7 +95,9 @@ namespace Tiger_YH_Admin.Creators
                 }
             } while (keepLooping);
 
-            return dataStore.AddItem(newClass);
+            EducationClass klass = dataStore.AddItem(newClass);
+            dataStore.Save();
+            return klass;
         }
     }
 }

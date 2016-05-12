@@ -231,6 +231,7 @@ namespace Tiger_YH_Admin.Presenters
             {
                 courseStore.Remove(existingCourse.CourseId);
                 courseStore.AddItem(newCourse);
+                courseStore.Save();
                 Console.WriteLine("Ändringar sparade.");
             }
         }

@@ -111,6 +111,7 @@ namespace Tiger_YH_Admin.Creators
                     if (confirm)
                     {
                         userStore.AddItem(newUser);
+                        userStore.Save();
 
                         Console.WriteLine($"Ny användare {newUser.UserName} skapad");
                         UserInput.WaitForContinue();
