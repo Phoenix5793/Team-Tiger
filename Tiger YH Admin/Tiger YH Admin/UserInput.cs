@@ -89,5 +89,9 @@ namespace Tiger_YH_Admin
                 key = Console.ReadKey().Key;
             } while (key != ConsoleKey.Enter);
         }
+        public static T ToEnum<T>(this string value, bool ignoreCase = true)
+        {
+            return (T)Enum.Parse(typeof(T), value, ignoreCase);
+        }
     }
 }
