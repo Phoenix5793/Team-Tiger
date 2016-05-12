@@ -215,7 +215,7 @@ namespace Tiger_YH_Admin.Presenters
             else if (studentUser.UserLevel == UserLevel.Student)
             {
                 Console.Clear();
-                UserManagerPresenter.ShowUserInfo(studentUser);
+                UserManagerPresenter.PrintUserInfo(studentUser);
 
                 bool accept = UserInput.AskConfirmation("Vill du lägga till studenten till klassen?");
                 if (accept)

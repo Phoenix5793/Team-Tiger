@@ -8,6 +8,8 @@ namespace Tiger_YH_Admin.Presenters
 {
     static class UserManagerPresenter
     {
+        private static User student;
+
         public static void Run()
         {
             while (true)
@@ -25,7 +27,7 @@ namespace Tiger_YH_Admin.Presenters
                     case "0":
                         return;
                     case "1":
-                        SearchForUser();
+                        ShowUserAccount();
                         break;
                     case "2":
                         ListAllUsers();
@@ -34,7 +36,7 @@ namespace Tiger_YH_Admin.Presenters
             }
         }
 
-        public static void SearchForUser()
+        private static User SearchForUser()
         {
             while (true)
             {
@@ -44,11 +46,11 @@ namespace Tiger_YH_Admin.Presenters
 
                 if (input == string.Empty)
                 {
-                    return;
+                    return null;
                 }
 
                 var userStore = new UserStore();
-                var user = userStore.FindById(input);
+                User user = userStore.FindById(input);
 
                 if (user == null)
                 {
@@ -56,12 +58,30 @@ namespace Tiger_YH_Admin.Presenters
                 }
                 else
                 {
-                    ShowUserInfo(user);
+                    return user;
                 }
             }
         }
 
-        public static void ShowUserInfo(User user)
+        private static void ShowStudentInformation()
+        {
+            student = SearchForUser();
+            if (student != null)
+            {
+                PrintStudentInfo(student);
+            }
+        }
+
+        private static void ShowUserAccount()
+        {
+            User user = SearchForUser();
+            if (user != null)
+            {
+                PrintUserInfo(user);
+            }
+        }
+
+        public static void PrintUserInfo(User user)
         {
             Console.Clear();
             Console.WriteLine("Visar användare");
@@ -72,6 +92,11 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine($"Telefonnummer: {user.PhoneNumber}");
 
             UserInput.WaitForContinue();
+        }
+
+        private static void PrintStudentInfo(User student)
+        {
+            GradePresenter.ShowStudentGrades(student);
         }
 
         private static void ListAllUsers()
@@ -120,7 +145,7 @@ namespace Tiger_YH_Admin.Presenters
             switch (menuChoice)
             {
                 case "1":
-                    SearchForUser();
+                    ShowStudentInformation();
                     break;
                 case "2":
                     Console.WriteLine("Ändrar studentinformation"); //TODO: Fixa metod
@@ -133,6 +158,9 @@ namespace Tiger_YH_Admin.Presenters
                     break;
                 case "5":
                     ClassListPresenter.RemoveStudentFromClass();
+                    break;
+                case "6":
+                    ShowStudentInformation();
                     break;
                 default:
                     break;
@@ -189,5 +217,6 @@ namespace Tiger_YH_Admin.Presenters
 
             UserInput.WaitForContinue();
         }
+
     }
 }
