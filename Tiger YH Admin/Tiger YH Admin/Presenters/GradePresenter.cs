@@ -111,5 +111,37 @@ namespace Tiger_YH_Admin.Presenters
                 gradeStore.Save();
             }
         }
+
+        public static void ShowStudentGrades(User student)
+        {
+            GradeStore gradeStore = new GradeStore();
+
+            List<Grade> grades = gradeStore.FindGradesForStudent(student).ToList();
+            PrintGrades(grades);
+        }
+
+        private static void PrintGrades(List<Grade> grades)
+        {
+            CourseStore courseStore = new CourseStore();
+
+            Console.Clear();
+            Console.WriteLine(
+                "Kurs-id".PadRight(10) +
+                "Kursnamn".PadRight(40) +
+                "Betyg".PadRight(10)
+                );
+            Console.WriteLine(new string('-', 60));
+
+            foreach (Grade grade in grades)
+            {
+                Course course = courseStore.FindById(grade.CourseId);
+                Console.WriteLine(
+                    course.CourseId.PadRight(10) +
+                    course.CourseName.PadRight(40) +
+                    grade.Result);
+            }
+
+            UserInput.WaitForContinue();
+        }
     }
 }

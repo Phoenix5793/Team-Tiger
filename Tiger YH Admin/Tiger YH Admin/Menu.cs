@@ -63,7 +63,7 @@ namespace Tiger_YH_Admin
                         logout = LogoutConfirmation();
                         break;
                     case "1":
-                        Console.WriteLine("Ej implementerad");
+                        GradePresenter.ShowStudentGrades(user);
                         break;
                     case "2":
                         ClassListPresenter.ShowClassForStudent(user);

@@ -111,6 +111,7 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("3. Sätt betyg");
             Console.WriteLine("4. Lägg till student");
             Console.WriteLine("5. Ta bort student");
+            Console.WriteLine("6. Visa studieresultat för en student");
 
             Console.WriteLine();
             Console.Write("Ditt val: ");
