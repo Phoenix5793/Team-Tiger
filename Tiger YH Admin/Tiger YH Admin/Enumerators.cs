@@ -14,7 +14,7 @@ namespace Tiger_YH_Admin
         Student
     }
 
-    enum Grade
+    public enum GradeLevel
     {
         IG,
         G,
