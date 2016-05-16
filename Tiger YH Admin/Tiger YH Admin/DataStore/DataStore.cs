@@ -48,7 +48,7 @@ namespace Tiger_YH_Admin.DataStore
                 File.Create(_fileName);
             }
 
-            var records = csv.ReadFile(_fileName);
+            T[] records = csv.ReadFile(_fileName);
             return records;
         }
 
