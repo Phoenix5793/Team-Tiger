@@ -139,7 +139,6 @@ namespace Tiger_YH_Admin.Presenters
 
         private static void ListCourses(IEnumerable<Course> courseList)
         {
-            Console.Clear();
             Console.WriteLine("Kurs-id".PadRight(10) +
                               "Kursnamn".PadRight(40) +
                               "Startdatum".PadRight(12) +
@@ -166,6 +165,10 @@ namespace Tiger_YH_Admin.Presenters
         {
             CourseStore courseStore = new CourseStore();
             List<Course> courseList = courseStore.All().ToList();
+
+            Console.Clear();
+            Console.WriteLine("Lista över alla kurser");
+            Console.WriteLine();
             ListCourses(courseList);
         }
 
@@ -370,6 +373,10 @@ namespace Tiger_YH_Admin.Presenters
             var courseStore = new CourseStore();
             List<Course> futureCourses = courseStore.GetFutureCourses().ToList();
 
+            Console.Clear();
+            Console.WriteLine("Lista över framtida kurser");
+            Console.WriteLine();
+
             ListCourses(futureCourses);
         }
 
@@ -377,6 +384,10 @@ namespace Tiger_YH_Admin.Presenters
         {
             var courseStore = new CourseStore();
             List<Course> currentCourses = courseStore.GetCurrentCourses().ToList();
+
+            Console.Clear();
+            Console.WriteLine("Lista över pågående kurser");
+            Console.WriteLine();
 
             ListCourses(currentCourses);
         }
@@ -386,6 +397,10 @@ namespace Tiger_YH_Admin.Presenters
             var courseStore = new CourseStore();
             List<Course> finishedCourses = courseStore.GetFinishedCourses().ToList();
 
+            Console.Clear();
+            Console.WriteLine("Lista över avslutade kurser");
+            Console.WriteLine();
+
             ListCourses(finishedCourses);
         }
 
@@ -394,6 +409,10 @@ namespace Tiger_YH_Admin.Presenters
             var courseStore = new CourseStore();
             List<Course> unmannedCourses = courseStore.GetUnmannedCourses().ToList();
 
+            Console.Clear();
+            Console.WriteLine("Lista över obemannade kurser");
+            Console.WriteLine();
+
             ListCourses(unmannedCourses);
         }
 
@@ -401,6 +420,10 @@ namespace Tiger_YH_Admin.Presenters
         {
             var courseStore = new CourseStore();
             List<Course> unmannedCourses = courseStore.GetAllAgreedCourses().ToList();
+
+            Console.Clear();
+            Console.WriteLine("Lista över avtalade kurser");
+            Console.WriteLine();
 
             ListCourses(unmannedCourses);
         }
