@@ -172,6 +172,7 @@ namespace Tiger_YH_Admin.Presenters
         private static void EditCourse()
         {
             CourseStore courseStore = new CourseStore();
+            UserStore userStore = new UserStore();
 
             Console.Clear();
             Console.WriteLine("Redigera kurs");
@@ -220,9 +221,9 @@ namespace Tiger_YH_Admin.Presenters
             };
 
             Console.WriteLine("Ändra från:");
-            PrintCourseInfo(courseToEdit);
+            PrintCourseInfo(courseToEdit, userStore);
             Console.WriteLine("Ändras till:");
-            PrintCourseInfo(newCourse);
+            PrintCourseInfo(newCourse, userStore);
 
             Console.WriteLine();
             bool confirm = UserInput.AskConfirmation("Vill du spara ändringarna?");
@@ -281,20 +282,23 @@ namespace Tiger_YH_Admin.Presenters
             throw new NotImplementedException();
         }
 
-        private static void PrintCourseInfo(Course course)
+        private static void PrintCourseInfo(Course course, UserStore userStore)
         {
+            User teacher = userStore.FindById(course.CourseTeacher);
+
             Console.WriteLine(
                 course.CourseId.PadRight(10) +
                 course.CourseName.PadRight(40) +
                 course.StartDate.ToShortDateString().PadRight(12) +
                 course.EndDate.ToShortDateString().PadRight(12) +
-                course.CourseTeacher
+                teacher.FullName()
                 );
         }
 
         private static void PrintCourseList(List<string> courses)
         {
             CourseStore courseStore = new CourseStore();
+            UserStore userStore = new UserStore();
 
             Console.Clear();
             Console.WriteLine(
@@ -309,7 +313,7 @@ namespace Tiger_YH_Admin.Presenters
             foreach (string c in courses)
             {
                 Course course = courseStore.FindById(c);
-                PrintCourseInfo(course);
+                PrintCourseInfo(course, userStore);
             }
         }
 
