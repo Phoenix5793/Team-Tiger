@@ -10,14 +10,14 @@ namespace Tiger_YH_Admin.Presenters
     {
         public static void GradeStudent(User user)
         {
-            UserStore userStore = new UserStore();
-            EducationClassStore educationClassStore = new EducationClassStore();
-            CourseStore courseStore = new CourseStore();
-            GradeStore gradeStore = new GradeStore();
+            var userStore = new UserStore();
+            var educationClassStore = new EducationClassStore();
+            var courseStore = new CourseStore();
+            var gradeStore = new GradeStore();
+
             List<string> courseList;
             Course course;
             User student;
-            GradeLevel gradeLevel;
 
             Console.Clear();
             Console.WriteLine("Betygsätt student");
@@ -101,7 +101,7 @@ namespace Tiger_YH_Admin.Presenters
                 }
             } while (loop);
 
-            gradeLevel = grade.ToEnum<GradeLevel>();
+            var gradeLevel = grade.ToEnum<GradeLevel>();
 
             Console.WriteLine($"Student: {student.FullName()} ({student.UserName})");
             Console.WriteLine($"Kurs: {course.CourseName} ({course.CourseId})");
@@ -117,15 +117,15 @@ namespace Tiger_YH_Admin.Presenters
 
         public static void ShowStudentGrades(User student)
         {
-            GradeStore gradeStore = new GradeStore();
+            var gradeStore = new GradeStore();
 
             List<Grade> grades = gradeStore.FindGradesForStudent(student).ToList();
             PrintGrades(grades);
         }
 
-        private static void PrintGrades(List<Grade> grades)
+        private static void PrintGrades(IEnumerable<Grade> grades)
         {
-            CourseStore courseStore = new CourseStore();
+            var courseStore = new CourseStore();
 
             Console.Clear();
             Console.WriteLine(

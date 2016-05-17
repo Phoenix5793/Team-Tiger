@@ -23,6 +23,11 @@ namespace Tiger_YH_Admin.DataStore
         {   
             return All().Single(e => e.HasStudent(id));
         }
+
+        public EducationClass FindByCourseId(string id)
+        {
+            return All().SingleOrDefault(e => e.HasCourse(id));
+        }
            
         public IEnumerable<EducationClass> GetClassesForSupervisor(User supervisor)
         {

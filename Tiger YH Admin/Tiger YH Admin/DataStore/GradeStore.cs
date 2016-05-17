@@ -40,7 +40,6 @@ namespace Tiger_YH_Admin.DataStore
             };
 
             Grade existingGrade = FindById(newGrade.GradeId);
-            List<Grade> allGrades;
 
             if (existingGrade != null)
             {

@@ -463,8 +463,7 @@ namespace Tiger_YH_Admin.Presenters
                 }
                 else
                 {
-                    // TODO: skriv extension method
-                    EducationClass klass = classStore.All().Single(c => c.HasCourse(course.CourseId));
+                    EducationClass klass = classStore.FindByCourseId(course.CourseId);
                     List<string> studentNames = klass.GetStudentList();
                     UserManagerPresenter.PrintStudentList(studentNames);
                 }
