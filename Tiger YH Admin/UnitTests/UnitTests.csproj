@@ -66,6 +66,7 @@
     <Compile Include="Models\TestGrade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestValidation.cs" />
+    <Compile Include="TestHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tiger YH Admin\Tiger YH Admin.csproj">

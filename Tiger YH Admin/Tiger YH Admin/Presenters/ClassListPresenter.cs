@@ -100,7 +100,7 @@ namespace Tiger_YH_Admin.Presenters
                     Console.Clear();
                     Console.WriteLine(
                         "Student-id".PadRight(12) +
-                        "Namn".PadRight(25) +
+                        "Namn".PadRight(40) +
                         "Telefon".PadRight(15)
                         );
                     Console.WriteLine(new string('-', 60));
@@ -112,7 +112,7 @@ namespace Tiger_YH_Admin.Presenters
 
                         Console.WriteLine(
                             student.UserName.PadRight(12) +
-                            student.FullName().PadRight(25) +
+                            student.FullName().Truncate(39).PadRight(40) +
                             student.PhoneNumber.PadRight(15)
                             );
                     }

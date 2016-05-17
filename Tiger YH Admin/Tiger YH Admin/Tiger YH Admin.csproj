@@ -51,6 +51,7 @@
     <Compile Include="DataStore\GradeStore.cs" />
     <Compile Include="DataStore\UserStoreExtensions.cs" />
     <Compile Include="Enumerators.cs" />
+    <Compile Include="Helpers.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="DataStore\CourseStoreExtensions.cs" />
     <Compile Include="Creators\CourseCreator.cs" />

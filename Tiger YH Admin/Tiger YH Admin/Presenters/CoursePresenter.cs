@@ -151,7 +151,7 @@ namespace Tiger_YH_Admin.Presenters
             {
                 Console.WriteLine(
                     course.CourseId.PadRight(10) +
-                    course.CourseName.PadRight(40) +
+                    course.CourseName.Truncate(39).PadRight(40) +
                     course.StartDate.ToShortDateString().PadRight(12) +
                     course.EndDate.ToShortDateString().PadRight(12) +
                     course.CourseTeacher
@@ -339,7 +339,7 @@ namespace Tiger_YH_Admin.Presenters
 
             Console.WriteLine(
                 course.CourseId.PadRight(10) +
-                course.CourseName.PadRight(40) +
+                course.CourseName.Truncate(40).PadRight(40) +
                 course.StartDate.ToShortDateString().PadRight(12) +
                 course.EndDate.ToShortDateString().PadRight(12) +
                 teacher.FullName()
