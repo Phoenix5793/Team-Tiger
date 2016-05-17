@@ -68,6 +68,7 @@
     <Compile Include="DataStore\UserStore.cs" />
     <Compile Include="DataStore\EducationClassStore.cs" />
     <Compile Include="Presenters\AccountPresenter.cs" />
+    <Compile Include="Presenters\AdminPresenter.cs" />
     <Compile Include="Presenters\ClassListPresenter.cs" />
     <Compile Include="Presenters\CoursePresenter.cs" />
     <Compile Include="Presenters\EducationSupervisorPresenter.cs" />

@@ -8,59 +8,57 @@ using Tiger_YH_Admin.Models;
 
 namespace Tiger_YH_Admin.Presenters
 {
-    class AccountPresenter
+    static class AccountPresenter
     {
-        public static void ChangePassword(User user)
+        public static void ChangePassword(User user, bool requireOldPassword = true)
         {
             UserStore userStore = new UserStore();
 
-            bool loop = true;
-            do
-            {
-                Console.Clear();
-                Console.WriteLine("Ändra lösenord");
-                Console.WriteLine();
+            Console.Clear();
+            Console.WriteLine("Ändra lösenord");
+            Console.WriteLine();
 
-                string oldPassword = UserInput.GetInput<string>("Ange nuvarande lösenord:");
+            string oldPassword = string.Empty;
+            if (requireOldPassword)
+            {
+                oldPassword = UserInput.GetInput<string>("Ange nuvarande lösenord:");
                 if (oldPassword == string.Empty)
                 {
-                    break;
+                    return;
                 }
+            }
 
-                if (user.Password == oldPassword)
+            if (user.Password == oldPassword || ! requireOldPassword)
+            {
+                string newPassword;
+                bool isValid;
+                do
                 {
-                    
-                    string newPassword;
-                    bool isValid;
-                    do
-                    {                        
-                        newPassword = UserInput.GetInput<string>("Ange nytt lösenord:");
-                        isValid = newPassword.Length >= 3;
-                        if (!isValid)
-                        {
-                            Console.WriteLine("Du måste ange ett lösenord som är minst 3 tecken");
-                        }
-                    } while (!isValid);                   
-
-                    List<User> users = userStore.All().ToList();
-
-                    foreach (User u in users)
+                    newPassword = UserInput.GetInput<string>("Ange nytt lösenord:");
+                    isValid = newPassword.Length >= 3;
+                    if (!isValid)
                     {
-                        if (u.UserName == user.UserName)
-                        {
-                            u.Password = newPassword;
-                        }
+                        Console.WriteLine("Du måste ange ett lösenord som är minst 3 tecken");
                     }
-                    userStore.Save();
-                    Console.WriteLine("Lösenord ändrat, det nya lösenordet börjar gälla vid nästa inloggning");
-                    UserInput.WaitForContinue();
-                    loop = false;
-                }
-                else
+                } while (!isValid);
+
+                List<User> users = userStore.All().ToList();
+
+                foreach (User u in users)
                 {
-                    Console.WriteLine("Fel lösenord");
+                    if (u.UserName == user.UserName)
+                    {
+                        u.Password = newPassword;
+                    }
                 }
-            } while (loop);
+                userStore.Save();
+                Console.WriteLine("Lösenord ändrat, det nya lösenordet börjar gälla vid nästa inloggning");
+                UserInput.WaitForContinue();
+            }
+            else if (requireOldPassword)
+            {
+                Console.WriteLine("Fel lösenord");
+            }
         }
     }
 }

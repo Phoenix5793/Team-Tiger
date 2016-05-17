@@ -155,8 +155,7 @@ namespace Tiger_YH_Admin
                         UserManagerPresenter.ChangeUser(UserLevel.Admin);
                         break;
                     case "3":
-                        Console.WriteLine("Ej implementerad");
-                        UserInput.WaitForContinue();
+                        AdminPresenter.ChangeUserPassword();
                         break;
                     case "4":
                         var ds = new EducationClassStore();
