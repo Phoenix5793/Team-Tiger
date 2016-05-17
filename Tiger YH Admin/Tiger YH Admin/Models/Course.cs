@@ -16,7 +16,5 @@ namespace Tiger_YH_Admin.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string CourseTeacher { get; set; }
-        private string StudentString { get; set; } = string.Empty;
-
     }
 }
