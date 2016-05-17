@@ -93,5 +93,35 @@ namespace Tiger_YH_Admin
         {
             return (T)Enum.Parse(typeof(T), value, ignoreCase);
         }
+
+        public static string GetEditableField(string description, string fieldName)
+        {
+            string input = fieldName;
+            Console.Write($"{description}: {fieldName}");
+
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+
+            while (keyInfo.Key != ConsoleKey.Enter)
+            {
+                if (keyInfo.Key != ConsoleKey.Backspace)
+                {
+                    input += keyInfo.KeyChar;
+                    Console.Write(keyInfo.KeyChar);
+                }
+                else if (!string.IsNullOrEmpty(input))
+                {
+                    input = input.Substring(0, input.Length - 1);
+                    int cursorPos = Console.CursorLeft;
+                    Console.SetCursorPosition(cursorPos - 1, Console.CursorTop);
+                    Console.Write(" ");
+                    Console.SetCursorPosition(cursorPos - 1, Console.CursorTop);
+                }
+
+                keyInfo = Console.ReadKey(true);
+            }
+
+            Console.WriteLine();
+            return input;
+        }
     }
 }

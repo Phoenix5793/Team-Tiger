@@ -7,7 +7,7 @@ namespace Tiger_YH_Admin.Creators
 {
     class EducationClassCreator : ICreator<EducationClass>
     {
-        public EducationClass Create(IDataStore<EducationClass> dataStore)
+        public EducationClass Create(IDataStore<EducationClass> dataStore, EducationClass existingClass = null)
         {
             EducationClass newClass = new EducationClass();
             UserStore userStore = new UserStore();
@@ -19,7 +19,8 @@ namespace Tiger_YH_Admin.Creators
                 Console.WriteLine("Skapa ny klass");
                 Console.WriteLine();
                 string classId = UserInput.GetInput<string>("Klass-id:");
-                EducationClass existingClass = dataStore.FindById(classId);
+                // TODO: implementera uppdatering
+                existingClass = dataStore.FindById(classId);
 
                 if (existingClass != null && keepLooping)
                 {

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Tiger_YH_Admin.DataStore;
 using Tiger_YH_Admin.Models;
 
@@ -6,26 +8,55 @@ namespace Tiger_YH_Admin.Creators
 {
     class UserCreator : ICreator<User>
     {
-        public User Create(IDataStore<User> userStore)
+        public User Create(IDataStore<User> userStore, User existingUser = null)
         {
-            User existingUser = null;
+            string oldUserName = String.Empty;
+
             bool keepLooping = true;
             do
             {
                 Console.Clear();
-                Console.WriteLine("Skapa ny användare");
-                Console.WriteLine();
-                Console.WriteLine("Lämna namnet tomt för att avbryta");
-                string userName = UserInput.GetInput<string>("Användarnamn:");
 
-                if (userName == string.Empty)
+                if (existingUser == null)
                 {
-                    break;
+                    Console.WriteLine("Skapa ny användare");
+                    existingUser = new User();
+                    
+                }
+                else
+                {
+                    Console.WriteLine($"Redigerar {existingUser.FullName()}");
+                    oldUserName = existingUser.UserName;
                 }
 
-                existingUser = userStore.FindById(userName);
+                Console.WriteLine();
 
-                if (existingUser == null && keepLooping)
+                string userName;
+                bool loopName = false;
+                do
+                {
+                    Console.WriteLine("Lämna namnet tomt för att avbryta");
+                    userName = UserInput.GetEditableField("Användarnamn", existingUser.UserName);
+
+                    User checkUser = userStore.FindById(userName);
+                    if (existingUser.UserName == userName)
+                    {
+                        
+                    }
+                    if (checkUser != null && existingUser.UserName != userName)
+                    {
+                        Console.WriteLine("Användarnamnet är upptaget");
+                        UserInput.WaitForContinue();
+                        loopName = true;
+                    }
+                    else if (userName == string.Empty)
+                    {
+                        break;
+                    }
+
+                } while (loopName);
+
+                if (keepLooping)
                 {
                     Console.Write("Lösenord: ");
                     string password = UserInput.GetInput<string>();
@@ -38,15 +69,15 @@ namespace Tiger_YH_Admin.Creators
                     int chosenLevel = UserInput.GetInput<int>();
                     bool isValid = false;
                     string ssn = string.Empty;
-                    string firstName = UserInput.GetInput<string>("Förnamn:");
-                    string surname = UserInput.GetInput<string>("Efternamn:");
+                    string firstName = UserInput.GetEditableField("Förnamn", existingUser.FirstName);
+                    string surname = UserInput.GetEditableField("Efternamn", existingUser.Surname);
 
                     string input;
                     do
                     {
                         Console.Clear();
                         Console.WriteLine("Ange enligt följande: yymmddxxxx");
-                        input = UserInput.GetInput<string>("Personnummer:");
+                        input = UserInput.GetEditableField("Personnummer", existingUser.SSN);
                         if (input.Length != 10)
                         {
                             Console.WriteLine("Personnummret måste vara 10 tecken");
@@ -69,7 +100,7 @@ namespace Tiger_YH_Admin.Creators
                     {
                         Console.Clear();
                         Console.WriteLine("Telefonnummret måste vara 10 siffror långt");
-                        phoneNumber = UserInput.GetInput<string>("Telefonnummer:");
+                        phoneNumber = UserInput.GetEditableField("Telefonnummer", existingUser.PhoneNumber);
 
                         if (phoneNumber.Length != 10)
                         {
@@ -88,7 +119,7 @@ namespace Tiger_YH_Admin.Creators
 
 
 
-                    User newUser = new User
+                    existingUser = new User
                     {
                         UserName = userName,
                         Password = password,
@@ -99,31 +130,32 @@ namespace Tiger_YH_Admin.Creators
                         PhoneNumber = phoneNumber
                     };
 
-                    Console.WriteLine($"Användarnamn: {newUser.UserName}");
-                    Console.WriteLine($"Lösenord: {newUser.Password}");
-                    Console.WriteLine($"Namn: {newUser.FullName()}");
-                    Console.WriteLine($"Personnummer: {newUser.SSN}");
-                    Console.WriteLine($"Telefonnummer: {newUser.PhoneNumber}");
-                    Console.WriteLine($"Användarnivå: {newUser.UserLevel}");
+                    Console.WriteLine($"Användarnamn: {existingUser.UserName}");
+                    Console.WriteLine($"Lösenord: {existingUser.Password}");
+                    Console.WriteLine($"Namn: {existingUser.FullName()}");
+                    Console.WriteLine($"Personnummer: {existingUser.SSN}");
+                    Console.WriteLine($"Telefonnummer: {existingUser.PhoneNumber}");
+                    Console.WriteLine($"Användarnivå: {existingUser.UserLevel}");
 
                     bool confirm = UserInput.AskConfirmation("Vill du spara användaren?");
 
                     if (confirm)
                     {
-                        userStore.AddItem(newUser);
+                        if (oldUserName != string.Empty)
+                        {
+                            List<User> userList = userStore.All().Where(u => u.UserName != oldUserName).ToList();
+                            userStore = new UserStore(userList);
+                        }
+
+                        userStore.AddItem(existingUser);
                         userStore.Save();
 
-                        Console.WriteLine($"Ny användare {newUser.UserName} skapad");
+                        Console.WriteLine($"Ny användare {existingUser.UserName} skapad");
                         UserInput.WaitForContinue();
                         keepLooping = false;
                     }
                 }
-                else
-                {
-                    Console.WriteLine("Användarnamnet är upptaget");
-                    UserInput.WaitForContinue();
-                }
-            } while (existingUser == null && keepLooping);
+            } while (keepLooping);
 
             return existingUser;
         }

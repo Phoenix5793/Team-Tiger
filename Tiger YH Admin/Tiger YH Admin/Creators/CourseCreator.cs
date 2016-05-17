@@ -7,7 +7,7 @@ namespace Tiger_YH_Admin.Creators
 {
     class CourseCreator : ICreator<Course>
     {
-        public  Course Create(IDataStore<Course> dataStore)
+        public  Course Create(IDataStore<Course> dataStore, Course existingCourse = null)
         {
 
             CourseStore courseStore = new CourseStore();

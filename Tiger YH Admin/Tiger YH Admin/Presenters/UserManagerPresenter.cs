@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Tiger_YH_Admin.Creators;
 using Tiger_YH_Admin.DataStore;
 using Tiger_YH_Admin.Models;
 
@@ -220,5 +221,29 @@ namespace Tiger_YH_Admin.Presenters
             UserInput.WaitForContinue();
         }
 
+        public static void ChangeUser()
+        {
+            UserStore userStore = new UserStore();
+            UserCreator creator = new UserCreator();
+
+            Console.Clear();
+            string userName = UserInput.GetInput<string>("Ange användarnamn att redigera:");
+
+            if (userName == string.Empty)
+            {
+                return;
+            }
+
+            User user = userStore.FindById(userName);
+
+            if (user == null)
+            {
+                Console.WriteLine("Användaren finns inte");
+                UserInput.WaitForContinue();
+                return;
+            }
+
+            creator.Create(userStore, user);
+        }
     }
 }
