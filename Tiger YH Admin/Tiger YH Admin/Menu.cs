@@ -53,7 +53,7 @@ namespace Tiger_YH_Admin
                 Console.WriteLine("0. Logga ut");
                 Console.WriteLine("1. Visa mina studieresultat");
                 Console.WriteLine("2. Klasslista");
-                Console.WriteLine("3. Kursplan");
+                Console.WriteLine("3. Kurslista");
                 Console.WriteLine("4. Byt lösenord");
 
                 Console.WriteLine();

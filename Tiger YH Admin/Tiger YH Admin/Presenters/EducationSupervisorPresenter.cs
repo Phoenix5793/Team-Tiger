@@ -28,7 +28,7 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine();
             Console.WriteLine("1. Skapa ny klass");
             Console.WriteLine("2. Visa klasser jag ansvarar för");
-            Console.WriteLine("3. Visa kursplan för en klass");
+            Console.WriteLine("3. Visa kurslista för en klass");
             Console.WriteLine("4. Visa klasslista för en klass");
             Console.WriteLine("5. Lägg till student i klass");
             Console.WriteLine("6. Ta bort student från klass");
