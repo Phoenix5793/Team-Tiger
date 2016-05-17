@@ -277,9 +277,57 @@ namespace Tiger_YH_Admin.Presenters
             }
         }
 
-        internal static void ChangeTeacherForCourses()
+        private static void ChangeTeacherForCourses()
         {
-            throw new NotImplementedException();
+            UserStore userStore = new UserStore();
+            CourseStore courseStore = new CourseStore();
+
+            Console.Clear();
+            Console.WriteLine("Tryck enter för att avbryta");
+            string courseId = UserInput.GetInput<string>("Kurs-id:");
+
+            if (courseId == string.Empty)
+            {
+                return;
+            }
+
+            Course course = courseStore.FindById(courseId);
+            if (course == null)
+            {
+                Console.WriteLine("Kursen finns inte");
+                UserInput.WaitForContinue();
+                return;
+            }
+
+            User currentTeacher = userStore.FindById(course.CourseTeacher);
+
+            if (currentTeacher == null)
+            {
+                Console.WriteLine("Kursen saknar lärare");
+            }
+            else
+            {
+                Console.WriteLine($"Kurslärare: {currentTeacher.FullName()} ({currentTeacher.UserName})");
+            }
+
+            string newTeacherId = UserInput.GetInput<string>("ID för ny lärare:");
+            User newTeacher = userStore.FindById(newTeacherId);
+            if (newTeacher == null)
+            {
+                Console.WriteLine("Användaren finns inte");
+            }
+            else if (newTeacher.UserLevel != UserLevel.Teacher)
+            {
+                Console.WriteLine("Användaren är inte en lärare");
+            }
+            else
+            {
+                course.CourseTeacher = newTeacher.UserName;
+                courseStore.Save();
+                Console.WriteLine("Kursens lärare uppdaterad");
+            }
+
+            UserInput.WaitForContinue();
         }
 
         private static void PrintCourseInfo(Course course, UserStore userStore)
