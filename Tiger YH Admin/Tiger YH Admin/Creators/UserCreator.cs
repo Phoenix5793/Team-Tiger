@@ -154,6 +154,10 @@ namespace Tiger_YH_Admin.Creators
                         UserInput.WaitForContinue();
                         keepLooping = false;
                     }
+                    else
+                    {
+                        keepLooping = false;
+                    }
                 }
             } while (keepLooping);
 

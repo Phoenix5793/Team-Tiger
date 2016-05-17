@@ -148,7 +148,7 @@ namespace Tiger_YH_Admin
                         creator.Create(userStore);
                         break;
                     case "2":
-                        UserManagerPresenter.ChangeUser();
+                        UserManagerPresenter.ChangeUser(UserLevel.Admin);
                         break;
                     case "3":
                         Console.WriteLine("Ej implementerad");

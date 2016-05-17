@@ -149,7 +149,7 @@ namespace Tiger_YH_Admin.Presenters
                     ShowStudentInformation();
                     break;
                 case "2":
-                    Console.WriteLine("Ändrar studentinformation"); //TODO: Fixa metod
+                    UserManagerPresenter.ChangeUser(UserLevel.Student);
                     break;
                 case "3":
                     GradePresenter.GradeStudent(user);
@@ -221,12 +221,13 @@ namespace Tiger_YH_Admin.Presenters
             UserInput.WaitForContinue();
         }
 
-        public static void ChangeUser()
+        public static void ChangeUser(UserLevel maxLevel)
         {
             UserStore userStore = new UserStore();
             UserCreator creator = new UserCreator();
 
             Console.Clear();
+            Console.WriteLine("Tryck enter för att avbryta");
             string userName = UserInput.GetInput<string>("Ange användarnamn att redigera:");
 
             if (userName == string.Empty)
@@ -239,6 +240,13 @@ namespace Tiger_YH_Admin.Presenters
             if (user == null)
             {
                 Console.WriteLine("Användaren finns inte");
+                UserInput.WaitForContinue();
+                return;
+            }
+
+            if (user.UserLevel < maxLevel)
+            {
+                Console.WriteLine($"Kan ej redigera användarnivån {user.UserLevel}");
                 UserInput.WaitForContinue();
                 return;
             }
