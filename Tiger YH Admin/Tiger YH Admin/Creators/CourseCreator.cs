@@ -19,11 +19,13 @@ namespace Tiger_YH_Admin.Creators
 
             do
             {
+                Console.Clear();
                 courseId = UserInput.GetInput<string>("Kurs-id:");
                 courseExists = courseStore.FindById(courseId) != null;
                 if (courseExists)
                 {
                     Console.WriteLine("Kurs-id redan använt");
+                    UserInput.WaitForContinue();
                 }
                 else
                 {
@@ -71,13 +73,14 @@ namespace Tiger_YH_Admin.Creators
                         CourseTeacher = courseTeacher
                     };
 
+                    Course course = courseStore.AddItem(newCourse);
+                    courseStore.Save();
+                    Console.WriteLine("Kursen skapad");
+                    UserInput.WaitForContinue();
+                    return course;
                 }
 
-                Course course = courseStore.AddItem(newCourse);
-                courseStore.Save();
-                Console.WriteLine("Kursen skapad");
-                UserInput.WaitForContinue();
-                return course;
+                return newCourse;
 
             } while (courseExists);
         }
