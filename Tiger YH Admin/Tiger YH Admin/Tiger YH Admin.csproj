@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="DataStore\EducationClassStoreExtensions.cs" />
     <Compile Include="DataStore\GradeStore.cs" />
+    <Compile Include="DataStore\UserStoreExtensions.cs" />
     <Compile Include="Enumerators.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="DataStore\CourseStoreExtensions.cs" />

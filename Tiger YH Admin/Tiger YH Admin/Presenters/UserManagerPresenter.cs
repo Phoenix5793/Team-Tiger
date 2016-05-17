@@ -31,7 +31,7 @@ namespace Tiger_YH_Admin.Presenters
                         ShowUserAccount();
                         break;
                     case "2":
-                        ListAllUsers();
+                        ListUsers();
                         break;
                 }
             }
@@ -100,9 +100,18 @@ namespace Tiger_YH_Admin.Presenters
             GradePresenter.ShowStudentGrades(student);
         }
 
-        private static void ListAllUsers()
+        public static void ListTeachers()
         {
-            var userList = new UserStore().All().ToList();
+            IEnumerable<User> teachers = new UserStore().All().IsTeacher();
+            ListUsers(teachers);
+        }
+
+        private static void ListUsers(IEnumerable<User> userList = null)
+        {
+            if (userList == null)
+            {
+                userList = new UserStore().All().ToList();
+            }
 
             Console.WriteLine(
                 "Användarnamn".PadRight(14) +

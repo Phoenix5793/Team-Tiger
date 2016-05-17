@@ -18,7 +18,18 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine();
             Console.WriteLine("1. Visa alla lärare");
             Console.WriteLine("2. Lärarbemanning");
-            UserInput.WaitForContinue();
+
+            Console.WriteLine();
+            Console.Write("Ditt val: ");
+            string menuChoice = UserInput.GetInput<string>();
+
+            switch (menuChoice)
+            {
+                case "1":
+                    UserManagerPresenter.ListTeachers();
+                    break;
+            }
+
         }
 
         internal static void ManageClassMenu(User user)
@@ -36,7 +47,6 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine();
             Console.Write("Ditt val: ");
             string menuChoice = UserInput.GetInput<string>();
-
 
             switch (menuChoice)
             {
