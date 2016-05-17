@@ -16,7 +16,7 @@ namespace Tiger_YH_Admin.DataStore
 
         public override User FindById(string id)
         {
-            return DataSet.SingleOrDefault(u => u.UserName == id);
+            return All().SingleOrDefault(u => u.UserName == id);
         }
 
         public User LoginUser(string name, string password)

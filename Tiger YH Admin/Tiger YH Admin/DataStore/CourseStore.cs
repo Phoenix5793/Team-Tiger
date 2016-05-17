@@ -16,7 +16,7 @@ namespace Tiger_YH_Admin.DataStore
 
         public override Course FindById(string id)
         {
-            return DataSet.SingleOrDefault(c => c.CourseId.ToLower() == id.ToLower());
+            return All().SingleOrDefault(c => c.CourseId.ToLower() == id.ToLower());
         }
 
         public IEnumerable<Course> GetFinishedCourses()

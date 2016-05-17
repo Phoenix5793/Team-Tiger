@@ -16,7 +16,7 @@ namespace Tiger_YH_Admin.DataStore
 
         public override EducationClass FindById(string id)
         {
-            return DataSet.SingleOrDefault(c => c.ClassId.ToLower() == id.ToLower());
+            return All().SingleOrDefault(c => c.ClassId.ToLower() == id.ToLower());
         }
 
         public EducationClass FindByStudentId(string id)
@@ -26,7 +26,7 @@ namespace Tiger_YH_Admin.DataStore
            
         public IEnumerable<EducationClass> GetClassesForSupervisor(User supervisor)
         {
-            return DataSet.ForSupervisor(supervisor);
+            return All().ForSupervisor(supervisor);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Tiger_YH_Admin.DataStore
 
         public override Grade FindById(string id)
         {
-            return DataSet.SingleOrDefault(g => g.GradeId == id);
+            return All().SingleOrDefault(g => g.GradeId == id);
         }
 
         public IEnumerable<Grade> FindByCourseId(string id)

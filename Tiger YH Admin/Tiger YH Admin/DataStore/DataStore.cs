@@ -12,7 +12,7 @@ namespace Tiger_YH_Admin.DataStore
         private string _fileName;
         private const string FilePrefix = "Data/";
 
-        protected IEnumerable<T> DataSet { get; set; }
+        private IEnumerable<T> DataSet { get; set; }
 
         protected DataStore()
         {
