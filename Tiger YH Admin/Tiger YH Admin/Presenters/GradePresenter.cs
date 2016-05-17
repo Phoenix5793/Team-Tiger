@@ -91,11 +91,7 @@ namespace Tiger_YH_Admin.Presenters
                 switch (grade.ToLower())
                 {
                     case "ig":
-                        loop = false;
-                        break;
                     case "g":
-                        loop = false;
-                        break;
                     case "vg":
                         loop = false;
                         break;
