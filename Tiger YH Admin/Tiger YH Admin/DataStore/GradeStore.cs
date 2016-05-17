@@ -44,17 +44,17 @@ namespace Tiger_YH_Admin.DataStore
 
             if (existingGrade != null)
             {
-                allGrades = All().Where(g => g.GradeId != existingGrade.GradeId).ToList();
+                existingGrade.StudentId = inputStudent.UserName;
+                existingGrade.CourseId = inputCourse.CourseId;
+                existingGrade.Result = inputGradeLevel;
+
+                return existingGrade;
             }
             else
             {
-                allGrades = All().ToList();
+                AddItem(newGrade);
+                return newGrade;
             }
-
-            allGrades.Add(newGrade);
-            DataSet = allGrades;
-
-            return newGrade;
         }
     }
 }
