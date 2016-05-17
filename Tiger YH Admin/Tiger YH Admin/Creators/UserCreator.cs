@@ -21,34 +21,37 @@ namespace Tiger_YH_Admin.Creators
             }
             else
             {
-                Console.WriteLine($"Redigerar {existingUser.FullName()}");
+                Console.WriteLine($"Redigerar {existingUser.FullName()} ({existingUser.UserName})");
                 oldUserName = existingUser.UserName;
             }
 
             Console.WriteLine();
 
-            string userName;
+            string userName = string.Empty;
             bool loopName = false;
-            do
+            if (existingUser.UserName == string.Empty)
             {
-                Console.WriteLine("Lämna namnet tomt för att avbryta");
-                userName = UserInput.GetEditableField("Användarnamn", existingUser.UserName);
+                do
+                {
+                    Console.WriteLine("Lämna namnet tomt för att avbryta");
+                    userName = UserInput.GetEditableField("Användarnamn", existingUser.UserName);
 
-                User checkUser = userStore.FindById(userName);
-                if (existingUser.UserName == userName)
-                {
-                }
-                if (checkUser != null && existingUser.UserName != userName)
-                {
-                    Console.WriteLine("Användarnamnet är upptaget");
-                    UserInput.WaitForContinue();
-                    loopName = true;
-                }
-                else if (userName == string.Empty)
-                {
-                    break;
-                }
-            } while (loopName);
+                    User checkUser = userStore.FindById(userName);
+                    if (existingUser.UserName == userName)
+                    {
+                    }
+                    if (checkUser != null && existingUser.UserName != userName)
+                    {
+                        Console.WriteLine("Användarnamnet är upptaget");
+                        UserInput.WaitForContinue();
+                        loopName = true;
+                    }
+                    else if (userName == string.Empty)
+                    {
+                        break;
+                    }
+                } while (loopName);
+            }
 
             Console.Write("Lösenord: ");
             string password = UserInput.GetInput<string>();

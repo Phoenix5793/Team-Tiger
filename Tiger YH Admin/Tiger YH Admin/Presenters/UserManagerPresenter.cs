@@ -97,6 +97,7 @@ namespace Tiger_YH_Admin.Presenters
 
         private static void PrintStudentInfo(User student)
         {
+            PrintUserInfo(student);
             GradePresenter.ShowStudentGrades(student);
         }
 
