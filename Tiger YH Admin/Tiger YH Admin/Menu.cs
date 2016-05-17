@@ -29,7 +29,7 @@ namespace Tiger_YH_Admin
                         loopMenu = EducationSupervisorMainMenu(user);
                         break;
                     case UserLevel.Teacher:
-                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         loopMenu = TeacherMainMenu(user);
                         break;
                     case UserLevel.Student:
