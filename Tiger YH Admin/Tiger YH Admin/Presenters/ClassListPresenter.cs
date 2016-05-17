@@ -101,9 +101,10 @@ namespace Tiger_YH_Admin.Presenters
                     Console.WriteLine(
                         "Student-id".PadRight(12) +
                         "Namn".PadRight(40) +
-                        "Telefon".PadRight(15)
+                        "Telefon".PadRight(15) +
+                        "Person-nr"
                         );
-                    Console.WriteLine(new string('-', 60));
+                    Console.WriteLine(new string('-', 80));
 
                     List<string> studentList = edClass.GetStudentList();
                     foreach (string studentId in studentList)
@@ -113,7 +114,8 @@ namespace Tiger_YH_Admin.Presenters
                         Console.WriteLine(
                             student.UserName.PadRight(12) +
                             student.FullName().Truncate(39).PadRight(40) +
-                            student.PhoneNumber.PadRight(15)
+                            student.PhoneNumber.PadRight(15) +
+                            student.SSN
                             );
                     }
                 }
@@ -137,10 +139,10 @@ namespace Tiger_YH_Admin.Presenters
             Console.Clear();
             Console.WriteLine(
                 "Student-id".PadRight(12) +
-                "Namn".PadRight(25) +
+                "Namn".PadRight(40) +
                 "Telefon".PadRight(15)
                 );
-            Console.WriteLine(new string('-', 60));
+            Console.WriteLine(new string('-', 80));
 
             List<string> studentList = edClass.GetStudentList();
             foreach (string studentId in studentList)
@@ -149,7 +151,7 @@ namespace Tiger_YH_Admin.Presenters
 
                 Console.WriteLine(
                     s.UserName.PadRight(12) +
-                    s.FullName().PadRight(25) +
+                    s.FullName().PadRight(40) +
                     s.PhoneNumber.PadRight(15)
                     );
             }

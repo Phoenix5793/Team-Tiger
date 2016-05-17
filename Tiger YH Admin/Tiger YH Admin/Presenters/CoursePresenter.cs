@@ -121,7 +121,7 @@ namespace Tiger_YH_Admin.Presenters
                 "Student-id".PadRight(12) +
                 "Student".PadRight(40) +
                 "Betyg");
-            Console.WriteLine(new string('-', 60));
+            Console.WriteLine(new string('-', 80));
 
             foreach (Grade grade in grades)
             {
