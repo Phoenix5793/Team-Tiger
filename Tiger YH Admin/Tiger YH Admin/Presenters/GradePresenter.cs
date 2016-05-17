@@ -8,7 +8,7 @@ namespace Tiger_YH_Admin.Presenters
 {
     public static class GradePresenter
     {
-        public static void GradeStudent(User user)
+        public static void GradeStudent(User gradingUser)
         {
             var userStore = new UserStore();
             var educationClassStore = new EducationClassStore();
@@ -23,15 +23,7 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("Betygsätt student");
             Console.WriteLine();
 
-            List<Course> courses;
-            if (user.HasLevel(UserLevel.Teacher))
-            {
-                courses = courseStore.FindByTeacherId(user.UserName).ToList();
-            }
-            else
-            {
-                courses = courseStore.All().ToList();
-            }
+            List<Course> courses = GetCourses(gradingUser, courseStore).ToList();
 
             do
             {
@@ -113,6 +105,22 @@ namespace Tiger_YH_Admin.Presenters
                 gradeStore.GradeStudent(student, course, gradeLevel);
                 gradeStore.Save();
             }
+        }
+
+        private static IEnumerable<Course> GetCourses(User user, CourseStore courseStore)
+        {
+            var courses = new List<Course>();
+
+            if (user.HasLevel(UserLevel.Teacher))
+            {
+                courses = courseStore.FindByTeacherId(user.UserName).ToList();
+            }
+            else if (user.HasLevel(UserLevel.EducationSupervisor))
+            {
+                courses = courseStore.All().ToList();
+            }
+
+            return courses;
         }
 
         public static void ShowStudentGrades(User student)
