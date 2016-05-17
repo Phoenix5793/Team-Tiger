@@ -10,10 +10,6 @@ namespace Tiger_YH_Admin.Presenters
 {
     class AccountPresenter
     {
-        internal static void ManageAccountMenu(User user)
-        {
-        }
-
         public static void ChangePassword(User user)
         {
             UserStore userStore = new UserStore();

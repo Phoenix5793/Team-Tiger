@@ -76,7 +76,7 @@ namespace Tiger_YH_Admin
                         CoursePresenter.ShowStudentCoursePlan(user);
                         break;
                     case "4":
-                           AccountPresenter.ChangePassword(user);
+                        AccountPresenter.ChangePassword(user);
                         break;
                 }
             } while (!logout);
@@ -96,6 +96,7 @@ namespace Tiger_YH_Admin
                 Console.WriteLine("1. Visa mina kurser");
                 Console.WriteLine("2. Visa studentlista för en kurs");
                 Console.WriteLine("3. Betygsätt studenter");
+                Console.WriteLine("4. Byt lösenord");
 
                 Console.WriteLine();
                 Console.Write("Ditt val: ");
@@ -114,6 +115,9 @@ namespace Tiger_YH_Admin
                         break;
                     case "3":
                         GradePresenter.GradeStudent(user);
+                        break;
+                    case "4":
+                        AccountPresenter.ChangePassword(user);
                         break;
                 }
             } while (!logout);
@@ -226,7 +230,7 @@ namespace Tiger_YH_Admin
                 Console.WriteLine("3. Hantera klasser");
                 Console.WriteLine("4. Hantera studenter");
                 Console.WriteLine("5. Hantera kurser");
-                Console.WriteLine("6. Mitt konto");
+                Console.WriteLine("6. Byt lösenord");
                 Console.WriteLine();
 
                 string menuChoice = UserInput.GetInput<string>("Ditt val: ");
@@ -255,7 +259,7 @@ namespace Tiger_YH_Admin
                         CoursePresenter.CourseManagementMenu(educationSupervisor);
                         break;
                     case "6":
-                        AccountPresenter.ManageAccountMenu(educationSupervisor);
+                        AccountPresenter.ChangePassword(educationSupervisor);
                         break;
                 }
             } while (!logout);
