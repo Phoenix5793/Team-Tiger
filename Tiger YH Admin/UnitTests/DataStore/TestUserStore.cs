@@ -20,7 +20,7 @@ namespace UnitTests.DataStore
             _testUser = new User
             {
                 FirstName = "Testy",
-                Surname = "McTestFace",
+                LastName = "McTestFace",
                 Password = "abc123",
                 PhoneNumber = "123321",
                 SSN = "321123",
@@ -39,7 +39,7 @@ namespace UnitTests.DataStore
             User expectedUser = _userStore.LoginUser("testuser", "abc123");
 
             string expected = "McTestFace";
-            string actual = expectedUser.Surname;
+            string actual = expectedUser.LastName;
 
             Assert.AreEqual(expected, actual);
         }

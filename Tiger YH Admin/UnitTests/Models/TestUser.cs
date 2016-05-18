@@ -16,7 +16,7 @@ namespace UnitTests.Models
             _testUser = new User
             {
                 FirstName = "Testy",
-                Surname = "McTestFace",
+                LastName = "McTestFace",
                 Password = "abc123",
                 SSN = "8080980",
                 PhoneNumber = "123321",

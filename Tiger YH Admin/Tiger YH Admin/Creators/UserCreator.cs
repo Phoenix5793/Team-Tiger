@@ -65,7 +65,7 @@ namespace Tiger_YH_Admin.Creators
             bool isValid = false;
             string ssn = string.Empty;
             string firstName = UserInput.GetEditableField("Förnamn", existingUser.FirstName);
-            string surname = UserInput.GetEditableField("Efternamn", existingUser.Surname);
+            string lastName = UserInput.GetEditableField("Efternamn", existingUser.LastName);
 
             string input;
             do
@@ -118,7 +118,7 @@ namespace Tiger_YH_Admin.Creators
                 Password = password,
                 UserLevel = (UserLevel) chosenLevel,
                 FirstName = firstName,
-                Surname = surname,
+                LastName = lastName,
                 SSN = ssn,
                 PhoneNumber = phoneNumber
             };

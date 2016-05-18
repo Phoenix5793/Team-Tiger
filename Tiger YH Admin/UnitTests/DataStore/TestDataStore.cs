@@ -19,7 +19,7 @@ namespace UnitTests.DataStore
             _testUser = new User
             {
                 FirstName = "Testy",
-                Surname = "McTestFace",
+                LastName = "McTestFace",
                 Password = "abc123",
                 PhoneNumber = "123321",
                 SSN = "321123",
