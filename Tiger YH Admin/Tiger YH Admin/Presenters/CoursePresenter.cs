@@ -27,6 +27,7 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("10. Visa avtalade kurser");
             Console.WriteLine("11. Visa klasslista för en kurs");
             Console.WriteLine("12. Visa alla betyg för en kurs");
+            Console.WriteLine("13. Öppna kursplan");
 
             Console.WriteLine();
             Console.Write("Ditt val: ");
@@ -72,6 +73,27 @@ namespace Tiger_YH_Admin.Presenters
                 case "12":
                     ShowGradesForCourse();
                     break;
+                case "13":
+                    ShowCoursePlan();
+                    break;
+            }
+        }
+
+        private static void ShowCoursePlan()
+        {
+            string input = UserInput.GetInput<string>("Ange kurs-id:");
+
+            CourseStore courseStore = new CourseStore();
+            Course course = courseStore.FindById(input);
+
+            if (course == null)
+            {
+                Console.WriteLine("Kurs med det id:t existerar inte");
+                UserInput.WaitForContinue();
+            }
+            else
+            {
+                course.OpenCoursePlan();
             }
         }
 
