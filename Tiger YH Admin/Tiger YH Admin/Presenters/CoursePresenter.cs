@@ -228,8 +228,23 @@ namespace Tiger_YH_Admin.Presenters
             UserInput.WaitForContinue();
         }
 
+        private static void ListCourses(IEnumerable<string> courseList)
+        {
+            var courseStore = new CourseStore();
+            var courses = new List<Course>();
+
+            foreach (string courseId in courseList)
+            {
+                Course course = courseStore.FindById(courseId);
+                courses.Add(course);
+            }
+
+            ListCourses(courses);
+        }
+
         private static void ListCourses(IEnumerable<Course> courseList)
         {
+            Console.Clear();
             Console.WriteLine("Kurs-id".PadRight(10) +
                               "Kursnamn".PadRight(40) +
                               "YH-poäng".PadRight(9) +
@@ -440,28 +455,6 @@ namespace Tiger_YH_Admin.Presenters
                 );
         }
 
-        private static void PrintCourseList(List<string> courses)
-        {
-            CourseStore courseStore = new CourseStore();
-            UserStore userStore = new UserStore();
-
-            Console.Clear();
-            Console.WriteLine(
-                "Kurs-id".PadRight(10) +
-                "Kursnamn".PadRight(40) +
-                "Startdatum".PadRight(12) +
-                "Slutdatum".PadRight(12) +
-                "Lärare"
-                );
-            Console.WriteLine(new string('-', 80));
-
-            foreach (string c in courses)
-            {
-                Course course = courseStore.FindById(c);
-                PrintCourseInfo(course, userStore);
-            }
-        }
-
         private static void TeacherStaffingFutureCourses()
         {
             var courseStore = new CourseStore();
@@ -583,7 +576,7 @@ namespace Tiger_YH_Admin.Presenters
                     EducationClass studentClass = klass;
                     List<string> courseList = studentClass.GetCourseList();
 
-                    PrintCourseList(courseList);
+                    ListCourses(courseList);
                     UserInput.WaitForContinue();
 
                     break;
@@ -595,7 +588,7 @@ namespace Tiger_YH_Admin.Presenters
         {
             List<string> courses = klass.GetCourseList();
 
-            PrintCourseList(courses);
+            ListCourses(courses);
             UserInput.WaitForContinue();
         }
     }
