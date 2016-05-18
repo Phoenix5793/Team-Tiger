@@ -95,8 +95,9 @@ namespace Tiger_YH_Admin
                 Console.WriteLine("0. Logga ut");
                 Console.WriteLine("1. Visa mina kurser");
                 Console.WriteLine("2. Visa studentlista för en kurs");
-                Console.WriteLine("3. Betygsätt studenter");
-                Console.WriteLine("4. Byt lösenord");
+                Console.WriteLine("3. Betygsätt student");
+                Console.WriteLine("4. Betygsätt delmål");
+                Console.WriteLine("5. Byt lösenord");
 
                 Console.WriteLine();
                 Console.Write("Ditt val: ");
@@ -114,9 +115,12 @@ namespace Tiger_YH_Admin
                         CoursePresenter.ShowStudentsForCourse(user);
                         break;
                     case "3":
-                        GradePresenter.GradeStudent(user);
+                        GradePresenter.GradeStudentInCourse(user);
                         break;
                     case "4":
+                        GradePresenter.GradeStudentGoal(user);
+                        break;
+                    case "5":
                         AccountPresenter.ChangePassword(user);
                         break;
                 }

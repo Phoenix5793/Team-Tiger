@@ -46,22 +46,17 @@ namespace UnitTests.DataStore
         {
             User inputStudent = new User
             {
-                UserName = "abab"
+                UserName = "adad"
             };
-            Course inputCourse = new Course
-            {
-                CourseId = "oop2"
-            };
-            string inputGradeId = "oop2:abab";
-            GradeLevel inputGradeLevel = GradeLevel.IG;
+            string inputGradeId = "oop1:adad";
             Grade expectedGrade = new Grade
             {
-                CourseId = "oop2",
-                StudentId = "abab",
-                Result = GradeLevel.IG
+                CourseId = "oop1",
+                StudentId = "adad",
+                Result = GradeLevel.VG
             };
 
-            Grade actualGrade = _testStore.GradeStudent(inputStudent, inputCourse, inputGradeLevel);
+            Grade actualGrade = _testStore.GradeStudent(inputStudent, _testGrade);
             Grade foundGrade = _testStore.FindById(inputGradeId);
 
             Assert.AreEqual(expectedGrade.CourseId, actualGrade.CourseId);
