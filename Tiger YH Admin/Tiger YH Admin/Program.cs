@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Tiger_YH_Admin.DataStore;
 using Tiger_YH_Admin.Models;
 using Tiger_YH_Admin.Presenters;
@@ -34,6 +35,15 @@ namespace Tiger_YH_Admin
                 Console.WriteLine("Byt genast lösenord på kontot!");
                 UserInput.WaitForContinue();
             }
+
+            CreateDirectories();
+        }
+
+        private static void CreateDirectories()
+        {
+            Directory.CreateDirectory("Data");
+            Directory.CreateDirectory("Kursplan");
+
         }
 
         static void CreateAdmin(UserStore userStore)
