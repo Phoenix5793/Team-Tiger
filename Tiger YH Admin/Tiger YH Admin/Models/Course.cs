@@ -19,7 +19,7 @@ namespace Tiger_YH_Admin.Models
         public DateTime EndDate { get; set; }
         public string CourseTeacher { get; set; }
 
-        public void OpenCoursePlan()
+        public void EditCoursePlan()
         {
             string coursePlanFile = $@"Kursplan\{CourseId}.txt";
 
@@ -28,7 +28,7 @@ namespace Tiger_YH_Admin.Models
                 File.Create(coursePlanFile);
             }
 
-            Console.WriteLine($"Försöker öppna {coursePlanFile}");
+            Console.Clear();
             Console.WriteLine("Väntar på att Notepad ska avslutas...");
             Process.Start(coursePlanFile).WaitForExit();
         }

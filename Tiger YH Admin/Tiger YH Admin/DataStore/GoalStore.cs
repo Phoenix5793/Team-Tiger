@@ -13,5 +13,10 @@ namespace Tiger_YH_Admin.DataStore
         {
             return All().SingleOrDefault(g => g.GoalId.ToLower() == id.ToLower());
         }
+
+        public IEnumerable<Goal> FindByCourseId(string courseId)
+        {
+            return All().Where(g => g.CourseId == courseId);
+        }
     }
 }

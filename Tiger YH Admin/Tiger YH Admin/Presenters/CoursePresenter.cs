@@ -28,6 +28,9 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("11. Visa klasslista för en kurs");
             Console.WriteLine("12. Visa alla betyg för en kurs");
             Console.WriteLine("13. Öppna kursplan");
+            Console.WriteLine("14. Visa mål för en kurs");
+            Console.WriteLine("15. Lägg till mål för en kurs");
+            Console.WriteLine("16. Ta bort mål för en kurs");
 
             Console.WriteLine();
             Console.Write("Ditt val: ");
@@ -76,56 +79,122 @@ namespace Tiger_YH_Admin.Presenters
                 case "13":
                     ShowCoursePlan();
                     break;
+                case "14":
+                    ShowCourseGoals();
+                    break;
+                case "15":
+                    CreateNewCourseGoal();
+                    break;
             }
         }
 
-        private static void ShowCoursePlan()
+        private static void CreateNewCourseGoal()
         {
-            string input = UserInput.GetInput<string>("Ange kurs-id:");
+            var goalStore = new GoalStore();
 
-            CourseStore courseStore = new CourseStore();
-            Course course = courseStore.FindById(input);
+            Console.Clear();
+            Console.WriteLine("Skapa nytt mål för kurs");
+            Console.WriteLine();
+
+            Course course = GetCourseById();
+            if (course == null) return;
+
+            Console.Clear();
+            Console.WriteLine($"Kurs: {course.CourseName} ({course.CourseId})");
+
+            int goalCount = goalStore.FindByCourseId(course.CourseId).Count();
+
+            Console.WriteLine("Tryck enter för att avbryta");
+            Console.WriteLine();
+            while (true)
+            {
+                string description = UserInput.GetInput<string>("Den studerande ska:");
+
+                if (description == string.Empty)
+                {
+                    break;
+                }
+
+                var goal = new Goal
+                {
+                    CourseId = course.CourseId,
+                    GoalId = (goalCount + 1).ToString(),
+                    Description = description
+                };
+
+                goalStore.AddItem(goal);
+                goalStore.Save();
+            }
+            ShowCourseGoals(course);
+        }
+
+        private static void ShowCourseGoals(Course course = null)
+        {
+            var goalStore = new GoalStore();
 
             if (course == null)
             {
-                Console.WriteLine("Kurs med det id:t existerar inte");
-                UserInput.WaitForContinue();
+                course = GetCourseById();
+                if (course == null) return;
             }
-            else
+
+            List<Goal> goals = goalStore.FindByCourseId(course.CourseId).ToList();
+
+            Console.Clear();
+            Console.WriteLine(course.CourseName);
+            Console.WriteLine();
+            Console.WriteLine("Den studerande ska");
+            foreach (Goal goal in goals)
             {
-                course.OpenCoursePlan();
+                Console.WriteLine(" - " + goal.Description);
             }
+
+            UserInput.WaitForContinue();
+
         }
 
-        private static Course SearchForCourse()
+        private static Course GetCourseById()
         {
-            while (true)
+            var courseStore = new CourseStore();
+            Course course;
+
+            bool loop = true;
+            do
             {
                 Console.Clear();
-                Console.WriteLine("Tryck enter utan att ange namn för att avbryta.");
-                string input = UserInput.GetInput<string>("Sök kurs-id:");
+                Console.WriteLine("Tryck enter för att avbryta");
+                string input = UserInput.GetInput<string>("Ange kurs-id:");
 
                 if (input == string.Empty)
                 {
                     return null;
                 }
 
-                var courseStore = new CourseStore();
-                Course course = courseStore.FindById(input);
-
+                course = courseStore.FindById(input);
                 if (course == null)
                 {
-                    Console.WriteLine("Det finns ingen kurs med det id:t.");
+                    Console.WriteLine("Kurs med det id:t existerar inte");
+                    UserInput.WaitForContinue();
                 }
                 else
                 {
-                    return course;
+                    loop = false;
                 }
-            }
+
+            } while (loop);
+
+            return course;
         }
+
+        private static void ShowCoursePlan()
+        {
+            Course course = GetCourseById();
+            course?.EditCoursePlan();
+        }
+
         private static void ShowGradesForCourse()
         {
-            Course course = SearchForCourse();
+            Course course = GetCourseById();
             if (course != null)
             {
                 PrintCourseGrades(course);
