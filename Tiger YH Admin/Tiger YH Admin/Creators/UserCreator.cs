@@ -67,12 +67,11 @@ namespace Tiger_YH_Admin.Creators
             string firstName = UserInput.GetEditableField("Förnamn", existingUser.FirstName);
             string lastName = UserInput.GetEditableField("Efternamn", existingUser.LastName);
 
-            string input;
             do
             {
                 Console.Clear();
                 Console.WriteLine("Ange enligt följande: yymmddxxxx");
-                input = UserInput.GetEditableField("Personnummer", existingUser.SSN);
+                string input = UserInput.GetEditableField("Personnummer", existingUser.SSN);
                 if (input.Length != 10)
                 {
                     Console.WriteLine("Personnummret måste vara 10 tecken");
@@ -90,7 +89,7 @@ namespace Tiger_YH_Admin.Creators
             } while (!isValid);
 
             isValid = false;
-            string phoneNumber = string.Empty;
+            string phoneNumber;
             do
             {
                 Console.Clear();
