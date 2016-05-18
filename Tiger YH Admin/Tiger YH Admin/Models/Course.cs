@@ -31,7 +31,7 @@ namespace Tiger_YH_Admin.Models
 
             Console.Clear();
             Console.WriteLine("Väntar på att Notepad ska avslutas...");
-            Process.Start(coursePlanFile).WaitForExit();
+            Process.Start("Notepad.exe", coursePlanFile).WaitForExit();
         }
     }
 }
