@@ -500,7 +500,7 @@ namespace Tiger_YH_Admin.Presenters
             ListCourses(courses);
         }
 
-        public static void ShowStudentCoursePlan(User student)
+        public static void ShowStudentCourseList(User student)
         {
             EducationClassStore classStore = new EducationClassStore();
 
@@ -519,7 +519,7 @@ namespace Tiger_YH_Admin.Presenters
             }
         }
 
-        public static void ShowClassCoursePlan(EducationClass klass)
+        public static void ShowClassCourseList(EducationClass klass)
         {
             List<string> courses = klass.GetCourseList();
 

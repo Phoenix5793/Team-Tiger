@@ -73,7 +73,7 @@ namespace Tiger_YH_Admin
                         ClassListPresenter.ShowClassForStudent(user);
                         break;
                     case "3":
-                        CoursePresenter.ShowStudentCoursePlan(user);
+                        CoursePresenter.ShowStudentCourseList(user);
                         break;
                     case "4":
                         AccountPresenter.ChangePassword(user);

@@ -299,7 +299,7 @@ namespace Tiger_YH_Admin.Presenters
                 }
                 else
                 {
-                    CoursePresenter.ShowClassCoursePlan(klass);
+                    CoursePresenter.ShowClassCourseList(klass);
                     loop = false;
                 }
 
