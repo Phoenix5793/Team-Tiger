@@ -153,7 +153,7 @@ namespace Tiger_YH_Admin.Presenters
 
         }
 
-        private static Course GetCourseById()
+        public static Course GetCourseById()
         {
             var courseStore = new CourseStore();
             Course course;
@@ -252,7 +252,7 @@ namespace Tiger_YH_Admin.Presenters
                               "Slutdatum".PadRight(12) +
                               "Lärare"
                 );
-            Console.WriteLine(new string('-', 80));
+            Console.WriteLine(new string('-', 100));
 
             foreach (Course course in courseList)
             {

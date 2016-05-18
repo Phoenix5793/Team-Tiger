@@ -30,22 +30,24 @@ namespace Tiger_YH_Admin.DataStore
             return All().Where(g => g.StudentId == student.UserName);
         }
 
-        public Grade GradeStudent(User inputStudent, Course inputCourse, GradeLevel inputGradeLevel)
+        public Grade GradeStudent(User student, Grade grade)
         {
             Grade newGrade = new Grade
             {
-                StudentId = inputStudent.UserName,
-                CourseId = inputCourse.CourseId,
-                Result = inputGradeLevel
+                StudentId = student.UserName,
+                CourseId = grade.CourseId,
+                CourseGoal = grade.CourseGoal,
+                Result = grade.Result
             };
 
             Grade existingGrade = FindById(newGrade.GradeId);
 
             if (existingGrade != null)
             {
-                existingGrade.StudentId = inputStudent.UserName;
-                existingGrade.CourseId = inputCourse.CourseId;
-                existingGrade.Result = inputGradeLevel;
+                existingGrade.StudentId = student.UserName;
+                existingGrade.CourseId = grade.CourseId;
+                existingGrade.CourseGoal = grade.CourseGoal;
+                existingGrade.Result = grade.Result;
 
                 return existingGrade;
             }

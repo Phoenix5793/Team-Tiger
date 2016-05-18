@@ -37,7 +37,7 @@ namespace Tiger_YH_Admin.Presenters
             }
         }
 
-        private static User SearchForUser()
+        public static User SearchForUser(UserLevel? userLevel = null)
         {
             while (true)
             {
@@ -57,7 +57,16 @@ namespace Tiger_YH_Admin.Presenters
                 {
                     Console.WriteLine("Det finns ingen användare med det användarnamnet.");
                 }
-                else
+                else if (userLevel != null && user.UserLevel == userLevel)
+                {
+                    return user;
+                }
+                else if (userLevel != null && user.UserLevel != userLevel)
+                {
+                    Console.WriteLine($"Användaren är inte {userLevel}");
+                    return null;
+                }
+                else if (userLevel == null)
                 {
                     return user;
                 }
@@ -162,7 +171,7 @@ namespace Tiger_YH_Admin.Presenters
                     UserManagerPresenter.ChangeUser(UserLevel.Student);
                     break;
                 case "3":
-                    GradePresenter.GradeStudent(user);
+                    GradePresenter.GradeStudentInCourse(user);
                     break;
                 case "4":
                     ClassListPresenter.AddStudentToClass();

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FileHelpers;
+using Tiger_YH_Admin.DataStore;
 
 namespace Tiger_YH_Admin.Models
 {
@@ -32,6 +33,19 @@ namespace Tiger_YH_Admin.Models
         public bool HasLevel(UserLevel level)
         {
             return UserLevel == level;
+        }
+
+        public EducationClass GetClass()
+        {
+            if (UserLevel != UserLevel.Student)
+            {
+                return null;
+            }
+            else
+            {
+                var classStore = new EducationClassStore();
+                return classStore.FindByStudentId(UserName);
+            }
         }
     }
 }

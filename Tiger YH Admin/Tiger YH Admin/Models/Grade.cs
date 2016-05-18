@@ -10,7 +10,7 @@ namespace Tiger_YH_Admin.Models
         public string StudentId { get; set; }
         public string CourseId { get; set; }
         public GradeLevel Result { get; set; } = GradeLevel.IG;
-        public int? CourseGoal { get; set; }
+        public string CourseGoal { get; set; }
 
         private string GetGradeId()
         {

@@ -8,7 +8,7 @@ namespace Tiger_YH_Admin.Presenters
 {
     public static class GradePresenter
     {
-        public static void GradeStudent(User gradingUser)
+        public static void GradeStudentInCourse(User grader)
         {
             var userStore = new UserStore();
             var educationClassStore = new EducationClassStore();
@@ -23,7 +23,7 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("Betygsätt student");
             Console.WriteLine();
 
-            List<Course> courses = GetCourses(gradingUser, courseStore).ToList();
+            List<Course> courses = GetCourses(grader, courseStore).ToList();
 
             do
             {
@@ -75,6 +75,29 @@ namespace Tiger_YH_Admin.Presenters
 
             } while (true);
 
+            GradeLevel gradeLevel = GetGrade();
+
+            Console.WriteLine($"Student: {student.FullName()} ({student.UserName})");
+            Console.WriteLine($"Kurs: {course.CourseName} ({course.CourseId})");
+            Console.WriteLine($"Betyg: {gradeLevel}");
+            bool confirm = UserInput.AskConfirmation("Betygsätt student?");
+
+            if (confirm)
+            {
+                var grade = new Grade
+                {
+                    CourseId = course.CourseId,
+                    StudentId = student.UserName,
+                    Result = gradeLevel
+                };
+
+                gradeStore.GradeStudent(student, grade);
+                gradeStore.Save();
+            }
+        }
+
+        private static GradeLevel GetGrade()
+        {
             string grade;
             bool loop = true;
             do
@@ -94,17 +117,97 @@ namespace Tiger_YH_Admin.Presenters
             } while (loop);
 
             var gradeLevel = grade.ToEnum<GradeLevel>();
+            return gradeLevel;
+        }
 
-            Console.WriteLine($"Student: {student.FullName()} ({student.UserName})");
-            Console.WriteLine($"Kurs: {course.CourseName} ({course.CourseId})");
-            Console.WriteLine($"Betyg: {gradeLevel}");
-            bool confirm = UserInput.AskConfirmation("Betygsätt student?");
+        public static void GradeStudentGoal(User grader)
+        {
+            var courseStore = new CourseStore();
+            var gradeStore = new GradeStore();
+            var goalStore = new GoalStore();
+
+            List<Course> courses = GetCourses(grader, courseStore).ToList();
+
+
+            Course course = CoursePresenter.GetCourseById();
+            if (course == null) return;
+            if (grader.HasLevel(UserLevel.Teacher) && course.CourseTeacher != grader.UserName)
+            {
+                Console.WriteLine("Du är ej lärare för den kursen");
+                UserInput.WaitForContinue();
+                return;
+            }
+
+            User student = UserManagerPresenter.SearchForUser(UserLevel.Student);
+            EducationClass klass = student.GetClass();
+
+            if (klass == null)
+            {
+                Console.WriteLine("Användaren är inte en student");
+                UserInput.WaitForContinue();
+                return;
+            }
+            if (!klass.HasCourse(course.CourseId))
+            {
+                Console.WriteLine("Klassen läser ej den kursen");
+                UserInput.WaitForContinue();
+                return;
+            }
+
+            List<Goal> goals = goalStore.FindByCourseId(course.CourseId).ToList();
+
+            foreach (Goal g in goals)
+            {
+                Console.WriteLine($"  {g.GoalId}: {g.Description.Truncate(95)}");
+            }
+
+            Console.WriteLine();
+            string goalToGrade = UserInput.GetInput<string>("Välj mål att betygsätta:");
+
+            Goal goal = goals.SingleOrDefault(g => g.GoalId == goalToGrade);
+
+            if (goal == null)
+            {
+                Console.WriteLine($"Finns inget mål med id {goalToGrade}");
+                UserInput.WaitForContinue();
+                return;
+            }
+
+            GradeLevel gradeLevel = GetGrade();
+
+            var grade = new Grade
+            {
+                StudentId = student.UserName,
+                CourseId = course.CourseId,
+                CourseGoal = goal.GoalId,
+                Result = gradeLevel
+            };
+
+            Console.WriteLine();
+            Console.WriteLine($"Student: {student.FullName()}");
+            Console.WriteLine($"Kursmål: {goal.Description.Truncate(95)}");
+            Console.WriteLine($"Betyg:   {grade.Result}");
+
+            Console.WriteLine(grade.GradeId);
+            bool confirm = UserInput.AskConfirmation("Spara betyg?");
 
             if (confirm)
             {
-                gradeStore.GradeStudent(student, course, gradeLevel);
-                gradeStore.Save();
+                Grade existingGrade = gradeStore.FindById(grade.GradeId);
+                if (existingGrade == null)
+                {
+                    gradeStore.AddItem(grade);
+                    gradeStore.Save();
+                }
+                else
+                {
+                    gradeStore.GradeStudent(student, grade);
+                    gradeStore.Save();
+                }
             }
+
+            Console.WriteLine();
+            UserInput.WaitForContinue();
         }
 
         private static IEnumerable<Course> GetCourses(User user, CourseStore courseStore)
