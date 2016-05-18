@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataStore\EducationClassStoreExtensions.cs" />
+    <Compile Include="DataStore\GoalStore.cs" />
     <Compile Include="DataStore\GradeStore.cs" />
     <Compile Include="DataStore\UserStoreExtensions.cs" />
     <Compile Include="Enumerators.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Creators\UserCreator.cs" />
     <Compile Include="DataStore\DataStore.cs" />
     <Compile Include="DataStore\IDataStore.cs" />
+    <Compile Include="Models\Goal.cs" />
     <Compile Include="Models\Grade.cs" />
     <Compile Include="Models\IHasStudents.cs" />
     <Compile Include="Models\User.cs" />
