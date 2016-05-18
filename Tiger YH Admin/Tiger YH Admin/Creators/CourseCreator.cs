@@ -34,6 +34,8 @@ namespace Tiger_YH_Admin.Creators
                     DateTime courseStartDate = UserInput.GetDate("Startdatum:");
                     DateTime courseEndDate = UserInput.GetDate("Slutdatum:");
 
+                    int coursePoints = UserInput.GetInput<int>("YH-poäng:");
+
                     string courseTeacher = string.Empty;
                     bool loop = true;
                     do
@@ -70,7 +72,8 @@ namespace Tiger_YH_Admin.Creators
                         CourseName = courseName,
                         StartDate = courseStartDate,
                         EndDate = courseEndDate,
-                        CourseTeacher = courseTeacher
+                        CourseTeacher = courseTeacher,
+                        CoursePoints = coursePoints
                     };
 
                     Course course = courseStore.AddItem(newCourse);

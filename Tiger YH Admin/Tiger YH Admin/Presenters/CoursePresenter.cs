@@ -232,6 +232,7 @@ namespace Tiger_YH_Admin.Presenters
         {
             Console.WriteLine("Kurs-id".PadRight(10) +
                               "Kursnamn".PadRight(40) +
+                              "YH-poäng".PadRight(9) +
                               "Startdatum".PadRight(12) +
                               "Slutdatum".PadRight(12) +
                               "Lärare"
@@ -243,6 +244,7 @@ namespace Tiger_YH_Admin.Presenters
                 Console.WriteLine(
                     course.CourseId.PadRight(10) +
                     course.CourseName.Truncate(39).PadRight(40) +
+                    course.CoursePoints.ToString().PadRight(9) +
                     course.StartDate.ToShortDateString().PadRight(12) +
                     course.EndDate.ToShortDateString().PadRight(12) +
                     course.CourseTeacher
@@ -431,6 +433,7 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine(
                 course.CourseId.PadRight(10) +
                 course.CourseName.Truncate(40).PadRight(40) +
+                course.CoursePoints.ToString().PadRight(9) +
                 course.StartDate.ToShortDateString().PadRight(12) +
                 course.EndDate.ToShortDateString().PadRight(12) +
                 teacher.FullName()
