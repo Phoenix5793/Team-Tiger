@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tiger_YH_Admin;
+using Tiger_YH_Admin.DataStore;
 using Tiger_YH_Admin.Models;
 
 namespace UnitTests.Models
@@ -55,5 +56,14 @@ namespace UnitTests.Models
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void GetClass__No_Class_If_Not_Student()
+        {
+            _testUser.UserLevel = UserLevel.Teacher;
+
+            var actual = _testUser.GetClass();
+
+            Assert.IsNull(actual);
+        }
     }
 }
