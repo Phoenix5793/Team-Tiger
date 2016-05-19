@@ -7,7 +7,7 @@ using Tiger_YH_Admin.Models;
 
 namespace Tiger_YH_Admin.DataStore
 {
-    static class EducationClassStoreExtensions
+    public static class EducationClassStoreExtensions
     {
         public static IEnumerable<EducationClass> ForSupervisor(this IEnumerable<EducationClass> classes, User supervisor)
         {
