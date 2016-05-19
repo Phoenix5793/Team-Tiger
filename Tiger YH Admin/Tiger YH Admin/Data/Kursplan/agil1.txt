@@ -1,0 +1,56 @@
+﻿**40 Yrkeshögskolepoäng - 8 veckor**
+
+Kursen ska ge den studerande god förståelse för hur man planerar och leder ett agilt projekt samt förståelse för vilka förutsättningar som måste vara uppfyllda för att tillämpa agila arbetsmetoder i ett projekt. Vidare ska kursen ge god förståelse för hur införandet av agila systemutvecklingsmetoder påverkar arbetet med programvaruutveckling samt förstå vilka agila testtekniker och arbetssätt som går att tillämpa.
+
+****Kursens huvudsakliga innehåll****
+
+* Agila metoder och skillnaden mot andra projektmodeller/-metoder inom systemutveckling
+* De största agila metoderna på marknaden
+* Scrum
+* Kravhantering inom agila metoder
+* Rollfördelningen inom agila projekt
+* Kvalitetssäkring genom agila metoder
+* Utvärdering och förbättring av agila projekt
+* Testdriven utveckling
+
+****Mål som den studerande ska ha uppnått efter avslutad kurs ****
+
+Den studerande ska 
+
+1. förstå vad agila metoder är och hur de skiljer sig från andra projektmodeller/-metoder inom systemutveckling,
+2. ha insikt i de största agila metoderna på marknaden samt fördjupad insikt och kunskap om Scrum,
+3. förstå hur krav och kravändringar hanteras med agila metoder,
+4. förstå rollfördelningen i ett agilt projekt,
+5. förstå hur man man säkerställer kvalitet genom agila metoder
+6. kunna delta i ett teamet som använder agila metoder i ett systemutvecklingsprojekt
+7. kunna delta i löpande utvärdering och förbättring av agila projekt
+8. kunna arbeta testdrivet i ett agilt projekt
+
+****Betygsnivåer****
+
+Icke godkänt, Godkänt och Väl godkänt
+
+****Principer för betygssättning****
+
+För att få tillgodogöra sig betyget i kursen ska den studerande ha genomfört obligatoriska kursmoment och lämnat in godkända uppgifter. 
+
+För att få betyget **godkänt** krävs att:
+*Den studerande (1) utförligt förklarar vad agila metoder är och hur de skiljer sig från andra projektmodeller/-metoder inom systemutveckling samt (2) förklarar utförligt hur de största agila metoderna på marknaden fungerar med betoning på Scrum. *
+
+*Vidare förklarar också den studerande utförligt hur (3) kravhantering, (4) rollfördelning och (5) kvalitetssäkring fungerar inom ett agilt projekt.*
+
+*Den studerande (6) tillämpar också med viss säkerhet agila metoder som deltagare i ett systemutvecklingsprojekt samt (7) genomför med viss säkerhet löpande utvärdering och förbättring av det projektet. Den studerande (8) genomför också testdriven utveckling inom projektet med gott handlag.*
+
+För att få betyget **väl godkänt** krävs att:
+*Den studerande (1) förklarar *utförligt och nyanserat* vad agila metoder är och hur de skiljer sig från andra projektmodeller/-metoder inom systemutveckling samt (2) förklarar utförligt och nyanserat hur de största agila metoderna på marknaden fungerar med betoning på Scrum. *
+
+*Vidare förklarar också den studerande utförligt och nyanserat hur (3) kravhantering, (4) rollfördelning och (5) kvalitetssäkring fungerar inom ett agilt projekt.*
+
+*Den studerande (6) tillämpar också med säkerhet agila metoder som deltagare i ett systemutvecklingsprojekt samt (7) genomför med säkerhet löpande utvärdering och förbättring av det projektet. Den studerande (8) genomför också testdriven utveckling inom projektet med mycket gott handlag.*
+
+****Former för kunskapskontroll****
+
+* Individuell skriftlig tentamen
+* Individuell inlämning (slutreflektion kring projektet)
+* Individuell loggbok över projektet
+* Redovisning av grupparbete

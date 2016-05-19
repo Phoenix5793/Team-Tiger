@@ -41,10 +41,9 @@ namespace Tiger_YH_Admin
 
         private static void CreateDirectories()
         {
-            Directory.CreateDirectory("Temp");
-            Directory.CreateDirectory("Data");
-            Directory.CreateDirectory("Kursplan");
-
+            Directory.CreateDirectory(@"Temp");
+            Directory.CreateDirectory(@"Data");
+            Directory.CreateDirectory(@"Data\Kursplan");
         }
 
         static void CreateAdmin(UserStore userStore)
