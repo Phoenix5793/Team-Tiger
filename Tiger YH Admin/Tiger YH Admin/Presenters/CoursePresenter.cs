@@ -246,7 +246,7 @@ namespace Tiger_YH_Admin.Presenters
                 Console.WriteLine("Den studerande ska:");
                 foreach (Goal goal in goals)
                 {
-                    Console.WriteLine(" - " + goal.Description);
+                    Console.WriteLine($" {goal.GoalId}.".PadRight(5) + goal.Description);
                 }
             }
             else
@@ -285,10 +285,10 @@ namespace Tiger_YH_Admin.Presenters
                 foreach (Goal goal in goals)
                 {
                     Grade grade = grades.SingleOrDefault(g => g.CourseGoal == goal.GoalId);
-                    Console.WriteLine(" - " + goal.Description);
+                    Console.WriteLine($" {goal.GoalId}.".PadRight(5) + goal.Description);
                     if (grade == null)
                     {
-                        Console.WriteLine("   Ej betygsatt");
+                        Console.WriteLine("     Ej betygsatt");
                     }
                     else
                     {
