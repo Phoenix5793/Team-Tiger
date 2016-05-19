@@ -38,12 +38,15 @@ namespace Tiger_YH_Admin.DataStore
 
         public IEnumerable<Grade> FindGradesForStudent(User student)
         {
-            return All().Where(g => g.StudentId == student.UserName);
+            return All()
+                .Where(g => g.StudentId == student.UserName);
         }
 
         public IEnumerable<Grade> FindGradesForStudent(User student, Course course)
         {
-            return All().Where(g => g.StudentId == student.UserName).Where(c => c.CourseId == course.CourseId);
+            return All()
+                .Where(g => g.StudentId == student.UserName)
+                .Where(c => c.CourseId == course.CourseId);
         }
 
         public Grade GradeStudent(User student, Grade grade)
