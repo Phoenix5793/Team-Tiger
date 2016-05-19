@@ -57,7 +57,7 @@ namespace Tiger_YH_Admin.Presenters
                 "Beskrivning".PadRight(40)
                 );
 
-            Console.WriteLine(new string('-', 66));
+            Console.WriteLine(new string('-', Console.WindowWidth));
 
             foreach (EducationClass educationClass in classes)
             {
@@ -104,7 +104,7 @@ namespace Tiger_YH_Admin.Presenters
                         "Telefon".PadRight(15) +
                         "Person-nr"
                         );
-                    Console.WriteLine(new string('-', 80));
+                    Console.WriteLine(new string('-', Console.WindowWidth));
 
                     List<string> studentList = edClass.GetStudentList();
                     foreach (string studentId in studentList)
@@ -142,7 +142,7 @@ namespace Tiger_YH_Admin.Presenters
                 "Namn".PadRight(40) +
                 "Telefon".PadRight(15)
                 );
-            Console.WriteLine(new string('-', 80));
+            Console.WriteLine(new string('-', Console.WindowWidth));
 
             List<string> studentList = edClass.GetStudentList();
             foreach (string studentId in studentList)

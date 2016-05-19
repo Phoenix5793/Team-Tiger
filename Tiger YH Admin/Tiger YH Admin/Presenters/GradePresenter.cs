@@ -251,7 +251,7 @@ namespace Tiger_YH_Admin.Presenters
                 "Kursnamn".PadRight(40) +
                 "Betyg".PadRight(10)
                 );
-            Console.WriteLine(new string('-', 60));
+            Console.WriteLine(new string('-', Console.WindowWidth));
 
             foreach (Grade grade in grades)
             {
