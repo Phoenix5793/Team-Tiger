@@ -156,16 +156,23 @@ namespace Tiger_YH_Admin.Presenters
             List<Goal> goals = goalStore.FindByCourseId(course.CourseId).ToList();
 
             Console.Clear();
-            Console.WriteLine(course.CourseName);
+            Console.WriteLine($"Kursmål för {course.CourseName}");
+            Console.WriteLine(new string('-', 100));
             Console.WriteLine();
-            Console.WriteLine("Den studerande ska");
-            foreach (Goal goal in goals)
+            if (goals.Count > 0)
             {
-                Console.WriteLine(" - " + goal.Description);
+                Console.WriteLine("Den studerande ska:");
+                foreach (Goal goal in goals)
+                {
+                    Console.WriteLine(" - " + goal.Description);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Kursen har inga mål.");
             }
 
             UserInput.WaitForContinue();
-
         }
 
         public static Course GetCourseById()
