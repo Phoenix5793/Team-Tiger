@@ -54,7 +54,12 @@ namespace Tiger_YH_Admin.Presenters
 
             do
             {
+                Console.WriteLine("Tryck enter för att avbryta");
                 string courseName = UserInput.GetInput<string>("Ange kurs-id:");
+                if (courseName == string.Empty)
+                {
+                    return;
+                }
                 if (courses.Exists(c => c.CourseId == courseName))
                 {
                     // TODO: gör extension method
@@ -81,6 +86,8 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine($"Kurs: {course.CourseName} ({course.CourseId})");
             Console.WriteLine($"Betyg: {gradeLevel}");
             bool confirm = UserInput.AskConfirmation("Betygsätt student?");
+
+          
 
             if (confirm)
             {
