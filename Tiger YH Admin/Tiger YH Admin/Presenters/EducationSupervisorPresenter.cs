@@ -17,7 +17,7 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("Utbildningsledare - Hantera lärare");
             Console.WriteLine();
             Console.WriteLine("1. Visa alla lärare");
-            Console.WriteLine("2. Lärarbemanning");
+            
 
             Console.WriteLine();
             Console.Write("Ditt val: ");
