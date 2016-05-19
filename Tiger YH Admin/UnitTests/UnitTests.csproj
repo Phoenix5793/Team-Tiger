@@ -61,6 +61,7 @@
     <Compile Include="DataStore\TestGradeStore.cs" />
     <Compile Include="DataStore\TestGoalStore.cs" />
     <Compile Include="DataStore\TestEducationClassStoreExtensions.cs" />
+    <Compile Include="DataStore\TestUserStoreExtensions.cs" />
     <Compile Include="Models\TestUser.cs" />
     <Compile Include="Models\TestEducationClass.cs" />
     <Compile Include="DataStore\TestCourseStore.cs" />

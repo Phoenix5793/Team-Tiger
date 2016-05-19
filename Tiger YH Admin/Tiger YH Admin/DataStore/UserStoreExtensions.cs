@@ -7,7 +7,7 @@ using Tiger_YH_Admin.Models;
 
 namespace Tiger_YH_Admin.DataStore
 {
-    static class UserStoreExtensions
+    public static class UserStoreExtensions
     {
         public static IEnumerable<User> IsTeacher(this IEnumerable<User> teachers)
         {
