@@ -130,7 +130,7 @@ namespace Tiger_YH_Admin.Presenters
                 "Telefon".PadRight(10) +
                 "Person-nr".PadRight(12)
                 );
-            Console.WriteLine(new string('-', 66));
+            Console.WriteLine(new string('-', Console.WindowWidth));
 
             foreach (User user in userList)
             {
@@ -223,7 +223,7 @@ namespace Tiger_YH_Admin.Presenters
                 "Namn".PadRight(30) +
                 "Telefon".PadRight(15)
                 );
-            Console.WriteLine(new string('-', 60));
+            Console.WriteLine(new string('-', Console.WindowWidth));
 
             UserStore userStore = new UserStore();
 

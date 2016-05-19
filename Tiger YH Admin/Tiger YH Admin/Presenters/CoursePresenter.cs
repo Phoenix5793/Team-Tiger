@@ -251,7 +251,7 @@ namespace Tiger_YH_Admin.Presenters
 
             Console.Clear();
             Console.WriteLine($"Kursmål för {course.CourseName}");
-            Console.WriteLine(new string('-', 100));
+            Console.WriteLine(new string('-', Console.WindowWidth));
             Console.WriteLine();
             if (goals.Count > 0)
             {
@@ -287,7 +287,7 @@ namespace Tiger_YH_Admin.Presenters
 
             Console.Clear();
             Console.WriteLine($"Kursmål för {course.CourseName}");
-            Console.WriteLine(new string('-', 100));
+            Console.WriteLine(new string('-', Console.WindowWidth));
             Console.WriteLine();
             if (goals.Count > 0)
             {
@@ -369,7 +369,7 @@ namespace Tiger_YH_Admin.Presenters
                 "Student-id".PadRight(12) +
                 "Student".PadRight(40) +
                 "Betyg");
-            Console.WriteLine(new string('-', 80));
+            Console.WriteLine(new string('-', Console.WindowWidth));
 
             foreach (Grade grade in grades)
             {
