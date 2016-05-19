@@ -90,6 +90,7 @@
     <None Include="Data\EducationClassList.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Data\GoalList.csv" />
     <None Include="Data\GradeList.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
