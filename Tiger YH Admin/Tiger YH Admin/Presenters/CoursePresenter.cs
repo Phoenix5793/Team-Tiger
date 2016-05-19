@@ -126,7 +126,6 @@ namespace Tiger_YH_Admin.Presenters
             {
                 Console.WriteLine("Målet finns inte");
             }
-
         }
 
         private static void RemoveCourseGoal()
@@ -139,9 +138,7 @@ namespace Tiger_YH_Admin.Presenters
 
             foreach (var goal in goals)
             {
-
                 Console.WriteLine(goal.GoalId + ":  " + goal.Description.Truncate(Console.WindowWidth));
-
             }
             Console.WriteLine("Tryck enter för att avbryta");
             Console.WriteLine();
@@ -152,12 +149,9 @@ namespace Tiger_YH_Admin.Presenters
 
             for (int i = 0; i < goals.Count; i++)
             {
-
                 goals[i].GoalId = (i + 1).ToString();
-
             }
             goalStore.Save();
-
         }
 
         private static void CreateNewCourseGoal()
@@ -202,8 +196,6 @@ namespace Tiger_YH_Admin.Presenters
 
         private static void EditCoursePlan(string fileName)
         {
-
-
             if (!File.Exists(fileName))
             {
                 File.Create(fileName);
@@ -221,21 +213,14 @@ namespace Tiger_YH_Admin.Presenters
 
             if (user.HasLevel(UserLevel.EducationSupervisor))
             {
-
                 EditCoursePlan(courseFile);
             }
             else
             {
                 File.Copy(courseFile, "temp.txt", true);
                 EditCoursePlan("temp.txt");
-
             }
-
-
-
-
         }
-
 
         public static void ShowCourseGoals(Course course = null)
         {
@@ -281,7 +266,7 @@ namespace Tiger_YH_Admin.Presenters
                 UserInput.WaitForContinue();
                 return;
             }
-            
+
 
             List<Goal> goals = goalStore.FindByCourseId(course.CourseId).ToList();
 
@@ -343,7 +328,6 @@ namespace Tiger_YH_Admin.Presenters
                 {
                     loop = false;
                 }
-
             } while (loop);
 
             return course;
@@ -424,7 +408,7 @@ namespace Tiger_YH_Admin.Presenters
                     teacher.FullName()
                     );
             }
-            
+
             UserInput.WaitForContinue();
         }
 
