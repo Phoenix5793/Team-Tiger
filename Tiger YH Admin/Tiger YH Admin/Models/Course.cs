@@ -19,19 +19,5 @@ namespace Tiger_YH_Admin.Models
         public DateTime EndDate { get; set; }
         public string CourseTeacher { get; set; }
         public int? CoursePoints { get; set; }
-
-        public void EditCoursePlan()
-        {
-            string coursePlanFile = $@"Kursplan\{CourseId}.txt";
-
-            if (!File.Exists(coursePlanFile))
-            {
-                File.Create(coursePlanFile);
-            }
-
-            Console.Clear();
-            Console.WriteLine("Väntar på att Notepad ska avslutas...");
-            Process.Start("Notepad.exe", coursePlanFile).WaitForExit();
-        }
     }
 }
