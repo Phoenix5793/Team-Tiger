@@ -19,12 +19,6 @@ namespace Tiger_YH_Admin.Models
         public string PhoneNumber { get; set; }
         public UserLevel UserLevel { get; set; } = UserLevel.Student;
 
-
-        public override string ToString()
-        {
-            return UserName;
-        }
-
         public string FullName()
         {
             return $"{FirstName} {LastName}";
