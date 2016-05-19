@@ -79,7 +79,7 @@ namespace Tiger_YH_Admin.Presenters
                     ShowGradesForCourse();
                     break;
                 case "13":
-                    ShowCoursePlan();
+                    ShowCoursePlan(user);
                     break;
                 case "14":
                     ShowCourseGoals();
@@ -130,19 +130,43 @@ namespace Tiger_YH_Admin.Presenters
             ShowCourseGoals(course);
         }
 
-        private static void EditCoursePlan(Course course)
+        private static void EditCoursePlan(string fileName)
         {
-            string coursePlanFile = $@"Kursplan\{course.CourseId}.txt";
+            
 
-            if (!File.Exists(coursePlanFile))
+            if (!File.Exists(fileName))
             {
-                File.Create(coursePlanFile);
+                File.Create(fileName);
             }
 
             Console.Clear();
             Console.WriteLine("Väntar på att Notepad ska avslutas...");
-            Process.Start("Notepad.exe", coursePlanFile).WaitForExit();
+            Process.Start("Notepad.exe", fileName).WaitForExit();
         }
+
+        private static void ShowCoursePlan(User user)
+        {
+            Course course = GetCourseById();
+            string courseFile = $@"kursplan\{course.CourseId}.txt";
+
+            if (user.HasLevel(UserLevel.EducationSupervisor))
+            {
+                
+                EditCoursePlan(courseFile);
+            }
+            else
+            {
+                File.Copy(courseFile, "temp.txt", true);
+                EditCoursePlan("temp.txt");
+
+            }
+
+
+
+
+        }
+
+
         private static void ShowCourseGoals(Course course = null)
         {
             var goalStore = new GoalStore();
@@ -206,15 +230,6 @@ namespace Tiger_YH_Admin.Presenters
             } while (loop);
 
             return course;
-        }
-
-        private static void ShowCoursePlan()
-        {
-            Course course = GetCourseById();
-            if (course != null)
-            {
-                EditCoursePlan(course);
-            }
         }
 
         private static void ShowGradesForCourse()
