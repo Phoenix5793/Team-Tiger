@@ -58,6 +58,7 @@ namespace Tiger_YH_Admin.Presenters
             else if (requireOldPassword)
             {
                 Console.WriteLine("Fel lösenord");
+                UserInput.WaitForContinue();
             }
         }
     }
