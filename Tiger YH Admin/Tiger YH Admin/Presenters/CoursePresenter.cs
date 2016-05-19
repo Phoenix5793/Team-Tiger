@@ -17,6 +17,7 @@ namespace Tiger_YH_Admin.Presenters
 
             Console.WriteLine("Hantera kurser");
             Console.WriteLine();
+            Console.WriteLine("0. Tillbaka till föregående meny");
             Console.WriteLine("1. Skapa kurs");
             Console.WriteLine("2. Ta bort kurs");
             Console.WriteLine("3. Ändra lärare för en kurs");
@@ -41,6 +42,8 @@ namespace Tiger_YH_Admin.Presenters
 
             switch (menuChoice)
             {
+                case "0":
+                    return;
                 case "1":
                     var creator = new CourseCreator();
                     var courseStore = new CourseStore();
