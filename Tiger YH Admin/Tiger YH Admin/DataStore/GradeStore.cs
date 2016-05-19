@@ -30,6 +30,11 @@ namespace Tiger_YH_Admin.DataStore
             return All().Where(g => g.StudentId == student.UserName);
         }
 
+        public IEnumerable<Grade> FindGradesForStudent(User student, Course course)
+        {
+            return All().Where(g => g.StudentId == student.UserName).Where(c => c.CourseId == course.CourseId);
+        }
+
         public Grade GradeStudent(User student, Grade grade)
         {
             Grade newGrade = new Grade
