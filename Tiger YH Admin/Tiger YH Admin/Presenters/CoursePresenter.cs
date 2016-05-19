@@ -33,6 +33,7 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("14. Visa mål för en kurs");
             Console.WriteLine("15. Lägg till mål för en kurs");
             Console.WriteLine("16. Ta bort mål för en kurs");
+            Console.WriteLine("17. Redigera kursmål");
 
             Console.WriteLine();
             Console.Write("Ditt val: ");
@@ -87,7 +88,79 @@ namespace Tiger_YH_Admin.Presenters
                 case "15":
                     CreateNewCourseGoal();
                     break;
+                case "16":
+                    RemoveCourseGoal();
+                    break;
+                case "17":
+                    EditCourseGoal();
+                    break;
             }
+        }
+
+        private static void EditCourseGoal()
+        {
+            Course course = GetCourseById();
+            var goalStore = new GoalStore();
+
+            List<Goal> goals = goalStore.FindByCourseId(course.CourseId).ToList();
+
+            foreach (var g in goals)
+            {
+
+                Console.WriteLine(g.GoalId + ":  " + g.Description.Truncate(Console.WindowWidth));
+
+            }
+            Console.WriteLine("Tryck enter för att avbryta");
+            Console.WriteLine();
+            string input = UserInput.GetInput<string>("Ange mål id");
+            Goal goal = goals.SingleOrDefault(g => g.GoalId == input);
+
+            if (goal != null)
+            {
+                Console.Clear();
+                Console.WriteLine("Gammal beskrivning: " + goal.Description);
+                Console.WriteLine();
+                goal.Description = UserInput.GetInput<string>("Ange ny beskrivning");
+                goalStore.Save();
+            }
+            else
+            {
+
+                Console.WriteLine("Målet finns inte");
+
+            }
+
+        }
+
+        private static void RemoveCourseGoal()
+        {
+            Course course = GetCourseById();
+
+            var goalStore = new GoalStore();
+
+            List<Goal> goals = goalStore.FindByCourseId(course.CourseId).ToList();
+
+            foreach (var goal in goals)
+            {
+                
+                Console.WriteLine(goal.GoalId + ":  " + goal.Description.Truncate(Console.WindowWidth));
+                
+            }
+            Console.WriteLine("Tryck enter för att avbryta");
+            Console.WriteLine();
+            string input = UserInput.GetInput<string>("Ange mål id");
+
+            goals.RemoveAll(g => g.GoalId == input);
+            goalStore.Remove(input);
+
+            for (int i = 0; i < goals.Count; i++)
+            {
+
+                goals[i].GoalId = (i + 1).ToString();
+
+            }
+            goalStore.Save();
+
         }
 
         private static void CreateNewCourseGoal()
@@ -123,7 +196,7 @@ namespace Tiger_YH_Admin.Presenters
                     GoalId = (goalCount + 1).ToString(),
                     Description = description
                 };
-
+                goalCount++;
                 goalStore.AddItem(goal);
                 goalStore.Save();
             }
@@ -144,7 +217,7 @@ namespace Tiger_YH_Admin.Presenters
             Process.Start("Notepad.exe", fileName).WaitForExit();
         }
 
-        private static void ShowCoursePlan(User user)
+        public static void ShowCoursePlan(User user)
         {
             Course course = GetCourseById();
             string courseFile = $@"kursplan\{course.CourseId}.txt";

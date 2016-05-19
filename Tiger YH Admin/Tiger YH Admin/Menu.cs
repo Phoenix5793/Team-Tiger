@@ -55,6 +55,7 @@ namespace Tiger_YH_Admin
                 Console.WriteLine("2. Klasslista");
                 Console.WriteLine("3. Kurslista");
                 Console.WriteLine("4. Byt lösenord");
+                Console.WriteLine("5. Visa kursplan");
 
                 Console.WriteLine();
                 Console.Write("Ditt val: ");
@@ -78,6 +79,9 @@ namespace Tiger_YH_Admin
                     case "4":
                         AccountPresenter.ChangePassword(user);
                         break;
+                    case "5":
+                        CoursePresenter.ShowCoursePlan(user);
+                        break;
                 }
             } while (!logout);
             return false;
@@ -98,6 +102,7 @@ namespace Tiger_YH_Admin
                 Console.WriteLine("3. Betygsätt student");
                 Console.WriteLine("4. Betygsätt delmål");
                 Console.WriteLine("5. Byt lösenord");
+                Console.WriteLine("6. Visa kursplan");
 
                 Console.WriteLine();
                 Console.Write("Ditt val: ");
@@ -123,6 +128,10 @@ namespace Tiger_YH_Admin
                     case "5":
                         AccountPresenter.ChangePassword(user);
                         break;
+                    case "6":
+                        CoursePresenter.ShowCoursePlan(user);
+                        break;
+
                 }
             } while (!logout);
             return false;
