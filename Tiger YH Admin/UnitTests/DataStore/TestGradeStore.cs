@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tiger_YH_Admin;
 using Tiger_YH_Admin.Models;
@@ -11,20 +12,37 @@ namespace UnitTests.DataStore
     public class TestGradeStore
     {
         private GradeStore _testStore;
-        private Grade _testGrade;
+        private Grade _testCourseGrade;
+        private Grade _testGoalGrade;
         private List<Grade> _testGradeList;
 
         [TestInitialize]
         public void Initialize()
         {
-            _testGrade = new Grade
+            _testCourseGrade = new Grade
             {
                 CourseId = "oop1",
                 StudentId = "adad",
                 Result = GradeLevel.VG
             };
 
-            _testGradeList = new List<Grade> {_testGrade};
+            _testGoalGrade = new Grade
+            {
+                CourseId = "oop1",
+                StudentId = "adad",
+                CourseGoal = "1",
+                Result = GradeLevel.G
+            };
+
+            var otherGrade = new Grade
+            {
+                CourseId = "shouldnotbefound",
+                StudentId = "xyxy",
+                CourseGoal = "5",
+                Result = GradeLevel.IG
+            };
+
+            _testGradeList = new List<Grade> {_testCourseGrade, _testGoalGrade, otherGrade};
             _testStore = new GradeStore(_testGradeList);
         }
 
@@ -38,6 +56,44 @@ namespace UnitTests.DataStore
             GradeLevel actualGradeLevel = actualGrade.Result;
 
             Assert.IsNotNull(actualGrade);
+            Assert.AreEqual(expectedGradeLevel, actualGradeLevel);
+        }
+
+        [TestMethod]
+        public void FindByCourseId__Finds_All_Grades()
+        {
+            string courseId = "oop1";
+            int expectedGrades = 2;
+
+            var courses = _testStore.FindByCourseId(courseId);
+            int actualGrades = courses.Count();
+
+            Assert.AreEqual(expectedGrades, actualGrades);
+        }
+
+        [TestMethod]
+        public void FindByCourseId__Finds_Course_Grade()
+        {
+            string courseId = "oop1";
+            var expectedGradeLevel = GradeLevel.VG;
+
+            var courses = _testStore.FindByCourseId(courseId, GradeType.Course);
+            var foundCourse = courses.Single(c => c.CourseId == courseId);
+            var actualGradeLevel = foundCourse.Result;
+
+            Assert.AreEqual(expectedGradeLevel, actualGradeLevel);
+        }
+
+        [TestMethod]
+        public void FindByCourseId__Finds_Goal_Grade()
+        {
+            string courseId = "oop1";
+            var expectedGradeLevel = GradeLevel.G;
+
+            var courses = _testStore.FindByCourseId(courseId, GradeType.Goal);
+            var foundCourse = courses.Single(c => c.CourseId == courseId);
+            var actualGradeLevel = foundCourse.Result;
+
             Assert.AreEqual(expectedGradeLevel, actualGradeLevel);
         }
 
@@ -56,7 +112,7 @@ namespace UnitTests.DataStore
                 Result = GradeLevel.VG
             };
 
-            Grade actualGrade = _testStore.GradeStudent(inputStudent, _testGrade);
+            Grade actualGrade = _testStore.GradeStudent(inputStudent, _testCourseGrade);
             Grade foundGrade = _testStore.FindById(inputGradeId);
 
             Assert.AreEqual(expectedGrade.CourseId, actualGrade.CourseId);

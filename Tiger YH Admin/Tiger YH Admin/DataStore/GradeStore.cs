@@ -20,9 +20,20 @@ namespace Tiger_YH_Admin.DataStore
             return All().SingleOrDefault(g => g.GradeId == id);
         }
 
-        public IEnumerable<Grade> FindByCourseId(string id)
+        public IEnumerable<Grade> FindByCourseId(string id, GradeType type = GradeType.All)
         {
-            return All().Where(g => g.CourseId == id);
+            IEnumerable<Grade> grades = All().Where(g => g.CourseId == id);
+
+            switch (type)
+            {
+                default:
+                case GradeType.All:
+                    return grades;
+                case GradeType.Course:
+                    return grades.Where(c => c.CourseGoal == null);
+                case GradeType.Goal:
+                    return grades.Where(c => c.CourseGoal != null);
+            }
         }
 
         public IEnumerable<Grade> FindGradesForStudent(User student)

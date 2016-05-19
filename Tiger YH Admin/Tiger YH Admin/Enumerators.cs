@@ -20,4 +20,11 @@ namespace Tiger_YH_Admin
         G,
         VG
     }
+
+    public enum GradeType
+    {
+        All,
+        Course,
+        Goal
+    }
 }
