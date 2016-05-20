@@ -22,19 +22,11 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("2. Ta bort kurs");
             Console.WriteLine("3. Ändra lärare för en kurs");
             Console.WriteLine("4. Ändra kurs");
-            Console.WriteLine("5. Visa alla kurser");
-            Console.WriteLine("6. Visa avslutade kurser");
-            Console.WriteLine("7. Visa pågående kurser");
-            Console.WriteLine("8. Visa kommande kurser");
-            Console.WriteLine("9. Visa obemannade kurser");
-            Console.WriteLine("10. Visa avtalade kurser");
-            Console.WriteLine("11. Visa klasslista för en kurs");
-            Console.WriteLine("12. Visa alla betyg för en kurs");
-            Console.WriteLine("13. Öppna kursplan");
-            Console.WriteLine("14. Visa mål för en kurs");
-            Console.WriteLine("15. Lägg till mål för en kurs");
-            Console.WriteLine("16. Ta bort mål för en kurs");
-            Console.WriteLine("17. Redigera kursmål");
+            Console.WriteLine("5. Kurslistor");
+            Console.WriteLine("6. Visa klasslista för en kurs");
+            Console.WriteLine("7. Visa alla betyg för en kurs");
+            Console.WriteLine("8. Öppna kursplan");
+            Console.WriteLine("9. Kursmål");
 
             Console.WriteLine();
             Console.Write("Ditt val: ");
@@ -59,45 +51,101 @@ namespace Tiger_YH_Admin.Presenters
                     CoursePresenter.EditCourse();
                     break;
                 case "5":
-                    CoursePresenter.ListAllCourses();
+                    CourseSubMenuCourseLists();
                     break;
                 case "6":
-                    TeacherStaffingFinishedCourses();
-                    break;
-                case "7":
-                    TeacherStaffingCurrentCourses();
-                    break;
-                case "8":
-                    TeacherStaffingFutureCourses();
-                    break;
-                case "9":
-                    TeacherStaffingUnmannedCourses();
-                    break;
-                case "10":
-                    TeacherStaffingArrangedCourses();
-                    break;
-                case "11":
                     ShowStudentsForCourse(user);
                     break;
-                case "12":
+                case "7":
                     ShowGradesForCourse();
                     break;
-                case "13":
+                case "8":
                     ShowCoursePlan(user);
                     break;
-                case "14":
+                case "9":
+                    CourseSubMenuGoals();
+                    break;
+            }
+        }
+
+        private static void CourseSubMenuCourseLists()
+        {
+            Console.Clear();
+            Console.WriteLine("Kurslistor");
+            Console.WriteLine();
+
+            Console.WriteLine("1. Visa alla kurser");
+            Console.WriteLine("2. Visa avslutade kurser");
+            Console.WriteLine("3. Visa pågående kurser");
+            Console.WriteLine("4. Visa kommande kurser");
+            Console.WriteLine("5. Visa obemannade kurser");
+            Console.WriteLine("6. Visa avtalade kurser");
+
+            Console.WriteLine();
+            Console.Write("Ditt val: ");
+            string menuChoice = UserInput.GetInput<string>();
+
+            switch (menuChoice)
+            {
+                default:
+                case "0":
+                    return;
+                case "1":
+                    CoursePresenter.ListAllCourses();
+                    break;
+                case "2":
+                    TeacherStaffingFinishedCourses();
+                    break;
+                case "3":
+                    TeacherStaffingCurrentCourses();
+                    break;
+                case "4":
+                    TeacherStaffingFutureCourses();
+                    break;
+                case "5":
+                    TeacherStaffingUnmannedCourses();
+                    break;
+                case "6":
+                    TeacherStaffingArrangedCourses();
+                    break;
+            }
+        }
+
+        private static void CourseSubMenuGoals()
+        {
+            Console.Clear();
+            Console.WriteLine("Kursmål");
+            Console.WriteLine();
+
+            Console.WriteLine("0. Tillbaka");
+            Console.WriteLine("1. Visa mål för en kurs");
+            Console.WriteLine("2. Lägg till mål för en kurs");
+            Console.WriteLine("3. Ta bort mål för en kurs");
+            Console.WriteLine("4. Redigera kursmål");
+
+            Console.WriteLine();
+            Console.Write("Ditt val: ");
+            string menuChoice = UserInput.GetInput<string>();
+
+            switch (menuChoice)
+            {
+                case "0":
+                default:
+                    return;
+                case "1":
                     ShowCourseGoals();
                     break;
-                case "15":
+                case "2":
                     CreateNewCourseGoal();
                     break;
-                case "16":
+                case "3":
                     RemoveCourseGoal();
                     break;
-                case "17":
+                case "4":
                     EditCourseGoal();
                     break;
             }
+
         }
 
         private static void EditCourseGoal()
