@@ -246,7 +246,7 @@ namespace Tiger_YH_Admin
                 Console.WriteLine();
                 Console.WriteLine("0. Logga ut");
                 Console.WriteLine("1. Skapa konton");
-                Console.WriteLine("2. Hantera lärare");
+                Console.WriteLine("2. Visa lärare");
                 Console.WriteLine("3. Hantera klasser");
                 Console.WriteLine("4. Hantera studenter");
                 Console.WriteLine("5. Hantera kurser");
@@ -267,7 +267,7 @@ namespace Tiger_YH_Admin
                         creator.Create(userStore);
                         break;
                     case "2":
-                        EducationSupervisorPresenter.ManageTeacherMenu();
+                        UserManagerPresenter.ListTeachers();
                         break;
                     case "3":
                         EducationSupervisorPresenter.ManageClassMenu(educationSupervisor);

@@ -11,27 +11,6 @@ namespace Tiger_YH_Admin.Presenters
 {
     static class EducationSupervisorPresenter
     {
-        public static void ManageTeacherMenu()
-        {
-            Console.Clear();
-            Console.WriteLine("Utbildningsledare - Hantera lärare");
-            Console.WriteLine();
-            Console.WriteLine("1. Visa alla lärare");
-            
-
-            Console.WriteLine();
-            Console.Write("Ditt val: ");
-            string menuChoice = UserInput.GetInput<string>();
-
-            switch (menuChoice)
-            {
-                case "1":
-                    UserManagerPresenter.ListTeachers();
-                    break;
-            }
-
-        }
-
         internal static void ManageClassMenu(User user)
         {
             Console.Clear();
