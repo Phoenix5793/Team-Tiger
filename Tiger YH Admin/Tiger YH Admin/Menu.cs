@@ -143,7 +143,7 @@ namespace Tiger_YH_Admin
             return false;
         }
 
-        public static bool AdminMainMenu()
+        private static bool AdminMainMenu()
         {
             bool logout = false;
             do
@@ -232,7 +232,7 @@ namespace Tiger_YH_Admin
             return new string[] {userName, password};
         }
 
-        public static bool EducationSupervisorMainMenu(User educationSupervisor)
+        private static bool EducationSupervisorMainMenu(User educationSupervisor)
         {
             bool logout = false;
 
