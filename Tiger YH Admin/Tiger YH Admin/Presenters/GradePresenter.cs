@@ -195,7 +195,6 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine($"Kursmål: {goal.Description.Truncate(95)}");
             Console.WriteLine($"Betyg:   {grade.Result}");
 
-            Console.WriteLine(grade.GradeId);
             bool confirm = UserInput.AskConfirmation("Spara betyg?");
 
             if (confirm)
