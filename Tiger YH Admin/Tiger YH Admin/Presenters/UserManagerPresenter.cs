@@ -123,9 +123,10 @@ namespace Tiger_YH_Admin.Presenters
                 userList = new UserStore().All().ToList();
             }
 
+            Console.Clear();
             Console.WriteLine(
                 "Användarnamn".PadRight(14) +
-                "Namn".PadRight(20) +
+                "Namn".PadRight(40) +
                 "Typ".PadRight(10) +
                 "Telefon".PadRight(10) +
                 "Person-nr".PadRight(12)
@@ -135,7 +136,7 @@ namespace Tiger_YH_Admin.Presenters
             foreach (User user in userList)
             {
                 Console.Write(user.UserName.PadRight(14));
-                Console.Write(user.FullName().PadRight(20));
+                Console.Write(user.FullName().PadRight(40));
                 Console.Write(user.UserLevel.ToString().PadRight(10));
                 Console.Write(user.PhoneNumber.PadRight(10));
                 Console.Write(user.SSN.PadRight(12));
