@@ -9,8 +9,6 @@ namespace Tiger_YH_Admin.Presenters
 {
     static class UserManagerPresenter
     {
-        private static User student;
-
         public static void Run()
         {
             while (true)
@@ -75,7 +73,7 @@ namespace Tiger_YH_Admin.Presenters
 
         private static void ShowStudentInformation()
         {
-            student = SearchForUser();
+            User student = SearchForUser();
             if (student != null)
             {
                 PrintStudentInfo(student);
