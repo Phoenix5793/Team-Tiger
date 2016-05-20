@@ -62,7 +62,6 @@ namespace Tiger_YH_Admin
                 Console.Write("Ditt val: ");
                 string menuChoice = UserInput.GetInput<string>();
 
-                // TODO: Implementera
                 switch (menuChoice)
                 {
                     case "0":

@@ -19,7 +19,6 @@ namespace Tiger_YH_Admin.Creators
                 Console.WriteLine("Skapa ny klass");
                 Console.WriteLine();
                 string classId = UserInput.GetInput<string>("Klass-id:");
-                // TODO: implementera uppdatering
                 existingClass = dataStore.FindById(classId);
 
                 if (existingClass != null && keepLooping)
@@ -29,7 +28,6 @@ namespace Tiger_YH_Admin.Creators
                 }
                 else
                 {
-                    // Klassen finns inte
                     Console.Write("Klassbeskrivning: ");
                     string classDescription = UserInput.GetInput<string>();
 

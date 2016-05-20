@@ -514,7 +514,6 @@ namespace Tiger_YH_Admin.Presenters
             {
                 newCourseTeacher = courseToEdit.CourseTeacher;
             }
-            //TODO: Hantera tom input på datum
 
             Course newCourse = new Course
             {
