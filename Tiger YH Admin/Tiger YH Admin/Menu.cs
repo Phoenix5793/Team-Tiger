@@ -105,9 +105,9 @@ namespace Tiger_YH_Admin
                 Console.WriteLine("2. Visa studentlista för en kurs");
                 Console.WriteLine("3. Betygsätt student");
                 Console.WriteLine("4. Betygsätt delmål");
-                Console.WriteLine("5. Byt lösenord");
-                Console.WriteLine("6. Visa kursplan");
-                Console.WriteLine("7. Visa kursmål");
+                Console.WriteLine("5. Visa kursplan");
+                Console.WriteLine("6. Visa kursmål");
+                Console.WriteLine("7. Byt lösenord");
 
                 Console.WriteLine();
                 Console.Write("Ditt val: ");
@@ -131,15 +131,14 @@ namespace Tiger_YH_Admin
                         GradePresenter.GradeStudentGoal(user);
                         break;
                     case "5":
-                        AccountPresenter.ChangePassword(user);
-                        break;
-                    case "6":
                         CoursePresenter.ShowCoursePlan(user);
                         break;
-                    case "7":
+                    case "6":
                         CoursePresenter.ShowCourseGoals();
                         break;
-
+                    case "7":
+                        AccountPresenter.ChangePassword(user);
+                        break;
                 }
             } while (!logout);
             return false;
