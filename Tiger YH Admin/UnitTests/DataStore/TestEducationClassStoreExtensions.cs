@@ -12,6 +12,7 @@ namespace UnitTests.DataStore
         private EducationClassStore _testEducationClassStore;
         private EducationClass _testEducationClass;
         private User _testSupervisor;
+        private User _testStudent;
 
         [TestInitialize]
         public void Initialize()
@@ -20,6 +21,10 @@ namespace UnitTests.DataStore
             {
                 UserName = "supervisor"
             };
+            _testStudent = new User()
+            {
+                UserName = "student"
+            };
 
             _testEducationClass = new EducationClass
             {
@@ -27,6 +32,7 @@ namespace UnitTests.DataStore
                 Description = "Testklass",
                 EducationSupervisorId = "supervisor"
             };
+            _testEducationClass.AddStudent(_testStudent);
 
             var otherClass = new EducationClass
             {
