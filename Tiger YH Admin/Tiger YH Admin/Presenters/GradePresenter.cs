@@ -43,9 +43,8 @@ namespace Tiger_YH_Admin.Presenters
                 }
                 else
                 {
-                    // TODO: gör extension method
                     EducationClass studentClass =
-                        educationClassStore.All().Single(e => e.HasStudent(student));
+                        educationClassStore.FindByStudentId(student.UserName);
                     courseList = studentClass.GetCourseList();
                     break;
                 }
