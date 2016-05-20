@@ -61,7 +61,6 @@ namespace Tiger_YH_Admin.Presenters
                 }
                 if (courses.Exists(c => c.CourseId == courseName))
                 {
-                    // TODO: gör extension method
                     if (courseList.Contains(courseName))
                     {
                         course = courseStore.FindById(courseName);

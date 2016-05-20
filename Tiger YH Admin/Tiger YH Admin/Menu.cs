@@ -259,10 +259,9 @@ namespace Tiger_YH_Admin
                         logout = LogoutConfirmation();
                         break;
                     case "1":
-                        //TODO: Inte köra samma rutin som admin
                         UserStore userStore = new UserStore();
                         UserCreator creator = new UserCreator();
-                        creator.Create(userStore);
+                        creator.Create(userStore, UserLevel.EducationSupervisor);
                         break;
                     case "2":
                         UserManagerPresenter.ListTeachers();

@@ -8,6 +8,15 @@ namespace Tiger_YH_Admin.Creators
 {
     class UserCreator : ICreator<User>
     {
+        private UserLevel _newUserMaxLevel;
+
+        public User Create(IDataStore<User> userStore, UserLevel maxLevel)
+        {
+            _newUserMaxLevel = maxLevel;
+
+            return Create(userStore);
+        }
+
         public User Create(IDataStore<User> userStore, User existingUser = null)
         {
             string oldUserName = String.Empty;
@@ -29,7 +38,7 @@ namespace Tiger_YH_Admin.Creators
 
             string userName = string.Empty;
             bool loopName = false;
-            if (existingUser.UserName == string.Empty)
+            if (existingUser.UserName == null)
             {
                 do
                 {
@@ -58,10 +67,29 @@ namespace Tiger_YH_Admin.Creators
 
             foreach (UserLevel userLevel in Enum.GetValues(typeof(UserLevel)))
             {
-                Console.WriteLine((int) userLevel + " " + userLevel);
+                if (userLevel >= _newUserMaxLevel)
+                {
+                    Console.WriteLine((int)userLevel + " " + userLevel);
+                }
             }
-            Console.Write("Användarnivå:");
-            int chosenLevel = UserInput.GetInput<int>();
+
+            int chosenLevel;
+            bool loopLevel = true;
+            do
+            {
+                Console.Write("Användarnivå:");
+                chosenLevel = UserInput.GetInput<int>();
+
+                if (chosenLevel < (int) _newUserMaxLevel)
+                {
+                    Console.WriteLine("Ogiltig användarnivå");
+                }
+                else
+                {
+                    loopLevel = false;
+                }
+            } while (loopLevel);
+
             bool isValid = false;
             string ssn = string.Empty;
             string firstName = UserInput.GetEditableField("Förnamn", existingUser.FirstName);
