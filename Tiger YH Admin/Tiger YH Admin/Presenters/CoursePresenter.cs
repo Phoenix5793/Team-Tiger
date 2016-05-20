@@ -150,7 +150,7 @@ namespace Tiger_YH_Admin.Presenters
 
         private static void EditCourseGoal()
         {
-            Course course = GetCourseById();
+            Course course = AskForCourseById();
             var goalStore = new GoalStore();
 
             List<Goal> goals = goalStore.FindByCourseId(course.CourseId).ToList();
@@ -181,7 +181,7 @@ namespace Tiger_YH_Admin.Presenters
 
         private static void RemoveCourseGoal()
         {
-            Course course = GetCourseById();
+            Course course = AskForCourseById();
 
             var goalStore = new GoalStore();
 
@@ -213,7 +213,7 @@ namespace Tiger_YH_Admin.Presenters
             Console.WriteLine("Skapa nytt mål för kurs");
             Console.WriteLine();
 
-            Course course = GetCourseById();
+            Course course = AskForCourseById();
             if (course == null) return;
 
             Console.Clear();
@@ -259,7 +259,7 @@ namespace Tiger_YH_Admin.Presenters
 
         public static void ShowCoursePlan(User user)
         {
-            Course course = GetCourseById();
+            Course course = AskForCourseById();
             string courseFile = $@"Data\CoursePlan\{course.CourseId}.txt";
 
             if (user.HasLevel(UserLevel.EducationSupervisor))
@@ -279,7 +279,7 @@ namespace Tiger_YH_Admin.Presenters
 
             if (course == null)
             {
-                course = GetCourseById();
+                course = AskForCourseById();
                 if (course == null) return;
             }
 
@@ -308,7 +308,7 @@ namespace Tiger_YH_Admin.Presenters
         public static void ShowStudentCourseGoals(User student)
         {
             var goalStore = new GoalStore();
-            Course course = GetCourseById();
+            Course course = AskForCourseById();
 
             if (course == null)
             {
@@ -352,7 +352,7 @@ namespace Tiger_YH_Admin.Presenters
             UserInput.WaitForContinue();
         }
 
-        public static Course GetCourseById()
+        public static Course AskForCourseById()
         {
             var courseStore = new CourseStore();
             Course course;
@@ -386,7 +386,7 @@ namespace Tiger_YH_Admin.Presenters
 
         private static void ShowGradesForCourse()
         {
-            Course course = GetCourseById();
+            Course course = AskForCourseById();
             if (course != null)
             {
                 PrintCourseGrades(course);

@@ -69,7 +69,7 @@ namespace Tiger_YH_Admin
                         logout = LogoutConfirmation();
                         break;
                     case "1":
-                        GradePresenter.ShowStudentGrades(user);
+                        GradePresenter.ShowStudentCourseGrades(user);
                         break;
                     case "2":
                         ClassListPresenter.ShowClassForStudent(user);

@@ -80,7 +80,7 @@ namespace Tiger_YH_Admin.Presenters
 
             } while (true);
 
-            GradeLevel gradeLevel = GetGrade();
+            GradeLevel gradeLevel = AskForGrade();
 
             Console.WriteLine($"Student: {student.FullName()} ({student.UserName})");
             Console.WriteLine($"Kurs: {course.CourseName} ({course.CourseId})");
@@ -103,7 +103,7 @@ namespace Tiger_YH_Admin.Presenters
             }
         }
 
-        private static GradeLevel GetGrade()
+        private static GradeLevel AskForGrade()
         {
             string grade;
             bool loop = true;
@@ -136,7 +136,7 @@ namespace Tiger_YH_Admin.Presenters
             List<Course> courses = GetCourses(grader, courseStore).ToList();
 
 
-            Course course = CoursePresenter.GetCourseById();
+            Course course = CoursePresenter.AskForCourseById();
             if (course == null) return;
             if (grader.HasLevel(UserLevel.Teacher) && course.CourseTeacher != grader.UserName)
             {
@@ -180,7 +180,7 @@ namespace Tiger_YH_Admin.Presenters
                 return;
             }
 
-            GradeLevel gradeLevel = GetGrade();
+            GradeLevel gradeLevel = AskForGrade();
 
             var grade = new Grade
             {
@@ -232,7 +232,7 @@ namespace Tiger_YH_Admin.Presenters
             return courses;
         }
 
-        public static void ShowStudentGrades(User student)
+        public static void ShowStudentCourseGrades(User student)
         {
             var gradeStore = new GradeStore();
 
