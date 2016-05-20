@@ -43,7 +43,7 @@ namespace Tiger_YH_Admin
         {
             Directory.CreateDirectory(@"Temp");
             Directory.CreateDirectory(@"Data");
-            Directory.CreateDirectory(@"Data\Kursplan");
+            Directory.CreateDirectory(@"Data\CoursePlan");
         }
 
         static void CreateAdmin(UserStore userStore)

@@ -103,7 +103,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Data\Kursplan\agil1.txt">
+    <Content Include="Data\CoursePlan\agil1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

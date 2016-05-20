@@ -260,7 +260,7 @@ namespace Tiger_YH_Admin.Presenters
         public static void ShowCoursePlan(User user)
         {
             Course course = GetCourseById();
-            string courseFile = $@"Data\Kursplan\{course.CourseId}.txt";
+            string courseFile = $@"Data\CoursePlan\{course.CourseId}.txt";
 
             if (user.HasLevel(UserLevel.EducationSupervisor))
             {
