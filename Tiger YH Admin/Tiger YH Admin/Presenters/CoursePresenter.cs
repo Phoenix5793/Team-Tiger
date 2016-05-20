@@ -247,9 +247,9 @@ namespace Tiger_YH_Admin.Presenters
 
         private static void EditCoursePlan(string fileName)
         {
-            if (!File.Exists(fileName))
+            using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate))
             {
-                File.Create(fileName);
+                
             }
 
             Console.Clear();

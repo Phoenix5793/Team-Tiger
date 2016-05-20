@@ -42,10 +42,9 @@ namespace Tiger_YH_Admin.DataStore
         {
             var csv = new FileHelperEngine<T>(Encoding.UTF8);
 
-            bool fileExists = File.Exists(_fileName);
-            if (!fileExists)
+            using (FileStream fs = new FileStream(_fileName, FileMode.OpenOrCreate))
             {
-                File.Create(_fileName);
+
             }
 
             T[] records = csv.ReadFile(_fileName);
