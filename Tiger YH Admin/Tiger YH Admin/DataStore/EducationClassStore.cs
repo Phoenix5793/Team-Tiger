@@ -21,7 +21,7 @@ namespace Tiger_YH_Admin.DataStore
 
         public EducationClass FindByStudentId(string id)
         {   
-            return All().Single(e => e.HasStudent(id));
+            return All().SingleOrDefault(e => e.HasStudent(id));
         }
 
         public EducationClass FindByCourseId(string id)

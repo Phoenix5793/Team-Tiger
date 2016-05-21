@@ -15,8 +15,8 @@ namespace Tiger_YH_Admin.Models
         public string ClassId { get; set; }
         public string Description { get; set; }
         public string EducationSupervisorId { get; set; }
-        private string StudentString { get; set; } = string.Empty;
-        private string CourseString { get; set; } = string.Empty;
+        public string StudentString { get; set; } = string.Empty;
+        public string CourseString { get; set; } = string.Empty;
 
         public List<string> GetStudentList()
         {

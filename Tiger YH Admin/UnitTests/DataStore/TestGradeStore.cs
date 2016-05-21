@@ -15,21 +15,27 @@ namespace UnitTests.DataStore
         private Grade _testCourseGrade;
         private Grade _testGoalGrade;
         private List<Grade> _testGradeList;
+        private User _testUser;
 
         [TestInitialize]
         public void Initialize()
         {
+            _testUser = new User
+            {
+                UserName = "adad"
+            };
+
             _testCourseGrade = new Grade
             {
                 CourseId = "oop1",
-                StudentId = "adad",
+                StudentId = _testUser.UserName,
                 Result = GradeLevel.VG
             };
 
             _testGoalGrade = new Grade
             {
                 CourseId = "oop1",
-                StudentId = "adad",
+                StudentId = _testUser.UserName,
                 CourseGoal = "1",
                 Result = GradeLevel.G
             };
@@ -119,6 +125,41 @@ namespace UnitTests.DataStore
             Assert.AreEqual(expectedGrade.StudentId, actualGrade.StudentId);
             Assert.AreEqual(expectedGrade.Result, actualGrade.Result);
             Assert.IsNotNull(foundGrade);
+        }
+
+        [TestMethod]
+        public void FindGradesForStudent_Find_Grade()
+        {
+            User inputStudent = _testUser;
+            List<Grade> ExpectedListOfGrades = _testGradeList.FindAll(g => g.StudentId == _testUser.UserName);
+            List<Grade> actualList = new List<Grade>();
+
+            var listOfGrades = _testStore.FindGradesForStudent(inputStudent);
+            foreach (Grade g in listOfGrades)
+            {
+                actualList.Add(g);
+            }
+
+            CollectionAssert.AreEqual(ExpectedListOfGrades, actualList);
+        }
+
+        [TestMethod]
+        public void FindGradesForStudent_Cant_Find_Grade()
+        {
+            User inputStudent = new User
+            {
+                UserName = "pelle"
+            };
+            List<Grade> ExpectedListOfGrades = _testGradeList.FindAll(g => g.StudentId == _testUser.UserName);
+            List<Grade> actualList = new List<Grade>();
+
+            var listOfGrades = _testStore.FindGradesForStudent(inputStudent);
+            foreach (Grade g in listOfGrades)
+            {
+                actualList.Add(g);
+            }
+
+            CollectionAssert.AreNotEqual(ExpectedListOfGrades, actualList);
         }
     }
 }
