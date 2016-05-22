@@ -25,11 +25,11 @@ namespace Tiger_YH_Admin
                 Console.Write($"{message} ");
                 input = Console.ReadLine();
 
-                if (input.Length < minLength)
+                if (input?.Length < minLength)
                 {
                     Console.WriteLine($"Input för kort, minst {minLength} tecken");
                 }
-            } while (input.Length < minLength);
+            } while (input?.Length < minLength);
 
             return GetInput<T>();
         }
@@ -40,7 +40,7 @@ namespace Tiger_YH_Admin
             {
                 Console.WriteLine(message);
                 Console.Write("(j/n): ");
-                string input = Console.ReadLine().ToLower();
+                string input = Console.ReadLine()?.ToLower();
 
                 switch (input)
                 {
