@@ -11,6 +11,7 @@ namespace UnitTests.Models
     public class TestCourseStore
     {
         private CourseStore testCourseStore;
+        
 
         [TestInitialize]
         public void Initialize()
@@ -161,6 +162,29 @@ namespace UnitTests.Models
             int actualCourseCount = actualCourses.Count;
 
             Assert.AreEqual(expectedCourseCount, actualCourseCount);
+        }
+
+        [TestMethod]
+        public void ForTeacher__Find_Course()
+        {
+            UserStore userStore = new UserStore();
+            var inputUser = new User {UserName = "pontus"};
+
+            List<Course> expectedList = testCourseStore.FindByTeacherId("pontus").ToList();
+            List<Course> actualList = testCourseStore.All().ForTeacher(inputUser).ToList();
+
+            CollectionAssert.AreEqual(expectedList, actualList);
+        }
+        [TestMethod]
+        public void ForTeacher__Find_No_Course()
+        {
+            UserStore userStore = new UserStore();
+            var inputUser = new User { UserName = "john" };
+
+            List<Course> expectedList = testCourseStore.FindByTeacherId("john").ToList();
+            List<Course> actualList = testCourseStore.All().ForTeacher(inputUser).ToList();
+
+            CollectionAssert.AreEqual(expectedList, actualList);
         }
     }
 }

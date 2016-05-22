@@ -5,7 +5,7 @@ using Tiger_YH_Admin.Models;
 
 namespace Tiger_YH_Admin.DataStore
 {
-    static class CourseStoreExtensions
+    public static class CourseStoreExtensions
     {
         public static IEnumerable<Course> Unmanned(this IEnumerable<Course> courses)
         {
