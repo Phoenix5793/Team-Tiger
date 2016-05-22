@@ -132,13 +132,8 @@ namespace UnitTests.DataStore
         {
             User inputStudent = _testUser;
             List<Grade> ExpectedListOfGrades = _testGradeList.FindAll(g => g.StudentId == _testUser.UserName);
-            List<Grade> actualList = new List<Grade>();
 
-            var listOfGrades = _testStore.FindGradesForStudent(inputStudent);
-            foreach (Grade g in listOfGrades)
-            {
-                actualList.Add(g);
-            }
+            List<Grade> actualList = _testStore.FindGradesForStudent(inputStudent).ToList();
 
             CollectionAssert.AreEqual(ExpectedListOfGrades, actualList);
         }
@@ -151,15 +146,10 @@ namespace UnitTests.DataStore
                 UserName = "pelle"
             };
             List<Grade> ExpectedListOfGrades = _testGradeList.FindAll(g => g.StudentId == _testUser.UserName);
-            List<Grade> actualList = new List<Grade>();
 
-            var listOfGrades = _testStore.FindGradesForStudent(inputStudent);
-            foreach (Grade g in listOfGrades)
-            {
-                actualList.Add(g);
-            }
+            List<Grade> listOfGrades = _testStore.FindGradesForStudent(inputStudent).ToList();
 
-            CollectionAssert.AreNotEqual(ExpectedListOfGrades, actualList);
+            CollectionAssert.AreNotEqual(ExpectedListOfGrades, listOfGrades);
         }
     }
 }
