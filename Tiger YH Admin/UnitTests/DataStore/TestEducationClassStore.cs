@@ -23,8 +23,8 @@ namespace UnitTests.DataStore
             {
                 ClassId = "su15",
                 Description = "Systemutvecklare, agil applikationsprogrammering",
-                StudentString = "sven",
-                CourseString = "Mattematik"
+                StudentString = "kalle",
+                CourseString = "Mattematik1"
 
             };
 
@@ -65,7 +65,7 @@ namespace UnitTests.DataStore
         [TestMethod]
         public void FindByStudentId__Can_Find_Student()
         {
-            string input = "sven";
+            string input = "kalle";
             string expected = "su15";
 
             EducationClass foundClass = _classStore.FindByStudentId(input);
@@ -77,7 +77,7 @@ namespace UnitTests.DataStore
         [TestMethod]
         public void FindByStudentId_Return_Null_If_Student_Not_Found()
         {
-            string input = "ola";
+            string input = "svenn";
 
             EducationClass foundClass = _classStore.FindByStudentId(input);
 
@@ -87,7 +87,7 @@ namespace UnitTests.DataStore
         [TestMethod]
         public void FindByCourseId_Can_Find_Class()
         {
-            string input = "Mattematik";
+            string input = "Mattematik1";
             string expected = "su15";
 
             EducationClass foundClass = _classStore.FindByCourseId(input);
@@ -98,7 +98,7 @@ namespace UnitTests.DataStore
         [TestMethod]
         public void FindByCourseId_Return_Null_If_Class_Not_Found()
         {
-            string input = "Svenska";
+            string input = "Franska1";
 
             EducationClass foundClass = _classStore.FindByCourseId(input);
 
@@ -108,11 +108,11 @@ namespace UnitTests.DataStore
         [TestMethod]
         public void GetClassesForSuperVisor_Can_Find_Class()
         {
-            var input = _testSuperVisor;
+            var inputUser = _testSuperVisor;
             var expected = "su15";
 
-            var foundClassList = _classStore.GetClassesForSupervisor(input);
-            EducationClass foundClass = foundClassList.SingleOrDefault(c => c.EducationSupervisorId == input.UserName);
+            var foundClassList = _classStore.GetClassesForSupervisor(inputUser);
+            EducationClass foundClass = foundClassList.SingleOrDefault(c => c.EducationSupervisorId == inputUser.UserName);
 
             Assert.AreEqual(expected, foundClass.ClassId);
         }
