@@ -14,7 +14,7 @@ namespace Tiger_YH_Admin.Models
 
         private string GetGradeId()
         {
-            if (CourseGoal == null)
+            if (string.IsNullOrEmpty(CourseGoal))
             {
                 return $"{CourseId}:{StudentId}";
             }
