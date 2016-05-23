@@ -46,5 +46,18 @@ namespace UnitTests.DataStore
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void IsTeacher__Finds_Student()
+        {
+            var expectedLevel = UserLevel.Student;
+            string expected = "student";
+
+            IEnumerable<User> students = _testUserStore.All().IsStudent();
+            User actualUser = students.Single(u => u.UserLevel == expectedLevel);
+            string actual = actualUser.UserName;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

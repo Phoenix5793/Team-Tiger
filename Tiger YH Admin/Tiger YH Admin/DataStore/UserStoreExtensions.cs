@@ -14,5 +14,11 @@ namespace Tiger_YH_Admin.DataStore
             return teachers.Where(u => u.UserLevel == UserLevel.Teacher);
         }
 
+        public static IEnumerable<User> IsStudent(this IEnumerable<User> students)
+        {
+            return students.Where(u => u.UserLevel == UserLevel.Student);
+        }
+
+
     }
 }
