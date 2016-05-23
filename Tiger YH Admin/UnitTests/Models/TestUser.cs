@@ -65,5 +65,27 @@ namespace UnitTests.Models
 
             Assert.IsNull(actual);
         }
+
+        [TestMethod]
+        public void Get_SSN()
+        {
+            string expected = "8080980";
+
+            string actual = _testUser.SSN;
+
+            Assert.AreEqual(expected,actual);
+
+        }
+
+        [TestMethod]
+        public void Get_PhoneNumber()
+        {
+            string expected = "123321";
+
+            string actual = _testUser.PhoneNumber;
+
+            Assert.AreEqual(expected,actual);
+
+        }
     }
 }
