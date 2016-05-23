@@ -48,7 +48,7 @@ namespace UnitTests.DataStore
         }
 
         [TestMethod]
-        public void IsTeacher__Finds_Student()
+        public void IsStudent__Finds_Student()
         {
             var expectedLevel = UserLevel.Student;
             string expected = "student";
