@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 using Tiger_YH_Admin.DataStore;
 using Tiger_YH_Admin.Models;
 
@@ -22,6 +23,7 @@ namespace Tiger_YH_Admin.Creators
             string oldUserName = String.Empty;
 
             Console.Clear();
+            string userName = string.Empty;
 
             if (existingUser == null)
             {
@@ -32,23 +34,23 @@ namespace Tiger_YH_Admin.Creators
             {
                 Console.WriteLine($"Redigerar {existingUser.FullName()} ({existingUser.UserName})");
                 oldUserName = existingUser.UserName;
+                userName = existingUser.UserName;
             }
 
             Console.WriteLine();
 
-            string userName = string.Empty;
+            
             bool loopName = false;
             if (existingUser.UserName == null)
             {
                 do
                 {
+
                     Console.WriteLine("Lämna namnet tomt för att avbryta");
                     userName = UserInput.GetEditableField("Användarnamn", existingUser.UserName);
 
                     User checkUser = userStore.FindById(userName);
-                    if (existingUser.UserName == userName)
-                    {
-                    }
+                    
                     if (checkUser != null && existingUser.UserName != userName)
                     {
                         Console.WriteLine("Användarnamnet är upptaget");
@@ -56,6 +58,10 @@ namespace Tiger_YH_Admin.Creators
                         loopName = true;
                     }
                     else if (userName == string.Empty)
+                    {
+                        return null;
+                    }
+                    else
                     {
                         break;
                     }
@@ -137,7 +143,7 @@ namespace Tiger_YH_Admin.Creators
                     isValid = true;
                 }
             } while (!isValid);
-
+           
 
             existingUser = new User
             {
@@ -150,6 +156,7 @@ namespace Tiger_YH_Admin.Creators
                 PhoneNumber = phoneNumber
             };
 
+            Console.Clear();
             Console.WriteLine($"Användarnamn: {existingUser.UserName}");
             Console.WriteLine($"Lösenord: {existingUser.Password}");
             Console.WriteLine($"Namn: {existingUser.FullName()}");
@@ -164,13 +171,18 @@ namespace Tiger_YH_Admin.Creators
                 if (oldUserName != string.Empty)
                 {
                     List<User> userList = userStore.All().Where(u => u.UserName != oldUserName).ToList();
+                    userList.Add(existingUser);
                     userStore = new UserStore(userList);
+                    Console.WriteLine($"Användare {existingUser.UserName} redigerad");
                 }
-
-                userStore.AddItem(existingUser);
+                else
+                {
+                    userStore.AddItem(existingUser);
+                    Console.WriteLine($"Ny användare {existingUser.UserName} skapad");
+                }
+                
                 userStore.Save();
-
-                Console.WriteLine($"Ny användare {existingUser.UserName} skapad");
+                
                 UserInput.WaitForContinue();
             }
 
