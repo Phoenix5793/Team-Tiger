@@ -20,6 +20,10 @@ namespace Tiger_YH_Admin.Models
 
         public List<string> GetStudentList()
         {
+            if (string.IsNullOrEmpty(StudentString))
+            {
+                return new List<string>();
+            }
             return StudentString.Split(',').ToList();
         }
 

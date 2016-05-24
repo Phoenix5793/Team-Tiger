@@ -66,6 +66,10 @@ namespace Tiger_YH_Admin
                 }
                 catch (FormatException)
                 {
+                    if (date == default(DateTime))
+                    {
+                        return DateTime.MinValue;
+                    }
                     Console.WriteLine();
                     Console.WriteLine("Ogiltigt datumformat!");
                     keepGoing = true;

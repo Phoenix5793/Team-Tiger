@@ -33,5 +33,26 @@ namespace Tiger_YH_Admin.DataStore
         {
             return All().ForSupervisor(supervisor);
         }
+
+        public bool AddStudent(User student, string classId)
+        {
+
+            var exists = All().SingleOrDefault(c => c.HasStudent(student));
+
+            if (exists != null)
+            {
+                return false;
+            }
+            
+            EducationClass klass = FindById(classId);
+
+            if (klass == null)
+            {
+                return false;
+            }
+            klass.AddStudent(student);
+            return true;
+
+        }
     }
 }

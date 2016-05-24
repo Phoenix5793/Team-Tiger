@@ -11,6 +11,7 @@ namespace Tiger_YH_Admin.Creators
         {
             EducationClass newClass = new EducationClass();
             UserStore userStore = new UserStore();
+            EducationClassStore classStore = new EducationClassStore();
 
             bool keepLooping = true;
             do
@@ -71,13 +72,15 @@ namespace Tiger_YH_Admin.Creators
                         Console.WriteLine("Lägg till student-id: ");
                         newStudent = UserInput.GetInput<string>();
                         User student = userStore.FindById(newStudent);
-                        if (student != null && student.HasLevel(UserLevel.Student))
+                        var foundClass = classStore.FindByStudentId(student?.UserName);
+                        if (foundClass == null && !string.IsNullOrEmpty(newStudent))
                         {
                             studentList.Add(student.UserName);
+                            Console.WriteLine("Studenten är tillagd");
                         }
                         else
                         {
-                            Console.WriteLine("Användaren är inte student");
+                            Console.WriteLine("Användaren är inte student eller studenten finns redan i klassen");
                         }
                     } while (newStudent.Length > 0);
 
@@ -92,10 +95,21 @@ namespace Tiger_YH_Admin.Creators
                     keepLooping = false;
                 }
             } while (keepLooping);
+            Console.Clear();
+            Console.WriteLine(newClass.ClassId);
+            Console.WriteLine(newClass.Description);
+            Console.WriteLine();
 
-            EducationClass klass = dataStore.AddItem(newClass);
-            dataStore.Save();
-            return klass;
+            bool confirmation = UserInput.AskConfirmation("Vill du spara klassen?");
+
+            if (confirmation)
+            {
+                EducationClass klass = dataStore.AddItem(newClass);
+                dataStore.Save();
+                return klass;
+
+            }
+            return null;
         }
     }
 }

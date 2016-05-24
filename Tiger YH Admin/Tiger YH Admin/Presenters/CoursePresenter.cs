@@ -744,8 +744,19 @@ namespace Tiger_YH_Admin.Presenters
                 else
                 {
                     EducationClass klass = classStore.FindByCourseId(course.CourseId);
-                    List<string> studentNames = klass.GetStudentList();
-                    UserManagerPresenter.PrintStudentList(studentNames);
+
+                    if (klass != null)
+                    {
+                        List<string> studentNames = klass.GetStudentList();
+                        UserManagerPresenter.PrintStudentList(studentNames);
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Finns ingen klass som läser denna kurs");
+                        UserInput.WaitForContinue();
+                    }
+                    
                 }
             } while (true);
         }

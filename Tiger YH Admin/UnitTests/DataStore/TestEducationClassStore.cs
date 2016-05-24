@@ -15,6 +15,7 @@ namespace UnitTests.DataStore
         private EducationClass _testClass;
         private User _testSuperVisor;
         private UserStore _testUserStore;
+        private User _testStudent;
 
         [TestInitialize]
         public void Initialize()
@@ -27,16 +28,30 @@ namespace UnitTests.DataStore
                 CourseString = "Mattematik1"
 
             };
+            EducationClass _testClass2 = new EducationClass
+            {
+                ClassId = "su14",
 
+
+            };
+             
             _testSuperVisor = new User
             {
                 UserLevel = UserLevel.EducationSupervisor,
                 UserName = "tina"
             };
+
+            _testStudent = new User
+            {
+                UserLevel = UserLevel.Student,
+                UserName = "Niklas"
+
+            };
+
             _testClass.EducationSupervisorId = _testSuperVisor.UserName;
 
-            List<EducationClass> classList = new List<EducationClass> {_testClass};
-            List<User> userList = new List<User> { _testSuperVisor };
+            List<EducationClass> classList = new List<EducationClass> {_testClass, _testClass2};
+            List<User> userList = new List<User> { _testSuperVisor, _testStudent };
 
             _testUserStore = new UserStore(userList);
             _classStore = new EducationClassStore(classList);
@@ -96,7 +111,7 @@ namespace UnitTests.DataStore
         }
 
         [TestMethod]
-        public void FindByCourseId_Return_Null_If_Class_Not_Found()
+        public void FindByCourseId__Return_Null_If_Class_Not_Found()
         {
             string input = "Franska1";
 
@@ -106,7 +121,7 @@ namespace UnitTests.DataStore
         }
 
         [TestMethod]
-        public void GetClassesForSuperVisor_Can_Find_Class()
+        public void GetClassesForSuperVisor__Can_Find_Class()
         {
             var inputUser = _testSuperVisor;
             var expected = "su15";
@@ -115,6 +130,46 @@ namespace UnitTests.DataStore
             EducationClass foundClass = foundClassList.SingleOrDefault(c => c.EducationSupervisorId == inputUser.UserName);
 
             Assert.AreEqual(expected, foundClass.ClassId);
+        }
+
+        [TestMethod]
+        public void AddStudent__Can_Add_Student()
+        {
+            string inputClassID = "su15";
+            var inputStudent = _testStudent;
+            bool expected = true;
+
+            bool actual = _classStore.AddStudent(inputStudent, inputClassID);
+
+            Assert.AreEqual(expected,actual);
+
+        }
+        [TestMethod]
+        public void AddStudent__Can_Not_Add_Student_Again_To_Same_Class()
+        {
+            string inputClassID = "su15";
+            var inputStudent = _testStudent;
+            bool expected = false;
+
+            _classStore.AddStudent(inputStudent, inputClassID);
+            bool actual = _classStore.AddStudent(inputStudent, inputClassID);
+
+            Assert.AreEqual(expected, actual);
+
+        }
+        [TestMethod]
+        public void AddStudent__Can_Not_Add_Student_To_Different_Class()
+        {
+            string inputClassID = "su15";
+            string inputClassID2 = "su14";
+            var inputStudent = _testStudent;
+            bool expected = false;
+
+            _classStore.AddStudent(inputStudent, inputClassID);
+            bool actual = _classStore.AddStudent(inputStudent, inputClassID2);
+
+            Assert.AreEqual(expected, actual);
+
         }
     }
 }
